@@ -1,0 +1,10 @@
+xsane (0.999-3) unstable; urgency=medium
+
+  - New ocr commandline tools
+
+    Since release 0.999-3 three new ocr commandline tools
+    added to Suggests.
+
+    For more details read the xsane.README.
+
+ -- Jörg Frings-Fürst <debian@jff-webhosting.net>  Tue, 24 Nov 2015 21:56:44 +0100

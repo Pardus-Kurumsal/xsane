@@ -1,0 +1,15 @@
+Document: xsane
+Title: Xsane
+Author: Oliver Rauch
+Abstract: This manual describes how to use xsane as a frontend to
+ hardware scanners.  Xsane is a gtk-based X11 frontend for SANE
+ (Scanner Access Now Easy).  SANE stands for "Scanner Access Now Easy"
+ and is an application programming interface (API) that provides
+ standardized access to any raster image scanner hardware (flatbed
+ scanner, hand-held scanner, video- and still-cameras, frame-grabbers,
+ etc.).
+Section: Graphics
+
+Format: html
+Index: /usr/share/sane/xsane/doc/sane-xsane-doc.html
+Files: /usr/share/sane/xsane/doc/*.html

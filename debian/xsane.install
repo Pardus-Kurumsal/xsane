@@ -1,0 +1,5 @@
+src/xsane.desktop usr/share/applications
+debian/xsane.png usr/share/icons/hicolor/256x256/apps
+usr/bin
+usr/share/man
+debian/ocr-scripts usr/share/xsane

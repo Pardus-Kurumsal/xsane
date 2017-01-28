@@ -1,0 +1,41 @@
+#!/usr/bin/make -f
+#export DH_VERBOSE=1
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@ --with autoreconf
+
+override_dh_auto_configure:
+	dh_auto_configure -- --enable-gimp
+
+override_dh_auto_clean:
+	dh_auto_clean
+
+	rm -f config.sub config.guess
+	rm -f xsane.spec include/config.h
+	rm -f po/*.gmo
+
+override_dh_strip:
+	dh_strip -pxsane --dbg-package=xsane-dbg
+
+override_dh_auto_install:
+	dh_auto_install
+
+	# remove outdated/useless documentation
+	rm -f debian/tmp/usr/share/sane/xsane/doc/sane-backends-doc.html
+	rm -f debian/tmp/usr/share/sane/xsane/doc/sane-pnm-doc.html
+
+override_dh_install-arch:
+	dh_install
+
+	install -m 0644 src/xsane-32x32.xpm \
+		debian/xsane/usr/share/pixmaps/xsane.xpm
+	install -m 0644 src/xsane-48x48.png \
+		debian/xsane/usr/share/pixmaps/xsane.png
+
+override_dh_install-indep:
+	dh_install
+
+override_dh_installchangelogs:
+	dh_installchangelogs xsane.CHANGES

@@ -1,0 +1,46 @@
+Use the new ocr commandline tools.
+
+
+
+#############################################################################
+cuneiform:
+
+- install cuneiform
+   apt-get install cuneiform
+- copy /usr/share/xsane/ocr-scripts/xsane2cunei.sh to /usr/local/bin
+   cp /usr/share/xsane/ocr-scripts/xsane2cunei.sh /usr/local/bin
+- at "xsane -> Setup -> Preferences -> OCR" add:
+   OCR command: /usr/local/bin/xsane2cunei.sh -l <language> -f <format> -e <extraoptions>
+   Input file: -i
+   Output file: -o
+- for <language>, <format> or <extraoptions> please read the cuneiform man page.
+
+
+
+#############################################################################
+tesseract-ocr:
+
+- install tesseract-ocr and at minimum one language file
+   apt-get install tesseract-ocr tesseract-ocr-[eng|fra|ita|ndl|por|spa|vie|deu|deu-frak]
+- copy /usr/share/xsane/ocr-scripts/xsane2tess3.sh to /usr/local/bin
+   cp /usr/share/xsane/ocr-scripts/xsane2tess3.sh /usr/local/bin
+- at "xsane -> Setup -> Preferences -> OCR" add:
+   OCR command: /usr/local/bin/xsane2tess3.sh -l <language> <extraoptions>
+   Input file: -i
+   Output file: -o
+- for <language> or <extraoptions> please read the tesseract-ocr man page.
+
+
+
+#############################################################################
+ocrad:
+
+- install ocrad
+   apt-get install ocrad
+- copy /usr/share/xsane/ocr-scripts/xsane2ocrad.shh to /usr/local/bin
+   cp /usr/share/xsane/ocr-scripts/xsane2ocrad.sh /usr/local/bin
+- at "xsane -> Setup -> Preferences -> OCR" add:
+   OCR command: /usr/local/bin/xsane2ocrad.sh -e <extraoptions>
+   Input file: -i
+   Output file: -o
+- for <extraoptions> please read the ocrad man page.

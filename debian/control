@@ -1,0 +1,92 @@
+Source: xsane
+Section: graphics
+Priority: optional
+Maintainer: Jörg Frings-Fürst <debian@jff-webhosting.net>
+Standards-Version: 3.9.8
+Build-Depends:
+ debhelper (>= 10),
+ dh-autoreconf,
+ gettext,
+ libgimp2.0-dev,
+ libgtk2.0-dev,
+ libjpeg62-turbo-dev,
+ liblcms2-dev,
+ libpng-dev,
+ libsane-dev,
+ libtiff-dev,
+ zlib1g-dev
+Homepage: http://www.xsane.org/
+Vcs-Git: git://anonscm.debian.org/collab-maint/xsane.git
+Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/xsane.git
+
+Package: xsane
+Architecture: any
+Multi-Arch: foreign
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ xsane-common (= ${source:Version})
+Recommends:
+ cups-client,
+ firefox | www-browser
+Suggests:
+ gimp,
+ gocr | cuneiform | tesseract-ocr | ocrad,
+ gv,
+ hylafax-client | mgetty-fax
+Description: featureful graphical frontend for SANE (Scanner Access Now Easy)
+ xsane can be run as a stand-alone program or through the GIMP image
+ manipulation program.  In stand-alone mode, xsane can save an image
+ to a file in a variety of image formats, serve as a frontend to a
+ fax program, or send an image to a printer.
+ .
+ SANE stands for "Scanner Access Now Easy" and is an application
+ programming interface (API) that provides standardized access to any
+ raster image scanner hardware (flatbed scanner, hand-held scanner,
+ video- and still-cameras, frame-grabbers, etc.). The SANE standard is
+ free and its discussion and development are open to everybody. The
+ current source code is written to support several operating systems,
+ including GNU/Linux, OS/2, Win32 and various Unices and is available
+ under the GNU General Public License (commercial applications and
+ backends are welcome, too, however).
+
+Package: xsane-dbg
+Architecture: any
+Multi-Arch: same
+Section: debug
+Priority: extra
+Depends:
+ ${misc:Depends},
+ xsane (= ${binary:Version})
+Description: featureful graphical frontend for SANE (Debug files)
+ xsane can be run as a stand-alone program or through the GIMP image
+ manipulation program.  In stand-alone mode, xsane can save an image
+ to a file in a variety of image formats, serve as a frontend to a
+ fax program, or send an image to a printer.
+ .
+ SANE stands for "Scanner Access Now Easy" and is an application
+ programming interface (API) that provides standardized access to any
+ raster image scanner hardware (flatbed scanner, hand-held scanner,
+ video- and still-cameras, frame-grabbers, etc.). The SANE standard is
+ free and its discussion and development are open to everybody. The
+ current source code is written to support several operating systems,
+ including GNU/Linux, OS/2, Win32 and various Unices and is available
+ under the GNU General Public License (commercial applications and
+ backends are welcome, too, however).
+ .
+ This package contains debug files needed by xsane.
+
+Package: xsane-common
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Replaces: xsane
+Recommends: xsane
+Description: xsane architecture independent files
+ xsane can be run as a stand-alone program or through the GIMP image
+ manipulation program.  In stand-alone mode, xsane can save an image
+ to a file in a variety of image formats, serve as a frontend to a
+ fax program, or send an image to a printer.
+ .
+ This package contains architecture-independent files needed by xsane
+ (locales, help).

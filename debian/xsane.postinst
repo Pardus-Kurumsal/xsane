@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -e
+
+HTMLDOCDIR=/usr/share/doc/xsane/html
+NEWHTMLDOCDIR=../xsane-common/html
+
+if [ -d "$HTMLDOCDIR" ] && [ ! -L "$HTMLDOCDIR" ]; then
+    # Remove old directory and files that are now provided by xsane-common
+    rm -rf "$HTMLDOCDIR"
+    # Create a link to the new directory
+    ln -s "$NEWHTMLDOCDIR" "$HTMLDOCDIR"
+fi
+
+
+#DEBHELPER#

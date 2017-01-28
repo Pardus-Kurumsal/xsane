@@ -1,0 +1,957 @@
+xsane (0.999-5) unstable; urgency=medium
+
+  * New debian/patches/0010-fix_missing_sane-config.patch (Closes: #852840):
+    - Add autoconf statements which were previously part of
+      sane-config to detect the presence of sane-backends.
+    Thanks to Andreas Metzler <ametzler@bebt.de>.
+  * debian/copyright:
+    - Add year 2017 for debian/*.
+
+ -- Jörg Frings-Fürst <debian@jff-webhosting.net>  Sat, 28 Jan 2017 07:15:47 +0100
+
+xsane (0.999-4) unstable; urgency=medium
+
+  * debian/control:
+    - Remove iceweasel from Recommends.
+    - Bump Standards-Version to 3.9.8 (no changes required).
+    - Change Vcs-Browser to secure URI.
+    - Bump required version of debhelper to >= 10.
+    - Add Multi-Arch tags to all packages (warning from Multi-Arch hinter).
+  * debian/compat:
+    - Change compat level to 10.
+  * debian/copyright:
+    - Add 2016 for packaging.
+  * Migrate to autoreconf:
+    - debian/rules: Change from autotools_dev to autoreconf.
+    - debian/control: Replace autotools-dev with dh_autoreconf in B-D.
+    - New debian/patches/0005-m4.patch to add missing tags.
+  * debian/watch:
+    - Bump Version to 4 (no changes required).
+  * Refresh patches:
+    - debian/patches/0170-typo.patch.
+    - debian/patches/0900-i18n_po_update_es_add_gl.patch
+  * Remove useless debian/xsane.lintian-overrides.
+
+ -- Jörg Frings-Fürst <debian@jff-webhosting.net>  Sat, 15 Oct 2016 05:58:43 +0200
+
+xsane (0.999-3) unstable; urgency=medium
+
+  * debian/control:
+    - Drop version number from libsane-dev build dependency
+      (oldstable has 1.0.22-7.4).
+    - Drop version number from libgimp2.0-dev build dependency
+      (oldstable has version 2.8.2-2+deb7u1).
+    - Remove useless whitespaces.
+  * debian/rules:
+    - Split override_dh_install into *-arch and *-indep (Closes: #806125).
+  * Add new OCR command-line tools:
+    - debian/control:
+      + Add cuneiform, tesseract-ocr, ocrad to Suggests.
+    - debian/ocr-scripts:
+      + Add xsane2cunei.sh, xsane2ocrad.sh and xsane2tess3.sh.
+    - debian/xsane.dirs:
+      + Add usr/share/xsane.
+    - debian/xsane.install
+      + Install ocr-scripts into debian/share/xsane/ocr-scripts.
+  * New xsane.lintian-overrides:
+    - Add override for spelling-error-in-binary.
+  * Drop debian/xsane.menu file in compliance with CTTE decision (see #741573).
+
+ -- Jörg Frings-Fürst <debian@jff-webhosting.net>  Sat, 05 Dec 2015 16:58:02 +0100
+
+xsane (0.999-2) unstable; urgency=medium
+
+  * Add new package xsane-dbg (Closes: #690359).
+  * debian/control:
+    - New package xsane-dbg.
+    - Reformat Depends.
+  * debian/rules:
+    - Add override_dh_strip for xsane-dbg.
+  * debian/patches:
+    - Rename and refresh the patches.
+
+ -- Jörg Frings-Fürst <debian@jff-webhosting.net>  Tue, 16 Dec 2014 23:03:17 +0100
+
+xsane (0.999-1) unstable; urgency=medium
+
+  * New upstream release.
+  * New maintainer (Closes: #688542).
+  * debian/control:
+    - Add myself as maintainer.
+    - Bump Standards-Version to 3.9.6, no changes required.
+    - Update short description of xsane-common.
+    - Change Build-Depends from libjpeg-dev to libjpeg62-turbo-dev
+      with regards to the libjpeg-turbo transition.
+  * debian/copyright:
+    - Rewrite into DEP-5 format.
+    - Add myself to the list of authors for debian/*.
+    - Change the license of debian/* to GPL-3+.
+  * New debian/watch file.
+  * debian/patches:
+    - New xsane-0.999-lcms2.patch:
+      + Add support for lcms2 (Closes: #745524).
+        Thanks to Nils Philippsen <nils@redhat.com>!
+    - New lcms2_configure.patch:
+      + patch configure direct because autoreconf is broken.
+        Thanks to Nils Philippsen <nphilipp@fedoraproject.org>!
+    - New typo.patch and typo_manpage.patch:
+      + Correct some typos.
+    - New desktop_file.patch:
+      + Move tags from debian/xsane.desktop to src/xsane.desktop.
+    - New man_misleading.patch:
+      + Correct misleading documentation for --force-filename (Closes: #441695).
+  * Remove debian/xsane.desktop
+  * debian/rules:
+    - Enable hardening.
+
+ -- Jörg Frings-Fürst <debian@jff-webhosting.net>  Thu, 23 Oct 2014 21:56:32 +0200
+
+xsane (0.998-6) unstable; urgency=medium
+
+  * QA upload.
+  * Update Build-Depends to point to liblcms2-dev instead of liblcms1-dev.
+    Unfortunately, xsane is not yet ready for liblcms2 so until that is
+    fixed it will build without LCMS support. This is done so that
+    #745524 can be reduced to important severity and xsane can stay in
+    testing.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Thu, 07 Aug 2014 08:34:15 +0200
+
+xsane (0.998-5) unstable; urgency=low
+
+  * QA upload.
+  * debian/control: Build-depend on libtiff-dev rather than libtiff4-dev.
+  * debian/xsane.desktop: Add 2DGraphics to Categories, as hinted by
+    desktop-file-validate. Thanks to Angel Abad!
+
+ -- Colin Watson <cjwatson@debian.org>  Wed, 05 Jun 2013 11:30:48 +0100
+
+xsane (0.998-4) unstable; urgency=low
+
+  * QA upload.
+  * Change maintainer to QA Group.
+  * debian/ improvements:
+    - Bump debhelper compat level to 9.
+    - Convert to use dh.
+    - Add Homepage header.
+    - Bump Standards-Version to 3.9.3, no changes required.
+  * Move documentation out of /usr/share/doc, since it is used by
+    the program itself, this was arguably a policy violation.
+  * Change Build-Depends from libpng12-dev to libpng-dev and apply
+    patch by Nobuhiro Iwamatsu to fix build with libpng15
+    (Closes: #649800, #662569).
+  * Add higher resolution icons (based on src/xsane-logo.xpm)
+    (Closes: #675470).
+  * Remove non-working items in help menu. Patch from openSUSE
+    package.
+
+ -- Frank Lichtenheld <djpig@debian.org>  Tue, 29 Jan 2013 01:20:42 +0100
+
+xsane (0.998-3) unstable; urgency=low
+
+  * debian/control:
+    - Build-depend on libjpeg-dev instead of libjpeg62-dev (Closes: #634651).
+
+ -- Julien BLACHE <jblache@debian.org>  Tue, 19 Jul 2011 22:43:22 +0200
+
+xsane (0.998-2) unstable; urgency=low
+
+  * debian/control:
+    - Bump Standards-Version to 3.9.2, no changes required.
+  * debian/patches/fix_tighten_default_umask.patch:
+    - Added; tighten default umask, going to 0077 from 0007 (Closes: #592972).
+
+ -- Julien BLACHE <jblache@debian.org>  Thu, 02 Jun 2011 15:27:09 +0200
+
+xsane (0.998-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control:
+    - Bump Standards-Version to 3.9.1, no changes required.
+
+ -- Julien BLACHE <jblache@debian.org>  Fri, 04 Feb 2011 19:56:33 +0100
+
+xsane (0.997-2) unstable; urgency=low
+
+  * debian/patches/fix_spin_button_pagesize.patch:
+    - Added back; not fixed upstream.
+
+ -- Julien BLACHE <jblache@debian.org>  Mon, 31 May 2010 19:37:03 +0200
+
+xsane (0.997-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/patches/fix_preview_mouse_events.patch:
+    - Added; fix mouse events handling in the preview window (Closes: #583661).
+  * Drop debian/patches/fix_cap_always_settable.patch, fixed upstream.
+  * Drop debian/patches/fix_spin_button_pagesize.patch, fixed upstream.
+
+ -- Julien BLACHE <jblache@debian.org>  Sat, 29 May 2010 12:49:57 +0200
+
+xsane (0.996-4) unstable; urgency=low
+
+  * Package converted to source format 3.0 (quilt).
+    - Patches now have DEP-3 headers.
+  * debian/control:
+    - Drop dpatch build-dep.
+    - Bump Standards-Version to 3.8.4.
+    - Add ${misc:Depends}.
+  * debian/rules:
+    - Drop dpatch code.
+  * debian/patches/fix_message_typo.patch:
+    - Added; fix a typo in GUI messages (Closes: #569747).
+  * debian/patches/i18n_po_update_fr.patch:
+    - Added; update French translation (Closes: #573213).
+
+ -- Julien BLACHE <jblache@debian.org>  Sat, 13 Mar 2010 21:14:18 +0100
+
+xsane (0.996-3) unstable; urgency=low
+
+  * debian/control:
+    - Bump Standards-Version to 3.8.3, no changes required.
+  * debian/patches/20_spin_button_pagesize.dpatch:
+    - Added; fix adjustment page size for spin buttons (Closes: #562253).
+
+ -- Julien BLACHE <jblache@debian.org>  Sun, 27 Dec 2009 08:41:32 +0100
+
+xsane (0.996-2) unstable; urgency=low
+
+  * debian/control:
+    - Bump Standards-Version to 3.8.2, no changes required.
+  * debian/patches/07_fix_pdf_floats.dpatch:
+    - Added; set LC_NUMERIC to POSIX before printing floats in PostScript
+      and PDF output.
+  * debian/patches/08_po_update_es_add_gl.dpatch:
+    - Added; update es translation and add new gl translation; courtesy
+      of Miguel Bouzada <mbouzada@gmail.com>.
+  * debian/patches/09_cap_always_settable.dpatch:
+    - Added; remove check for SANE_CAP_ALWAYS_SETTABLE which has been removed
+      upstream in SANE 1.0.20 (and was never used, not part of the standard).
+
+ -- Julien BLACHE <jblache@debian.org>  Fri, 26 Jun 2009 11:58:33 +0200
+
+xsane (0.996-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/xsane.postinst:
+    - Make maintainer script set -e.
+  * debian/patches/06_fix_pdf_xref.dpatch:
+    - Updated; this release fixes the single-page case but
+      the multipage case was left out.
+
+ -- Julien BLACHE <jblache@debian.org>  Wed, 26 Nov 2008 22:35:41 +0100
+
+xsane (0.995-6) unstable; urgency=low
+
+  * debian/patches/06_fix_pdf_xref.dpatch:
+    - Added; mark non-existent PDF objects as free in the
+      xref table (Closes: #499104).
+
+ -- Julien BLACHE <jblache@debian.org>  Wed, 17 Sep 2008 21:40:10 +0200
+
+xsane (0.995-5) unstable; urgency=low
+
+  * debian/control:
+    - xsane Recommends: cups-client for the lp binary.
+  * debian/patches/01_printing_defaults.dpatch:
+    - Added; switch printing defaults from lpr to lp (Closes: #468274).
+
+ -- Julien BLACHE <jblache@debian.org>  Mon, 08 Sep 2008 11:04:02 +0200
+
+xsane (0.995-4) unstable; urgency=low
+
+  * debian/control:
+    - Bump Standards-Version to 3.8.0, no changes required.
+  * debian/xsane.desktop:
+    - Remove Encoding key (Closes: #489790).
+  * debian/patches/05_options_handling_fix.dpatch:
+    - Added; duplicate strings for options with a constraint type of
+      SANE_CONSTRAINT_STRING_LIST, as the constraint is not guaranteed to
+      be stable in memory, and actually isn't when the net backend is used.
+      Based on Brad Sawatzky's patch (Closes: #487475, #307088).
+  * debian/patches/03_gimp_acquire_menu.dpatch:
+    - Updated; add missing patch description.
+
+ -- Julien BLACHE <jblache@debian.org>  Fri, 25 Jul 2008 19:04:12 +0200
+
+xsane (0.995-3) unstable; urgency=low
+
+  * debian/patches/04_inhibit_clickthrough.dpatch:
+    - Added; finally give up and inhibit the license clickthrough.
+      They largely made me do it (Closes: #132679).
+  * debian/xsane-common.doc-base:
+    - Fix doc-base section.
+
+ -- Julien BLACHE <jblache@debian.org>  Fri, 11 Apr 2008 19:03:59 +0200
+
+xsane (0.995-2) unstable; urgency=low
+
+  * debian/control:
+    - Bump Standards-Version to 3.7.3, no changes required.
+
+ -- Julien BLACHE <jblache@debian.org>  Sat, 01 Mar 2008 16:59:01 +0100
+
+xsane (0.995-1) unstable; urgency=low
+
+  * New upstream release.
+    - Enlarged buffer for the "No devices" help text (Closes: #442294).
+    - LCMS (color management) support.
+  * debian/patches/11_contect_typo.dpatch:
+    - Removed; merged upstream.
+  * debian/patches/12_pbar_fixes.dpatch:
+    - Removed; fixed upstream with a different fix.
+  * debian/control:
+    - Build-Depends: Add liblcms1-dev for color management support.
+  * Upload to unstable.
+
+ -- Julien BLACHE <jblache@debian.org>  Thu, 22 Nov 2007 11:42:18 +0100
+
+xsane (0.994-1) experimental; urgency=low
+
+  * New upstream release.
+
+ -- Julien BLACHE <jblache@debian.org>  Wed,  7 Mar 2007 13:12:27 +0100
+
+xsane (0.993-1) experimental; urgency=low
+
+  * New upstream release.
+  * Upload to experimental.
+
+ -- Julien BLACHE <jblache@debian.org>  Tue, 27 Feb 2007 22:22:40 +0100
+
+xsane (0.99+0.991-6) unstable; urgency=low
+
+  * debian/patches/12_pbar_fixes.dpatch:
+    - Added; Reduce progress bar updates/redraws by rounding the progress
+      value. Patch by Joris van Rooij <jrrzz@il.fontys.nl> (Closes: #432609).
+  * debian/xsane.desktop:
+    - Remove non-existent "Application" category.
+  * debian/xsane-common.links:
+    - Add an index.html symlink to sane-xsane-doc.html in the HTML doc.
+
+ -- Julien BLACHE <jblache@debian.org>  Fri, 24 Aug 2007 11:37:26 +0200
+
+xsane (0.99+0.991-5) unstable; urgency=low
+
+  * debian/xsane.menu:
+    - Update for the new menu structure.
+
+ -- Julien BLACHE <jblache@debian.org>  Sun, 05 Aug 2007 18:14:18 +0200
+
+xsane (0.99+0.991-4) unstable; urgency=low
+
+  * debian/control:
+    - Remove obsolete Build-Conflicts: libpng10-dev.
+    - Remove obsolete Conflicts/Replaces: xsane-gimp1.{2,3}.
+    - Update browser recommendation.
+    - Improve short description.
+  * debian/rules:
+    - Do not ignore errors from make distclean.
+
+ -- Julien BLACHE <jblache@debian.org>  Thu, 02 Aug 2007 18:15:18 +0200
+
+xsane (0.99+0.991-3) unstable; urgency=low
+
+  * debian/patches/10_broken_links.dpatch:
+    - Added; fix broken links in HTML documentation (Closes: #415299).
+  * debian/patches/11_contect_typo.dpatch:
+    - Added; fix "contect" typo in xsane-text.h; original patch by
+      Martin Pitt <martin.pitt@ubuntu.com> (Closes: #420749).
+
+ -- Julien BLACHE <jblache@debian.org>  Fri, 27 Apr 2007 21:46:28 +0200
+
+xsane (0.99+0.991-2) unstable; urgency=low
+
+  * debian/control:
+    - Bump Standards-Version to 3.7.2, no changes required.
+    - Fix dependency on xsane-common to be binNMU-safe.
+    - Remove Uploaders field.
+
+      Thank you Aurélien JARNO for your help during these years.
+
+ -- Julien BLACHE <jblache@debian.org>  Sun,  7 Jan 2007 19:00:11 +0100
+
+xsane (0.99+0.991-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Julien BLACHE <jblache@debian.org>  Tue, 24 Jan 2006 23:14:44 +0100
+
+xsane (0.99-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Julien BLACHE <jblache@debian.org>  Tue, 10 Jan 2006 21:58:08 +0100
+
+xsane (0.98b-2) unstable; urgency=low
+
+  * debian/control:
+    - Remove xlibs-dev from Build-Depends (Closes: #343945).
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sun,  8 Jan 2006 00:43:52 +0100
+
+xsane (0.98b-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Julien BLACHE <jblache@debian.org>  Sat,  3 Dec 2005 14:51:29 +0100
+
+xsane (0.98-1) unstable; urgency=low
+
+  * New upstream release.
+    - Adds PDF support, including in mail mode (Closes: #311510).
+    - Fixes batch scan (Closes: #337208).
+  * debian/patches/11_manapge_fixes.dpatch:
+    - Removed; merged upstream.
+  * debian/patches/12_de.po_fixes.dpatch:
+    - Removed; merged upstream.
+  * debian/patches/10_batch_scan_bugfix.dpatch:
+    - Removed; merged upstream.
+  * debian/patches/01_logo_docs.dpatch:
+    - Removed; not necessary anymore.
+
+ -- Julien BLACHE <jblache@debian.org>  Mon, 21 Nov 2005 21:49:19 +0100
+
+xsane (0.97-4) unstable; urgency=low
+
+  * debian/control:
+    - Bump Standards-Version to 3.6.2, no changes required.
+  * debian/patches/11_manpage_fixes.dpatch:
+    - Added; typo fixes for the manpage (Closes: #302676).
+  * debian/patches/12_de.po_fixes.dpatch:
+    - Added; typo fixes for the German translation (Closes: #313862).
+  * debian/patches/02_docviewer.dpatch:
+    - Fixed; do not change the value of BROWSER_NETSCAPE (Closes: #321835).
+  * debian/xsane.postinst:
+    - Fix bashism in postinst.
+
+ -- Julien BLACHE <jblache@debian.org>  Sun, 28 Aug 2005 19:03:36 +0200
+
+xsane (0.97-3) unstable; urgency=medium
+
+  * debian/postinst:
+    - Fixed the link target directory.
+    - Empty /usr/share/doc/html before trying to remove it (Closes: #292718).
+
+ -- Aurelien Jarno <aurel32@debian.org>  Thu,  3 Feb 2005 16:24:20 +0100
+
+xsane (0.97-2) unstable; urgency=low
+
+  * debian/patches/10_batch_scan_bugfix.dpatch:
+    - Added; fix batch scanning bug, patch from Oliver Rauch.
+
+ -- Julien BLACHE <jblache@debian.org>  Thu, 27 Jan 2005 22:14:08 +0100
+
+xsane (0.97-1) unstable; urgency=low
+
+  * New upstream release.
+    - Fixes "filechooser chews up CPU" problem (Closes: #287596).
+
+ -- Julien BLACHE <jblache@debian.org>  Sat, 22 Jan 2005 20:53:34 +0100
+
+xsane (0.96-1) unstable; urgency=low
+
+  * New upstream release.
+    - The preferences parser has been fixed so that it won't segfault anymore
+      when it doesn't recognize an entry (Closes: #143704).
+
+ -- Julien BLACHE <jblache@debian.org>  Thu,  9 Sep 2004 11:26:13 +0200
+
+xsane (0.95-1) unstable; urgency=low
+
+  * New upstream release.
+    - Drop debian/patches/10_fix_histo.dpatch; merged upstream.
+
+ -- Julien BLACHE <jblache@debian.org>  Mon, 16 Aug 2004 18:56:07 +0200
+
+xsane (0.94-4) unstable; urgency=medium
+
+  * Fixed assertion failures when the histogram window is closed
+    (Closes: #259073).
+  * debian/control:
+    - Removed obsolete build-dependency on gcc-3.3 (Closes: #262243).
+    - Removed unneeded build-dependency on xlibs-dev.
+
+ -- Julien BLACHE <jblache@debian.org>  Tue,  3 Aug 2004 18:14:44 +0200
+
+xsane (0.94-3) unstable; urgency=low
+
+  * libtiff4 transition.
+
+ -- Julien BLACHE <jblache@debian.org>  Thu, 29 Jul 2004 08:16:16 +0200
+
+xsane (0.94-2) unstable; urgency=low
+
+  * debian/xsane.postinst
+    - Add a workaround for dpkg bug when replacing a directory with a symlink
+      (Closes: #255403).
+  * debian/xsane.desktop
+    - Updated, thanks to Dan Korostelev.
+    - Added Catalan and Spanish translations, courtesy of Jordi Mallach
+      (Closes: #254550).
+    - Added a French translation.
+
+ -- Julien BLACHE <jblache@debian.org>  Sun,  4 Jul 2004 11:40:28 +0200
+
+xsane (0.94-1) unstable; urgency=low
+
+  * New upstream release.
+    - Might break RC file compatibility; if it segfaults on startup, remove
+      your ~/.sane/xsane/xsane.rc (do NOT report that problem).
+  * debian/xsane.desktop
+    - Include fixed xsane.desktop file, courtesy of Dan Korostelev
+      (Closes: #247480).
+  * debian/control
+    - Recommends: mozilla-browser | www-browser, as www-browser
+      is a virtual package.
+
+ -- Julien BLACHE <jblache@debian.org>  Thu, 10 Jun 2004 17:45:40 +0200
+
+xsane (0.93-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/patches/10_gimp2.0.dpatch:
+    - Removed, merged upstream.
+  * debian/copyright:
+    - Applied patch from #241999 (Closes: #241999).
+
+ -- Julien BLACHE <jblache@debian.org>  Thu, 29 Apr 2004 14:48:59 +0200
+
+xsane (0.92-3) unstable; urgency=low
+
+  * xsane-common returns from the dead. Spare some archive space by splitting
+    out documentation in an arch: all package (Closes: #233459).
+  * GIMP 2.0 support, finally (Closes: #185436, #233496).
+  * Added GNOME/KDE menu entry, courtesy of Dan Korostelev.
+
+ -- Julien BLACHE <jblache@debian.org>  Thu,  1 Apr 2004 16:20:39 +0200
+
+xsane (0.92-2) unstable; urgency=low
+
+  * debian/patches/00list:
+    - Strip the .dpatch suffix, so that the package builds
+      with older versions of dpatch (Closes: #229541).
+
+ -- Julien BLACHE <jblache@debian.org>  Sun, 25 Jan 2004 12:19:20 +0100
+
+xsane (0.92-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Julien BLACHE <jblache@debian.org>  Sun, 18 Jan 2004 16:31:42 +0100
+
+xsane (0.91-6) unstable; urgency=low
+
+  * gimp1.2 has been renamed to gimp, reflect this change in debian/control.
+  * Bump Standards-Version to 3.6.1, no changes required.
+  * debian/compat: use DH_COMPAT=4.
+  * Use libpng10 instead of libpng2.
+
+ -- Julien BLACHE <jblache@debian.org>  Sun, 14 Sep 2003 15:54:18 +0200
+
+xsane (0.91-5) unstable; urgency=low
+
+  [ Julien BLACHE ]
+  * debian/control:
+    - Temporary Build-Dependency on gcc-3.3 (>= 3.3.1-0pre0)
+      which should fix the ICE on arm.
+  * debian/rules:
+    - Should build with -O2 on arm again.
+
+  [ Aurélien Jarno ]
+  * Change the icon back to full colors.
+  * Convert to dpatch and add dpatch to Build-depends.
+  * Dont run ./configure twice during the build.
+
+ -- Julien BLACHE <jblache@debian.org>  Wed,  2 Jul 2003 12:20:45 +0200
+
+xsane (0.91-4) unstable; urgency=low
+
+  * Build xsane with -O1 again as the ICE on arm still occurs.
+
+ -- Julien BLACHE <jblache@debian.org>  Sat, 31 May 2003 17:31:31 +0200
+
+xsane (0.91-3) unstable; urgency=low
+
+  * GCC 3.3 is in unstable, arm should now build with -O2 (hopefully).
+  * Fix libpng breakage, build-depend on libpng2-dev again.
+  * Do not ship sane-backends-doc.html, sane-pnm-doc.html, they're out-of-date
+    and not useful at all. Also use xsane-logo2.jpg in sane-problems-doc.html
+    and sane-scantips-doc.html (Closes: #194222).
+  * Use /usr/bin/sensible-browser rather than www-browser as the default
+    browser.
+  * Bump Standards-Version to 3.5.10, no changes required.
+
+ -- Julien BLACHE <jblache@debian.org>  Sat, 31 May 2003 15:50:12 +0200
+
+xsane (0.91-2) unstable; urgency=low
+
+  * Build-depend on libpng10-dev rather than libpng2-dev.
+  * Use -O1 for gcc on arm, as -O2 triggers an ICE.
+
+ -- Julien BLACHE <jblache@debian.org>  Thu, 15 May 2003 14:16:58 +0200
+
+xsane (0.91-1) unstable; urgency=low
+
+  * New upstream release.
+    - Fixes saving files when running as a GIMP plugin (Closes: #190437).
+
+ -- Julien BLACHE <jblache@debian.org>  Mon, 12 May 2003 19:07:59 +0200
+
+xsane (0.90-4) unstable; urgency=medium
+
+  * Rebuild against libsane (>= 1.0.11-3) to get rid of the
+    libgphoto2-2 dependency.
+  * Add www-browser Recommends.
+  * Add gocr to Suggests.
+  * Drop xsane-gimp1.2.
+  * Use -www-broswer rather than Netscape as the default
+    browser for the help system.
+
+ -- Julien BLACHE <jblache@debian.org>  Sun,  4 May 2003 16:34:12 +0200
+
+xsane (0.90-3) unstable; urgency=low
+
+  * Added missing gettext Build-Depends.
+  * Bump Standards-Version to 3.5.8.
+  * In GIMP, scanners are now available from File/Acquire/XSane/*.
+  * Build xsane with GIMP 1.2 support, which means xsane-gimp1.2 is now a dummy
+    package, and xsane-common no longer exists.
+  * Provide a menu-policy-compliant icon.
+
+ -- Julien BLACHE <jblache@debian.org>  Sun,  2 Feb 2003 14:25:56 +0100
+
+xsane (0.90-2) unstable; urgency=low
+
+  * Use -a switch in the binary-arch target for all debhelper
+    scripts (Closes: #174382).
+  * Drop patch for #126118 as it seems unneeded.
+
+ -- Julien BLACHE <jblache@debian.org>  Thu, 26 Dec 2002 19:46:39 +0100
+
+xsane (0.90-1) unstable; urgency=low
+
+  * New upstream release.
+  * Manpage now documents -s/--save option (Closes: #172544).
+
+ -- Julien BLACHE <jblache@debian.org>  Tue, 17 Dec 2002 13:37:50 +0100
+
+xsane (0.89-3) unstable; urgency=low
+
+  * Rebuild against new libgphoto2.
+  * Add Aurélien Jarno to the list of uploaders.
+
+ -- Julien BLACHE <jblache@debian.org>  Sun,  1 Dec 2002 11:44:00 +0100
+
+xsane (0.89-2) unstable; urgency=low
+
+  * Add a build rule to debian/rules to be policy-compliant (wrt #167415).
+    - distclean may fail in clean-nogimp.
+    - Explain how the build takes place.
+
+ -- Julien BLACHE <jblache@debian.org>  Sat,  2 Nov 2002 11:40:38 +0100
+
+xsane (0.89-1) unstable; urgency=low
+
+  * New upstream release.
+    - No longer auto-selects a 0-pixels-wide area (Closes: #164469).
+    - PostScript output includes DSC Page comment (Closes: #164189).
+  * Fix mistakes in description (Closes: #165138).
+  * Use the xsane icon provided in source package for menus (Closes: #165741).
+
+ -- Julien BLACHE <jblache@debian.org>  Wed, 23 Oct 2002 18:11:35 +0200
+
+xsane (0.88-2) unstable; urgency=low
+
+  * New maintainer.
+  * New upstream release (Closes: #114604, #152597, #152921).
+    - Correct handling of temporary files (Closes: #55191).
+  * Repackage from scratch using debhelper.
+  * Standards-Version bumped to 3.5.6.
+  * Apply patch to fix FPE on alpha (Closes: #126118).
+  * Build xsane and xsane-gimp1.2 flavours (Closes: #81635).
+  * Build a xsane-common containing locales, data and documentation.
+  * Install documentation into /usr/share/doc/xsane-common/html/.
+  * Build against latest GIMP 1.2 (Closes: #109223).
+  * Fix l10n path (Closes: #114876, #154256).
+  * Fix libusb dependency (Closes: #126117).
+  * Sort out libpng dependency (Closes: #156883, #156627).
+
+ -- Julien BLACHE <jblache@debian.org>  Sat, 12 Oct 2002 11:44:47 +0200
+
+xsane (0.88-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Kevin Dalley <kevind@rahul.net>  Sun,  6 Oct 2002 19:48:27 -0700
+
+xsane (0.84-2) unstable; urgency=low
+
+  * Update to libusb-0.1-4.
+
+ -- Kevin Dalley <kevind@rahul.net>  Fri, 15 Mar 2002 14:20:02 +0000
+
+xsane (0.84-1) unstable; urgency=low
+
+  * New upstream release.
+  * Rebuild with new libpng-dev (Closes: #136711).
+
+ -- Kevin Dalley <kevind@rahul.net>  Thu, 14 Mar 2002 02:23:44 +0000
+
+xsane (0.72-2) unstable; urgency=low
+
+  * New upstream release (Closes: #105785).
+
+ -- Kevin Dalley <kevind@rahul.net>  Wed,  3 Oct 2001 00:36:17 -0700
+
+xsane (0.72-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Kevin Dalley <kevind@rahul.net>  Mon, 12 Mar 2001 10:32:10 +0000
+
+xsane (0.70-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Kevin Dalley <kevind@rahul.net>  Mon, 15 Jan 2001 04:16:25 -0800
+
+xsane (0.63-1) unstable; urgency=low
+
+  * New upstream release.
+  * Link sane-gimp1.1 with libgimp1.1-1.1.29.
+  * Change control files so that packages sane and sane-gimp1.1 are
+    explicitly described as working with gimp and gimp1.1 respectively.
+    The package sane now mentions the packages sane-gimp1.1 and vice
+    versa.
+
+ -- Kevin Dalley <kevind@rahul.net>  Sun,  5 Nov 2000 16:43:07 -0800
+
+xsane (0.62-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Kevin Dalley <kevind@rahul.net>  Sat, 21 Oct 2000 16:35:58 -0700
+
+xsane (0.61-2) unstable; urgency=low
+
+  * Link xsane-gimp1.1 with libgimp1.1 which is a new library.
+
+ -- Kevin Dalley <kevind@rahul.net>  Sat, 21 Oct 2000 16:25:04 -0700
+
+xsane (0.61-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Kevin Dalley <kevind@rahul.net>  Sat,  9 Sep 2000 15:06:04 -0700
+
+xsane (0.59-1) unstable; urgency=low
+
+  * New upstream release.
+    - Add preview support for 16bpp.
+
+ -- Kevin Dalley <kevind@rahul.net>  Tue,  4 Jul 2000 16:47:55 -0700
+
+xsane (0.50-7) unstable; urgency=low
+
+  * Link xsane-gimp1.1 with libgimp1.1.22 which is the most
+    recent libgimp1.1 in unstable.
+
+ -- Kevin Dalley <kevind@rahul.net>  Mon,  3 Jul 2000 23:03:21 -0700
+
+xsane (0.50-6) unstable; urgency=low
+
+  * Link xsane-gimp1.1 with libgimp1.1.19 which is the most
+    recent libgimp1.1 in unstable.
+
+ -- Kevin Dalley <kevind@rahul.net>  Fri,  7 Apr 2000 14:51:00 -0700
+
+xsane (0.50-5) frozen unstable; urgency=low
+
+  * Add missing Build-Depends (Closes: #61836, #61837):
+    - libjpeg62-dev
+    - libsane-dev
+    - zlib1g-dev
+    - libtiff3g-dev
+    - libpng2-dev
+
+ -- Kevin Dalley <kevind@rahul.net>  Wed,  5 Apr 2000 08:35:17 -0700
+
+xsane (0.50-4) frozen unstable; urgency=low
+
+   * Add Build-Depends to control files for xsane and
+     xsane-gimp1.1 (Closes: #60923).
+
+ -- Kevin Dalley <kevind@rahul.net>  Mon, 27 Mar 2000 03:17:21 -0800
+
+xsane (0.50-3) frozen unstable; urgency=low
+
+  * Link xsane-gimp1.1 with libgimp1.1.17 which is the most
+    recent libgimp1.1 in frozen.
+
+ -- Kevin Dalley <kevind@rahul.net>  Mon, 28 Feb 2000 02:34:45 +0000
+
+xsane (0.50-2) frozen unstable; urgency=low
+
+  * Link xsane-gimp1.1 with libgimp1.1.15 which is the most
+    recent libgimp1.1 in frozen.
+
+ -- Kevin Dalley <kevind@rahul.net>  Sat, 22 Jan 2000 02:00:21 -0800
+
+xsane (0.50-1) unstable; urgency=low
+
+  * New upstream release.
+  * xsane now conflicts with gimp1.1, which increases the chances of
+    getting the correct versions of gimp with each version of xsane.
+    Unfortunately, xsane-gimp1.1 cannot conflict with gimp, since gimp1.1
+    provides gimp.
+
+ -- Kevin Dalley <kevind@rahul.net>  Sun, 16 Jan 2000 11:32:55 -0800
+
+xsane (0.49-1) unstable; urgency=low
+
+  * New upstream release.
+    - Remove LZW compression from TIFF.
+  * Fix HTML link (Closes: #51107).
+
+ -- Kevin Dalley <kevind@rahul.net>  Sun,  9 Jan 2000 23:03:58 -0800
+
+xsane (0.42-1) unstable; urgency=low
+
+  * New upstream release.
+    - Fixes issues when saving to PNG.
+
+ -- Kevin Dalley <kevind@rahul.net>  Sun,  7 Nov 1999 03:05:56 -0800
+
+xsane (0.41-2) unstable; urgency=low
+
+  * Fix GIMP's link to xsane binary.
+
+ -- Kevin Dalley <kevind@rahul.net>  Mon,  1 Nov 1999 14:24:15 -0800
+
+xsane-gimp1.1 (0.41-1) unstable; urgency=low
+
+  * New upstream release.
+  * Move documentation to /usr/share/doc (Closes: #37791).
+  * Register xsane documentation with doc-base.
+
+ -- Kevin Dalley <kevind@rahul.net>  Sun, 31 Oct 1999 05:37:48 -0800
+
+xsane (0.40-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Kevin Dalley <kevind@rahul.net>  Sun, 24 Oct 1999 13:37:12 -0700
+
+xsane (0.39-2) unstable; urgency=low
+
+  * Fix documentation link for xsane-gimp1.1.
+
+ -- Kevin Dalley <kevind@rahul.net>  Fri, 15 Oct 1999 10:06:15 -0700
+
+xsane (0.39-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Kevin Dalley <kevind@rahul.net>  Fri, 15 Oct 1999 01:30:15 -0700
+
+xsane (0.38-1) unstable; urgency=low
+
+  * New upstream release.
+    - Change brightness and contrast range maximum from 300% to 400%
+    - Add continuous update to histogram sliders and preview selection.
+
+ -- Kevin Dalley <kevind@rahul.net>  Sun, 10 Oct 1999 12:25:17 -0700
+
+xsane (0.37-1) unstable; urgency=low
+
+  * New upstream release.
+    - Implemented real single-bit format for TIFF.
+    - Setup/jpeg quality selection is enabled if jpeglib
+      or libtiff is available.
+  * Separate sane-gimp1.1 from xsane.
+
+ -- Kevin Dalley <kevind@rahul.net>  Sun, 10 Oct 1999 04:40:11 -0700
+
+xsane (0.33-2) unstable; urgency=low
+
+  * Link xsane-gimp1.1 with libgimp-1.1.so.7 (Closes: #44512).
+
+ -- Kevin Dalley <kevind@rahul.net>  Wed,  8 Sep 1999 15:29:25 -0700
+
+xsane (0.33-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Kevin Dalley <kevind@rahul.net>  Sat, 28 Aug 1999 14:07:06 -0700
+
+xsane (0.31-1) unstable; urgency=low
+
+   * New upstream release.
+    - Add support for automatic document feeders (scan until error).
+
+ -- Kevin Dalley <kevind@rahul.net>  Mon,  2 Aug 1999 23:14:58 -0700
+
+xsane (0.30-1) unstable; urgency=low
+
+  * New upstream release.
+    - Pipette functions: middle mouse button defines shadow/gray/highlight
+      for color components, left mouse button only defines gray values.
+    - Improved calculation of auto enhancement values.
+
+ -- Kevin Dalley <kevind@rahul.net>  Fri, 23 Jul 1999 00:10:42 -0700
+
+xsane (0.29-1) unstable; urgency=low
+
+  * New upstream release.
+    - The main mode of operation of xsane can now be selected
+      with the help of a command line option.
+    - Various bug fixes.
+
+ -- Kevin Dalley <kevind@rahul.net>  Fri, 16 Jul 1999 18:41:39 -0700
+
+xsane (0.28-2) unstable; urgency=low
+
+   * Fix a bug in xsane_set_resolution that could result in segfaults
+     with some scanners.
+
+ -- Kevin Dalley <kevind@rahul.net>  Tue, 13 Jul 1999 00:29:36 -0700
+
+xsane (0.28-1) unstable; urgency=low
+
+  * New upstream release.
+    - Increase contrast range to improve scanning of negatives.
+    - Add selection for number of copies in copy mode.
+    - Add option negative into enhancement and changed create_gamma,
+      draw_histogram and auto_enhancement to work with it!
+
+ -- Kevin Dalley <kevind@rahul.net>  Sun, 11 Jul 1999 11:55:21 -0700
+
+xsane (0.27-1) unstable; urgency=low
+
+  * New upstream release.
+    - Allow resizing of the preview area.
+    - Fax options are now saved.
+
+ -- Kevin Dalley <kevind@rahul.net>  Fri,  2 Jul 1999 00:44:28 -0700
+
+xsane (0.26-1) unstable; urgency=low
+
+  * New upstream release.
+    - Adds pipette functions (pick black, gray and white).
+  * Explicitly depend upon libsane, if compiled with fixed version
+    of SANE (1.0.1-3) (Closes: #37756).
+
+ -- Kevin Dalley <kevind@rahul.net>  Sun, 27 Jun 1999 11:46:47 -0700
+
+xsane (0.25-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Kevin Dalley <kevind@rahul.net>  Wed, 19 May 1999 01:40:40 -0700
+
+xsane (0.22-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Kevin Dalley <kevind@rahul.net>  Mon, 26 Apr 1999 23:03:13 -0700
