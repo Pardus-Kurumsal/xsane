@@ -1,3 +1,10 @@
+xsane (0.999-5pardus1) onyedi; urgency=medium
+
+  * Add .drone.yml
+  * Remove gimp from Suggest section
+
+ -- Yunusemre Şentürk <yunusemre.senturk@pardus.org.tr>  Fri, 12 May 2017 10:25:11 +0300
+
 xsane (0.999-5) unstable; urgency=medium
 
   * New debian/patches/0010-fix_missing_sane-config.patch (Closes: #852840):
