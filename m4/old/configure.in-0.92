@@ -1,0 +1,248 @@
+dnl Process this file with autoconf to produce a configure script. -*-sh-*-
+AC_INIT(include/config.h.in)
+AC_CONFIG_HEADER(include/config.h)
+# AC_PREREQ(2.10)dnl		dnl Minimum Autoconf version required.
+# AC_ARG_PROGRAM
+
+# version code:
+V_MAJOR=0
+V_MINOR=93
+
+PACKAGE=xsane
+
+BINPROGS="xsane"
+
+# languages
+ALL_LINGUAS="cs da de es fr it ja nl pt pt_BR ro ru sk sl sr sv vi tr zh"
+
+SANE_V_MAJOR=1
+VERSION=${V_MAJOR}.${V_MINOR}
+PACKAGE_VERSION="$PACKAGE-$VERSION"
+AC_DEFINE_UNQUOTED(PACKAGE, "$PACKAGE")
+AC_DEFINE_UNQUOTED(VERSION, "$VERSION")
+AC_DEFINE_UNQUOTED(PACKAGE_VERSION, "$PACKAGE_VERSION")
+AC_SUBST(PACKAGE)
+AC_SUBST(VERSION)
+AC_SUBST(PACKAGE_VERSION)
+AC_SUBST(SANE_MAJOR)
+
+
+dnl Check args
+
+dnl Check for gimp plugin support
+AC_MSG_CHECKING([whether GIMP plugin is requested])
+dnl Default is enabled GIMP plugin
+AC_ARG_ENABLE(gimp, [  --disable-gimp          do not include GIMP plugin mode], USE_GIMP=$enableval, USE_GIMP=yes)
+AC_MSG_RESULT($USE_GIMP)
+
+dnl Check for jpeg support
+AC_MSG_CHECKING([whether JPEG support is requested])
+dnl Default is enabled JPEG
+AC_ARG_ENABLE(jpeg, [  --disable-jpeg          do not include JPEG support], USE_JPEG=$enableval, USE_JPEG=yes)
+AC_MSG_RESULT($USE_JPEG)
+
+dnl Check for png support
+AC_MSG_CHECKING([whether PNG support is requested])
+dnl Default is enabled PNG
+AC_ARG_ENABLE(png, [  --disable-png           do not include PNG support], USE_PNG=$enableval, USE_PNG=yes)
+AC_MSG_RESULT($USE_PNG)
+
+dnl Check for tiff support
+AC_MSG_CHECKING([whether TIFF support is requested])
+dnl Default is enabled TIFF
+AC_ARG_ENABLE(tiff, [  --disable-tiff          do not include TIFF support], USE_TIFF=$enableval, USE_TIFF=yes)
+AC_MSG_RESULT($USE_TIFF)
+
+
+dnl Checks for programs.
+AC_PROG_CC
+AC_AIX
+AC_MINIX
+AC_ISC_POSIX
+AM_PROG_CC_STDC
+AC_PROG_INSTALL
+AC_PROG_MAKE_SET
+AC_PROG_CPP
+AC_PROG_GCC_TRADITIONAL
+
+INCLUDES="${INCLUDES} -I/usr/local/include"
+CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+if test "${ac_cv_prog_gcc}" = "yes"; then
+  CFLAGS="${CFLAGS} -Wall"
+fi
+
+dnl Checks for header files.
+AC_HEADER_STDC
+AC_CHECK_HEADERS(os2.h fcntl.h unistd.h libc.h sys/time.h sys/types.h zlib.h)
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_C_INLINE
+AC_TYPE_SIGNAL
+AC_TYPE_SIZE_T
+AC_TYPE_PID_T
+AC_CHECK_TYPE(ssize_t, long)
+AC_CHECK_TYPE(u_char, unsigned char)
+AC_CHECK_TYPE(u_int, unsigned int)
+AC_CHECK_TYPE(u_long, unsigned long)
+
+dnl Checks for libraries.
+AC_CHECK_LIB(m, sqrt)
+AC_CHECK_LIB(z, deflateInit_)
+
+if test "${USE_JPEG}" = "yes"; then
+  AC_CHECK_LIB(jpeg, jpeg_start_decompress)
+fi
+
+# tiff test must stand after test for zlib
+if test "${USE_TIFF}" = "yes"; then
+  AC_CHECK_LIB(tiff, TIFFOpen)
+fi
+
+dnl Checks for library functions.
+AM_FUNC_ALLOCA
+AC_FUNC_MMAP
+AC_CHECK_FUNCS(atexit mkdir sigprocmask strdup strndup strftime strstr strsep strtod snprintf usleep strcasecmp strncasecmp lstat)
+
+dnl Check for NLS/gettext
+AM_GNU_GETTEXT
+AC_LINK_FILES($nls_cv_header_libgt, $nls_cv_header_intl)
+
+if test "$USE_NLS" = yes; then
+  if test "$USE_INCLUDED_LIBINTL" = yes; then
+    CPPFLAGS="$CPPFLAGS -I\$(top_builddir)/intl"
+    INTLSUB=intl
+  fi
+fi   
+
+AC_SUBST(INTLSUB)
+
+AM_PATH_SANE(1.0.0, HAVE_SANE=yes, )
+
+dnl *** if xsane is compiled as gimp plugin it is possible that we do not
+dnl *** need the test for gtk, but when we have gimp-1.0.x installed
+dnl *** (gimp-1.0.x does not have gimp-config) or we compile xsane without
+dnl *** gimp support we need the test for gtk
+AM_PATH_GTK2(2.0.0, HAVE_GTK=yes, )
+if test "x${HAVE_GTK}" = "x"; then
+  AM_PATH_GTK(1.2.0, HAVE_GTK=yes, )
+fi
+
+if test "${USE_GIMP}" = "yes"; then
+ AM_PATH_GIMP(1.0.0, HAVE_GIMP=yes)
+fi
+ 
+
+# png test must stand after test for zlib
+# png test must stand behind GTK-check (X-Window-check)
+#  because png.h is located in the X11 directory on some systems
+#  so we have to use GTK_CFLAGS and GTK_LIBS to test for png
+if test "${USE_PNG}" = "yes"; then
+  saved_CPPFLAGS="${CPPFLAGS}"
+
+  if test "x${HAVE_GTK}" != "x"; then
+    CPPFLAGS="${CPPFLAGS} ${GTK_CFLAGS}"
+  fi
+
+  AC_CHECK_HEADERS(png.h, [AC_CHECK_LIB(png, png_create_info_struct,,, ${GTK_LIBS})])
+  CPPFLAGS="${saved_CPPFLAGS}"
+fi
+
+
+AC_SUBST(INCLUDES)
+AC_SUBST(BINPROGS)
+AC_SUBST(GTK_CFLAGS)
+AC_SUBST(GTK_LIBS)
+AC_SUBST(GIMP_LIBS)
+CPPFLAGS="${CPPFLAGS} \
+	  -DV_MAJOR=${V_MAJOR} -DV_MINOR=${V_MINOR} -DSANE_V_MAJOR=${SANE_V_MAJOR}"
+
+dnl Print error message if sane or gtk is missing
+if test "x${HAVE_SANE}" = "x"; then
+  echo "****************************************************************"
+  echo "ERROR: SANE-1.0.0 or newer is needed for compiling xsane"
+  echo "     - if you installed SANE as rpm make sure you also included"
+  echo "       sane-devel"
+  echo "****************************************************************"
+  echo ""
+  exit
+fi
+
+if test "x${HAVE_GTK}" = "x"; then
+  echo "****************************************************************"
+  echo "ERROR: GTK-1.2.0 or newer is needed for compiling xsane"
+  echo "       if you installed gtk as rpm make sure you also included"
+  echo "       gtk-devel"
+  echo "****************************************************************"
+  echo ""
+  exit
+fi
+
+
+AC_SUBST(V_MAJOR)
+AC_SUBST(V_MINOR)
+AC_SUBST(DLL_PRELOAD)
+
+AC_ARG_ENABLE(foo1, [
+Used environment variables that can be set by user:
+  CFLAGS, CPPFLAGS, LDFLAGS, LIBS])
+
+AC_ARG_ENABLE(foo2, [
+To add include or library paths call:
+  [env] CPPFLAGS=\"-I/path/to/foo/include\" LDFLAGS=\"-L/path/to/foo/libs\" ./configure])
+
+AC_OUTPUT([Makefile intl/Makefile po/Makefile lib/Makefile
+	   src/Makefile include/Makefile doc/Makefile xsane.spec],)
+
+echo "****************************************************************"
+echo "*                                                              *"
+echo "* XSANE configure status:                                      *"
+echo "* -----------------------                                      *"
+
+if test "${USE_NLS}" = "yes"; then
+  if test "$USE_INCLUDED_LIBINTL" = yes; then
+    echo "* - NLS activated (package internal)                           *"
+  else
+    echo "* - NLS activated (external)                                   *"
+  fi
+else
+  echo "* - NLS deactivated                                            *"
+fi
+
+if test "${GIMP_LIBS}set" != "set"; then
+  echo "* - GIMP plugin  activated                                     *"
+else
+  echo "* - GIMP plugin  deactivated                                   *"
+fi
+
+if test "${ac_cv_lib_jpeg_jpeg_start_decompress}" = "yes"; then
+  echo "* - JPEG support activated                                     *"
+else
+  echo "* - JPEG support deactivated                                   *"
+fi
+
+if test "${ac_cv_lib_tiff_TIFFOpen}" = "yes"; then
+  echo "* - TIFF support activated                                     *"
+else
+  echo "* - TIFF support deactivated                                   *"
+fi
+
+if test "${ac_cv_lib_png_png_create_info_struct}" = "yes"; then
+  echo "* - PNG  support activated                                     *"
+else
+  echo "* - PNG  support deactivated                                   *"
+fi
+
+echo "*                                                              *"
+echo "****************************************************************"
+echo "*                                                              *"
+echo "* To compile XSANE:                                            *"
+echo "* -----------------                                            *"
+echo "*   make                                                       *"
+echo "*   make install                                               *"
+echo "*                                                              *"
+echo "* ------------------------------------------------------------ *"
+echo "* ... PLEASE READ SANE DOCUMENTATION BEFORE STARTING XSANE ... *"
+echo "* ------------------------------------------------------------ *"
+echo "****************************************************************"
+cat xsane.NEWS

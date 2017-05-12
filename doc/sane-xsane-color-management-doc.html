@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.74 [en] (X11; U; Linux 2.2.18 i686) [Netscape]">
+   <meta name="Author" content="Oliver Rauch">
+   <meta name="Description" content="scan, photocopy and fax frontend for SANE">
+   <title>XSane - Color management</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EF" vlink="#51188E" alink="#FF0000">
+
+
+<table>
+<tr>
+<td width=200>
+<img SRC="xsane-logo.jpg" alt="XSane-logo" hspace=30 align=TOP>
+</td>
+<td>
+<blockquote>
+<h1><u><font color="#009900">Color management</font></u></h1>
+</blockquote>
+</td>
+</tr>
+</table>
+
+
+<hr WIDTH="100%">
+
+<table>
+<tr>
+<td valign=TOP width="200" bgcolor="#E0E0BA">
+<br>
+<a href="sane-xsane-doc.html">Index</a>
+<br>
+<br>
+<font color="#000000">XSane mode:</font>
+<img SRC="xsane-target.jpg" alt="xsane-target">
+<ul>
+<li><a href="sane-xsane-viewer-doc.html">Viewer mode</a></li>
+<li><a href="sane-xsane-save-doc.html">Save mode</a></li>
+<li><a href="sane-xsane-copy-doc.html">Copy mode</a></li>
+<li><a href="sane-xsane-multipage-doc.html">Multipage mode</a></li>
+<li><a href="sane-xsane-fax-doc.html">Fax mode</a></li>
+<li><a href="sane-xsane-email-doc.html">E-mail mode</a></li>
+<li><a href="sane-xsane-gimp-doc.html">Gimp plugin</a></li>
+</ul>
+<br>
+<a href="sane-xsane-scan-options-doc.html">Scan options</a>
+<br>
+<br>
+<a href="sane-xsane-medium-definition-doc.html">Medium selection</a>
+<br>
+<br>
+<a href="sane-xsane-color-management-doc.html">Color management</a>
+<br>
+<br>
+<a href="sane-xsane-color-correction-doc.html">Color correction:</a>
+<ul>
+<li><a href="sane-xsane-color-correction-doc.html#GAMMA">Gamma correction</a></li>
+<li><a href="sane-xsane-color-correction-doc.html#BRIGHTNESS">Brightness</a></li>
+<li><a href="sane-xsane-color-correction-doc.html#CONTRAST">Contrast</a></li>
+<li><a href="sane-xsane-color-correction-doc.html#THRESHOLD">Threshold</a></li>
+<li><a href="sane-xsane-color-correction-doc.html#RGB_DEFAULT">RGB default</a></li>
+<li><a href="sane-xsane-color-correction-doc.html#NEGATIVE">Negative</a></li>
+<li><a href="sane-xsane-color-correction-doc.html#AUTOENHANCEMENT">Autoenhancement</a></li>
+<li><a href="sane-xsane-color-correction-doc.html#ENHANCEMENT_DEFAULT">Default</a></li>
+<li><a href="sane-xsane-color-correction-doc.html#RESTORE_ENHANCEMENT">Restore</a></li>
+<li><a href="sane-xsane-color-correction-doc.html#STORE_ENHANCEMENT">Store</a></li>
+<li><a href="sane-xsane-histogram-doc.html">Histogram window</a></li>
+<li><a href="sane-xsane-preview-doc.html#PIPETTE_WHITE">Pipette functions</a></li>
+</ul>
+<br>
+<a href="sane-xsane-standard-doc.html">Standard options window</a>
+<br>
+<br>
+<a href="sane-xsane-advanced-doc.html">Advanced options window</a>
+<br>
+<br>
+<a href="sane-xsane-preview-doc.html">Preview:</a>
+<ul>
+<li><a href="sane-xsane-preview-doc.html#PIPETTE_WHITE">Pipette white</a></li>
+<li><a href="sane-xsane-preview-doc.html#PIPETTE_GRAY">Pipette gray</a></li>
+<li><a href="sane-xsane-preview-doc.html#PIPETTE_BLACK">Pipette black</a></li>
+<li><a href="sane-xsane-preview-doc.html#UNZOOM">Unzoom</a></li>
+<li><a href="sane-xsane-preview-doc.html#ZOOM_OUT">Zoom out</a></li>
+<li><a href="sane-xsane-preview-doc.html#ZOOM_IN">Zoom in</a></li>
+<li><a href="sane-xsane-preview-doc.html#UNDO_ZOOM">Undo zoom</a></li>
+<li><a href="sane-xsane-preview-doc.html#AUTOSELECT">Autoselect scanarea</a></li>
+<li><a href="sane-xsane-preview-doc.html#AUTORAISE">Autoraise scanarea</a></li>
+<li><a href="sane-xsane-preview-doc.html#SELECT_VISIBLE_AREA">Select visible area</a></li>
+<li><a href="sane-xsane-preview-doc.html#DELETE_PREVIEW_CACHE">Delete preview cache</a></li>
+<li><a href="sane-xsane-preview-doc.html#PRESET_AREA">Preset area</a></li>
+<li><a href="sane-xsane-preview-doc.html#ROTATION">Rotation</a></li>
+<li><a href="sane-xsane-preview-doc.html#ASPECT_RATIO">Aspect ratio</a></li>
+<li><a href="sane-xsane-preview-doc.html#RGB_VALUES">RGB values</a></li>
+<li><a href="sane-xsane-preview-doc.html#SELECT_SCAN_AREA">Select scanarea</a></li>
+<li><a href="sane-xsane-preview-doc.html#MOVE_SCAN_AREA">Move scanarea</a></li>
+</ul>
+<br>
+<a href="sane-xsane-batch-scan-doc.html">Batch scan:</a>
+<ul>
+<li><a href="sane-xsane-batch-scan-doc.html#BATCH_SCAN_EMPTY">Empty batch list</a></li>
+<li><a href="sane-xsane-batch-scan-doc.html#BATCH_SCAN_OPEN">Open batch list</a></li>
+<li><a href="sane-xsane-batch-scan-doc.html#BATCH_SCAN_SAVE">Save batch list</a></li>
+<li><a href="sane-xsane-batch-scan-doc.html#BATCH_SCAN_ADD">Add area to list</a></li>
+<li><a href="sane-xsane-batch-scan-doc.html#BATCH_SCAN_DELETE">Remove selection</a></li>
+<li><a href="sane-xsane-batch-scan-doc.html#BATCH_SCAN_RENAME">Rename selection</a></li>
+<li><a href="sane-xsane-batch-scan-doc.html#BATCH_SCAN_ROTATE">Rotate image</a></li>
+<li><a href="sane-xsane-batch-scan-doc.html#BATCH_SCAN_MIRROR">Mirror image</a></li>
+</ul>
+<br>
+<font color="#000000">Setup:</font>
+<ul>
+<li><a href="sane-xsane-setup-copy-doc.html">Copy setup</a></li>
+<li><a href="sane-xsane-setup-display-doc.html">Display setup</a></li>
+<li><a href="sane-xsane-setup-enhancement-doc.html">Enhancement setup</a></li>
+<li><a href="sane-xsane-setup-fax-doc.html">Fax setup</a></li>
+<li><a href="sane-xsane-setup-filetype-doc.html">Filetype setup</a></li>
+<li><a href="sane-xsane-setup-email-doc.html">E-mail setup</a></li>
+<li><a href="sane-xsane-setup-save-doc.html">Saving setup</a></li>
+<li><a href="sane-xsane-setup-color-management-doc.html">Color management setup</a></li>
+</ul>
+</td>
+
+
+
+<td VALIGN=TOP BGCOLOR="#FFFFFF">
+<br>
+<center><img SRC="xsane-color-management-main-window.jpg"
+    alt="XSane-main-window-with-color-management"></center>
+<br>
+<br>
+<blockquote>
+When you scan an image with color management disabled then you often get an image that does not look very good.
+The colors do not look natural, the contrast is bad, the image is too dark etc.
+
+The reason for this is that each device interprets a color e.g. represented by a red, green and blue value in
+its own way.
+<p>
+When you want a display or a printer to produce an image with the colors of a photo that you want to scan with a scanner
+then you need to tell your system how each device interprets colors. This is done with ICC/ICM profiles.
+When you have at least an ICC/ICM profile for your scanner and for your display then you can enable the color management of XSane.
+Please make sure that you filled out the
+<a href="sane-xsane-setup-color-management-doc.html">color management setup</a>
+correct before you enable it, otherwise you will get a lot of error messages.
+<br>
+<br>
+<br>
+<a NAME="ENABLE_CMS"></a><b>Enable color management:</b><br>
+&nbsp;&nbsp;
+<img SRC="xsane-enable-color-management.jpg" alt="enable-color-management">
+
+<blockquote>
+To enable the color management activate it in the <i>Preferences</i> menu.
+When you do this then the gamma, contrast and brightness options are disabled.
+</blockquote>
+
+<a NAME="CMS_FUNCTION"></a><b>Color management function:</b><br>
+&nbsp;&nbsp;
+<img SRC="xsane-cms-function.jpg" alt="cms-function">
+<blockquote>
+There are three different functions available when color management is enabled:
+<ul>
+  <li>
+    <a NAME="EMBED_ICM_PROFILE"></a><b>Embed scanner ICM profile</b>
+    <br>
+    The image is saved with the original image data, no color transformation is
+    done. The ICM profile is embedded to the image file. Programs that support
+    color management know how to correct the colors.
+    <br>
+    Advantages:
+    <ul>
+      <li>no loss of information</li>
+    </ul>
+    Disadvantages:
+    <ul>
+      <li>a lot of programs are not able to handle embedded profiles</li>
+    </ul>
+    Usage:
+    <ul>
+      <li>image archive, image manipulation with all color corrections,
+      professional printing</li>
+    </ul>
+    <br>
+    When the selected file format does not support the embedded profiles then
+    the image is tranformed to sRGB.
+    <p>
+  </li>
+
+  <li>
+    <a NAME="CONVERT_TO_SRGB"></a><b>Convert to sRGB</b>
+    <br>
+    The image is converted to sRGB, no ICM profile is embedded.
+    <br>
+    Advantages:
+    <ul>
+      <li>all programs can handle the color corrected image</li>
+    </ul>
+    Disadvantages:
+    <ul>
+      <li>sRGB does not cover all visible colors</li>
+      <li>when you do any further color correction then you lose color
+      information that can result in visible color steps</li>
+    </ul>
+    Usage:
+    <ul>
+      <li>web publication, office documents, image manipulation only when no color
+      correction is done, home and office printing</li>
+    </ul>
+    <p>
+  </li>
+
+  <li>
+    <a NAME="CONVERT_TO_WORKING_COLOR_SPACE"></a><b>Convert to working color space</b>
+    <br>
+    The image is converted to the working color space you selected in the color
+    management setup. The ICM profile of the working color space is embedded
+    to the image file.
+    <br>
+    Advantages:
+    <ul>
+      <li>There are color spaces that do cover the visible colors better than sRGB
+      does</li>
+    </ul>
+    Disadvantages:
+    <ul>
+      <li>when you do any further color correction then you lose color
+      information that can result in visible color steps</li>
+    </ul>
+    Usage:
+    <ul>
+      <li>image archive, image manipulation with (may be limited) color correction,
+      professional printing</li>
+    </ul>
+    <p>
+  </li>
+</ul>
+</blockquote>
+
+</blockquote>
+</td>
+</tr>
+</table>
+
+<hr WIDTH="100%">
+
+<blockquote>
+Author: <a href="mailto:Oliver.Rauch@xsane.org">Oliver Rauch</a>
+</blockquote>
+
+</body>
+</html>
+

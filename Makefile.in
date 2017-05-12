@@ -1,0 +1,71 @@
+SHELL = /bin/sh
+
+VPATH = @srcdir@
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+top_builddir = .
+
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+bindir = @bindir@
+sbindir = @sbindir@
+libexecdir = @libexecdir@
+datadir = @datadir@
+sysconfdir = @sysconfdir@
+sharedstatedir = @sharedstatedir@
+localstatedir = @localstatedir@
+libdir = @libdir@
+infodir = @infodir@
+mandir = @mandir@
+includedir = @includedir@
+oldincludedir = /usr/include
+
+sanedatadir = @datadir@/sane
+desktopappdir = @datadir@/applications
+
+MKDIR = $(top_srcdir)/mkinstalldirs
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_DATA = @INSTALL_DATA@
+
+@SET_MAKE@
+
+SUBDIRS	= lib @INTLSUB@ src @POSUB@ doc
+
+all: all-recursive
+
+install: install-recursive
+
+uninstall: uninstall-recursive
+
+clean: clean-recursive
+
+rpm: all-recursive
+	checkinstall -R --strip=no --pkgname=xsane --pkgversion=@VERSION@ \
+                     --pkgsource=http://www.xsane.org --pkgaltsource=ftp://ftp.sane-project.org/pub/sane/xsane/ \
+                     --pkggroup=Applications/Graphics --spec=xsane.spec --pkglicense=GPL --pkgrelease=1
+
+distclean: clean distclean-recursive
+	rm -f *~ include/*~ include/sane/*~ *.log *.bak libtool
+	rm -f include/sane/config.h Makefile config.cache config.status
+	rm -f intl/Makefile
+	rm -rf autom4te.cache
+
+autoconfig: autoconfig-recursive 
+	aclocal -I m4
+	autoconf configure.in >configure
+	rm -rf autom4te.cache
+
+depend: depend-recursive
+
+all-recursive install-recursive uninstall-recursive clean-recursive distclean-recursive \
+depend-recursive rpm-recursive:
+	for subdir in $(SUBDIRS); do		\
+	  target=`echo $@ | sed s/-recursive//`; \
+	  echo making $$target in $$subdir;	\
+	  (cd $$subdir && $(MAKE) $$target)	\
+	   || case "$(MFLAGS)" in *k*) fail=yes;; *) exit 1;; esac; \
+	done && test -z "$$fail"
+
+.PHONY: all clean depend rpm autoconfig \
+	all-recursive install-recursive clean-recursive depend-recursive autoconfig-recursive

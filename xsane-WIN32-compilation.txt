@@ -1,0 +1,68 @@
+To compile xsane on WIN32/CYGWIN
+
+- install cygwin with several packages like gcc...
+  don´t ask me what packages exactly are needed, I
+  simply installed the complete thing.
+
+- install gtk+-2.2.x with all necessary libraries:
+  - atk
+  - glib
+  - gmodules
+  - gobject
+  - gthread
+  - gdk
+  - gdk-pixbuf
+  - pango, pangowin32
+
+- install libiconv-1.8-w32-1 (or may be newer)
+
+- mkdir c:/sane
+- mkdir c:/sane/bin
+- mkdir c:/sane/etc
+
+- cp /bin/cygwin-1.dll   c:/sane/bin
+- cp /bin/cygiconv-2.dll c:/sane/bin
+- cp /bin/cygintl-2.dll  c:/sane/bin
+- cp /bin/cygjpeg-62.dll c:/sane/bin
+- cp /bin/cygjpeg6b.dll  c:/sane/bin
+- cp /bin/cygpng2.dll    c:/sane/bin
+- cp /bin/cygpng10.dll   c:/sane/bin
+- cp /bin/cygpng12.dll   c:/sane/bin
+- cp /bin/cygtiff4.dll   c:/sane/bin
+- cp /bin/cygz.dll       c:/sane/bin
+- cp /bin/libintl-1.dll  c:/sane/bin
+
+- cp -a /etc/pango       c:/sane/etc/
+- cp -a /etc/gtk-2.0     c:/sane/etc/
+
+May be with different source path:
+- cp /libiconv-1.8-w32-1/iconv.dll c:/sane/bin
+
+- compile and install sane backends-1.0.15 or later
+  - ./configure --prefix=c:/sane
+  - make
+  - make install
+
+- compile and install xsane:
+  - export SANE_CONFIG=c:/sane/bin/sane-config
+  - ./configure --prefix=c:/sane
+  - edit src/Makefile and replace
+	-DLOCALEDIR=$(datadir)/locale
+    by
+	-DLOCALEDIR=/cygdrive/c/sane/share/locale
+    comment: some libraries and programs need the directories as c:\...,
+             some libraries work with c:\... and /cygdrive/c/...,
+             libintl only works with /cygdrive/c/...
+  - cp po/UTF8/* po	(may be this is not necessary any more)
+  - make
+  - make install
+
+- setup sane:
+  - edit c:/sane/etc/sane.d/dll.conf
+    and make sure the backend you want to use is enabled
+  - edit c:/sane/etc/sane.d/net.conf
+    and enter the IP address or the NetBEUI name of the
+    server where the scanner is connected
+  - edit c:/sane/etc/sane.d/"backendname".conf
+    to configure the backend "backendname" 
+

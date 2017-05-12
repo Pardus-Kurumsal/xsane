@@ -1,0 +1,3039 @@
+CHANGES FOR FRONTEND XSANE FOR SANE:
+------------------------------------
+
+xsane-0.11 beta and before:
+---------------------------
+
+ - based on gtk-1.0.x
+ - histogram
+ - online color enhancement
+ - gamma table: tested with
+   - 8, 10 and 12 input bits per color
+   - 8 output bits per color
+ - standard and advanced options in own (non scrollable) window
+ - photocopy function via postscript output (gray + color, not lineart)
+ - frontend/Makefile.in changed for xsane
+
+
+xsane-0.11 -> 0.12:
+-------------------
+
+ - added ps, jpeg and png(1+8bit) output format, selected by filename
+ - added lineart support for ps 
+ - changed configure.in and config.h.in and included them into xsane
+ - changed device selection dialog: scanner vendor and model added
+ - added xsane-logo (winner from gimp-contest) to device-selection and about-window,
+   it is loaded from SANE_DATA_PATH/sane/xsane-logo.xpm (/usr/local/share/sane/...)
+ - histogram window now always exists and may be hidden
+ - changed handling of devicename given as commandline option:
+   sane_get_devices is called and the vendor, model and type get identified,
+   if the given device name does not fit to the beginning of an existing device name
+   the device selection is opened
+
+
+xsane-0.12 -> 0.13:
+-------------------
+
+ - file format detection now works with case insensetive
+ - changed font for device selection
+ - changed output format of device list for selection
+ - disabled gamma table for 1 bit grayscale (lineart)
+ - improved error handling of saving routines
+ - removed ram eater in preview routine
+ - added default gamma upload into preview scan routine
+ - added tiff-output-format
+ - changed lineart to grayscale conversion in saving-routines
+ - added test if selected output format is supported before scan
+
+
+
+xsane-0.13 -> 0.14:
+-------------------
+
+ - added info window that displays hidden options/values
+ - xsane compiles without sane-source-package now,
+   sane must be installed.
+ - if scan is started with save for unsupported graphics format
+   an error message comes up before scanning is started
+ - tested for param.depth>1 for gamma correction
+ - added test for sane major version number, abort if mismatch
+
+
+xsane-0.14 -> 0.15:
+-------------------
+
+ - if device is given as commandline option it is now loaded again
+   if it is not in the devicelist
+ - moved some functions in xsane.c out of a #ifdef HAVE_LIBGIMP .. #endif-block
+ - added sliders in the gray/red/green/blue-levels for black/gray/white points
+ - gamma correction in preview is now only done if depth > 1
+ - enhancement sliders are not shown in lineart mode any more
+
+
+xsane-0.15 -> 0.16:
+-------------------
+
+ - moved save-routines to xsane-save, named xsane* to xsane-*
+ - included progress-routines into xsane.c
+ - moved xsane.h to xsane-text.h
+ - moved definitions and external used function headers to xsane.h
+ - added test for depth > 1 before calculating preview histogram
+ - added test for preview_gamma_data_red before calculating preview histogram
+ - added test for preview_gamma_data_red before doing preview gamma correction
+ - added p->image_data_raw = malloc(3*p->image_width*p->image_height);
+   in xsane-preview.c/scan_start
+ - added authorization_callback routine
+ - renamed a lot of routines * -> xsane_*
+ - added p->previous_selection.active = FALSE; draw_selection(p);
+   to preview_gamma_correction to redraw selection
+ - added preview_update(p); to scan_done in xsane-preview.c to reactivate selection
+ - added header for saving >8bpp raw data (SANE_GRAYSCALE_RAW, SANE_RGB_RAW)
+ - added 16 bit saving routines for pnm(ascii), png and raw
+ - added 16 bit routines to xsane_read_image_data, added 16 bit gamma software support
+
+
+xsane-0.16 -> 0.17:
+-------------------
+
+ - xsane-gtk.c moved free(elem->menu); elem->menu = 0; in panel_destroy out of
+   the for-loop
+ - added some #ifdefs #endifs around saving routines for TIFF, PNG and JPEG
+ - added BIT_DEPTH as well known option, preview sets this value to 8 if it is greater than 8
+ - added range checks in calculation for auto enhancement values
+ - calculation of auto enhancement values is not called in lineart mode any more
+
+
+xsane-0.17 -> 0.18:
+-------------------
+
+ - added quit_xsane in xsane_choose_dialog_ok_callback if no device was opened
+ - added sane_get_parameters(..) in xsane_scan_dialog
+ - added xsane_increase_counter_in_filename to xsane-save.[ch]
+ - Filename counter is automatically increased after scan
+ - Changed setup_dialog callbacks, cancel does work now
+ - zoomfactor is calculated now if copy mode is selected
+ - added tooltips for xsane setup options
+ - changed "destroy"-event of authorization dialog to "delete_event"
+ - in gsg_message made the ok button default
+ - added gsg_decision routine
+ - added overwrite warning
+ - postscript images are saved in original size in scan mode now
+
+
+xsane-0.18 -> 0.19:
+-------------------
+
+ - added cancel callback routine for conversion/saving routines
+ - printer_resolution now is set if OK is pressed in setup
+ - overwrite warning is not shown in copy mode any more
+ - changed fclose to pclose for closing pipe to printer command
+ - restored xsane.resolution in xsane_pref_device_restore
+ - added Help menu, called Netscape -remote to open help-files
+ - set sensetivity of xsane dialog and histogram dialog while
+   scan and preview scan to false
+ - added some help(html) files to the doc directory
+
+
+xsane-0.19 -> 0.20:
+-------------------
+
+ - improved online help
+ - added own version number for xsane, there are three version
+   numbers now:
+   - xsane version
+   - sane version
+   - package version (e.g if there is a package of different frontends)
+ - added gamma value (gray, red, green, blue) for printer (copy mode)
+ - changed sane-style.rc -> xsane.style.rc
+ - changed PATH_SANE_DATA_DIR -> old PATH_SANE_DATA_DIR/sane
+ - preview gamma correction is done by the xsane gamma correction instead of
+   the Xserver gamma correction, there are also values for red, green and blue
+   now.
+ - spilt setup window into notebook pages
+ - replaced in xsane_pref_set_unit_callback preview_update by preview_area_resize,
+   the ruler units are updated now if unit is changed
+ - made menue length unit inactive if length unit is pixel
+ - added dialogs for batch scan list and fax page list, but not finished and disabled
+ - changed local includes from <...> to "..."
+ - test for filetype is only done in scanmode now
+ - added list of (up to 10) printers for photocopy mode 
+ - added error messages if failed to open files
+ - added sigpipe_handler for handling broken pipe while writing to printercommand
+
+
+xsane-0.20 -> 0.21:
+-------------------
+
+ - in xsane-preview.c if backend does not use scanareaselection dev_selection[i]
+   is set to width/height of image
+ - replaced most sprintf by snprintf
+ - made menue length unit inactive if scanare is nut supported by the backend
+ - set maximum value in 16 bit saving routines to 16 bit/65535
+ - 1 bit/pixel png file is saved with 1 bit/pixel instead of 8 bit/pixel now
+ - added support for gtk-1.2
+ - font are set in xsane-style.rc now
+
+
+xsane-0.21 -> 0.22:
+-------------------
+
+ - split xsane.c in:
+   - xsane.c
+   - xsane-setup.c
+   - xsane-gamma.c
+   - xsane-front-gtk.c
+   - xsane-scan.c
+ - renamed xsane-gtk.c to xsane-back-gtk.c
+ - removed libtool from package
+ - added experimental fax support
+
+xsane-0.22 -> 0.23:
+-------------------
+
+ - changed configure.in, removed some unnecessary parts
+   and added error messages if gtk or sane is not installed
+
+ - removed copy-mode resolution bug (was not changed if zoom slider was moved)
+ - removed bug in faxmode if faxproject did not exist (fclose(0))
+ - changed definition of struct xsane and struct xsane_setup
+ - added documentation-viewer-command to setup, netscaperemote is selected
+   via the keyword "netscape-remote"
+
+xsane-0.23 -> 0.24:
+-------------------
+
+ - removed some bugs in gamma value calculation for real scan (preview was ok)
+ - added activation for some windows after scan error
+ - removed bugs in startup if no device is available or selected,
+   the xsane.rc-file keeps untouched now
+
+
+xsane-0.24 -> 0.25:
+-------------------
+
+ - moved xsane_pixmap_new as xsane_create_histogram from xsane-front-gtk.c to
+   xsane-gamma.c
+ - now putting the histogram sliders directly into the slider preview instead
+   of drawing into the preview window, the sliders are not erased by other
+   other windows now
+ - added block_update_param flag, the update_param and update_histogram routines
+   are now called only one time if the preview scan area is changed
+ - added changing of one edge in preview scanarea (left mousebotton near the edge)
+ - added moving of preview scanarea (middle or right mousebutton)
+ - moved creation of histogram dialog to xsane-gamma.c
+ - removed some bugs in the preview, resizing the preview window should work now
+ - added an experimental zoom for the preview
+
+
+xsane-0.25 -> 0.26:
+-------------------
+
+ - removed some preview_update calls or replaced them by preview_update_selection
+ - renamed preview_update to preview_update_surface and made surface_changed a parameter
+ - ruler scaling is now ok in resized windows and zoomed previews
+ - added some range checks in preview_calculate_histogram
+ - parts in the preview window that are not part of the scan area are painted gray now
+ - added image_surface to preview structure, it stands for the surface of the scanned preview image
+ - renamed preview_get_image_scale to preview_get_scale_preview_to_image
+ - added routine preview_get_scale_device_to_preview
+ - added Zoom 20% out routine
+ - the selected area can be larger than the viewable preview now
+ - added Pipette functions (pick black, gray and white) - mouse pointer does change to pipetty icon
+ - p->aspect is calculated by image-size now if the surface is not defined (INF) in
+   preview_update_surface
+ - preview_update_surface is called now after preview scan and preview_restore_image
+ - moved the "Help" menu in the main dialog to the right
+
+
+xsane-0.26 -> 0.27:
+-------------------
+
+ - added scantips and index of backends to help menu
+ - changed configure.in, libpng should be found on (all ?) systems now
+ - black and white point sliders use the two additional pixels now
+ - user can preset (reduce) the preview area now
+ - added "Select visible area" button
+ - removed some bugs in gray gamma value calculation for real scan (preview was ok)
+ - setup of faxoptions: normal, fine and postscript option is saved now
+
+
+xsane-0.27 -> 0.28:
+-------------------
+
+ - added option negative into enhancement and changed create_gamma
+   draw_histogram and auto_enhancement to work with it!
+
+ - increased contrast range from -100..+100 to -100..+200
+   and brightness range from -100..+100 to -200..+200
+   because the old values were not sufficent for scanning negatives
+
+ - added selection for number of copies in copy mode
+
+
+xsane-0.28 -> 0.29:
+-------------------
+
+ - removed bug in xsane_set_resolution that could cause a segmentation fault
+ - added support for resolution of type CONSTRAINT_WORD_LIST 
+ - xsane-mode (scan, copy, fax) can be selected as command line option (-s, -c, -f) now
+ - most texts that are defined in xsane are defined in xsane-text now
+
+
+xsane-0.29 -> 0.30:
+-------------------
+
+ - removed bug in xsane_set_resolution, now highest resolution can be set if
+   resolution is a list!
+ - added RGBI support - must be activated in xsane.h (SUPPORT_RGBI)
+ - added options rgb default and negative to preferences
+ - enhancement values are saved with device settings now
+ - The filename can be specified now for the file in which the device settings are saved
+   or from which they are loaded.
+   - changed extension from ".rc" to ".drc" (device rc)
+   - added header "XSANE_DEVICE_RC" to identify it as device-rc-file
+ - added calculation for color components to auto enhancement
+ - pipette functions: middle mouse button defines shadow/gray/highlight
+   for color components, left mouse button only defines gray values!
+ - auto enhancement values are set to standard values in
+   xsane_calculate_histogram if no values could be calculated
+ - histogram is cleared when sensitivity is set to false
+ - improved calculation of auto enhancement values
+ - increased contrast range from -100..+200 to -100..+300 (gray) and
+   -300..+300 (color) and brightness range from -200..+200 to -300..+300
+
+
+xsane-0.30 -> 0.31:
+-------------------
+
+ - changed filename character transformation: erase " ", "_" -> "__", "/" -> "_"
+ - device settings standard file name is vendor:model
+   so it does not matter any more if the sg-device name has changed
+ - the xsane main window can be a fixed or a scrolled, resizable window now.
+   selection is done with setup/display/"main window fixed",
+   the main window mode can be overwritten by specifying a command
+   line option:
+   -R or --Resizeable activates the resizeable, scrolled window,
+   -F or --Fixed activates the fixed (non resizable) window (default)
+ - histogram is cleared when info dialog or about dialog is opened
+ - changed version option from -V to -v
+ - added support for Automatic Document Feeder (scan until error)
+   this is experimentary because in the SANE-standard there is
+   no way defined how a frontend can identify an ADF.
+   The backend has to load the next document automatically!
+ - in xsane_enhancement_update replaced gtk_signal_emit_by_name
+   by gtk_signal_emit
+ - moved more texts to xsane-text.h
+ - changed all RGBI -> RGBA because the 4th channel is ALPHA
+   I think that SANE_FRAME_RGBA will be added to the sane standard
+ - gtk+-1.2.0 is minimum requirement: removed tests for
+   gtk_tooltips_set_tips, gtk_scrolled_window_add_with_viewport
+   and gtk_events_pending that were needed for gtk+-1.0.x
+ - added option "--device-settings file" to define default
+   filename for device-settings
+ - corrected "legal" size in preview
+ - added device_text to info and preview window title
+ - moved color definition to xsane_creat_histogram_dialog
+ - pixmap colors depend on histogram_dialog now because
+   the histogram dialog is the first dialog that exists
+ - renamed all gtk functions like defined in gtkcompat.h
+   (gtk+-1.0.x -> gtk+-1.2.x)
+ - removed bug in device selection, device can be selected
+   now with keyboard
+ - xsane info window prints gamma depth "none" in 1 bit modes
+
+
+xsane-0.31 -> 0.32:
+-------------------
+
+ - added option --no-mode-selection/-s to disable menu for
+   xsane mode selection
+ - prepared text outputs (in xsane-text.h) for NLS/gettext support
+ - multiple \n in scanf while reading saved preview image removed
+ - added AM_PROG_CC_STDC to configure.in for HP/UX
+ - added a break statement after each default in switch block
+ - changed test for multiple image scan, when sane_read returned with
+   SANE_STATUS_GOOD when the image is finished we start a new scan,
+   SANE_STATUS_EOF is expected when scanning should be stopped.
+   This way the Automatic Document Feeder is supported a way
+   like planned in the sane standard, the backend says
+   if the frontend shall call sane_start repeatadly.
+
+
+xsane-0.32 -> 0.33:
+-------------------
+
+ - removed change about SANE_STATUS_GOOD in multiple image mode.
+   Adf mode is detected by scanmode again. This would be better
+   selected by a mulit_image bit in the preferences block.
+ - added common rotuine xsane_set_sensitivity to xsane-front-gtk.c
+ - renamed xsane_test_adf to xsane_test_multi_scan
+
+
+xsane-0.33 -> 0.34:
+-------------------
+
+ - the preview selection is based on device coordinates instead of
+   preview window coordinates now
+ - added preview buttons and preview viewport to xsane_set_sensitivity
+ - info and about dialog use xsane_set_sensitivity now
+ - dummy_filename is created and opened for writing AFTER sane_start is called.
+ - sane_start() == NO_DOCS is not handled as error any more
+ - xsane_scan_done -> sane_cancel is called now if an error occurs
+ - if an error occurs while scanning the created file is removed
+ - xsane windows/buttons get inactive while setup dialog is open
+ - xsane_scan_done -> sane_cancel is called when main window is closed
+   (while scanning)
+ - if there are no standard device settings at program startup, xsane
+   take the backend predefined resolution (before this was set to 100)
+ - if no scanarea options are given, the preview works with
+   [0,INF] instead of [-INF,INF] now
+ - transformed all gif files in directory doc to jpeg format because of
+   all the trouble about the gif licence.  Will never use gif again!
+
+
+xsane-0.34 -> 0.35:
+-------------------
+
+ - corrected doc/Makefile.in for change gif->jpg
+ - added tiff compression type selection for multi bit and one bit images to
+   setup:
+   none, CCITT 1D Huffman compression, CCITT Group 3 Fax compression,
+   CCITT Group 4 Fax compression, Lempel-Ziv & Welch, JPEG DCT compression,
+   pack bits
+ - implemented real single-bit format for tiff
+ - setup/jpeg quality selection is enabled if jpeglib or libtiff is available
+ - added gimp_image_set_resolution(...) to gimp saving routine
+ - added test for libgimp/gimpfeatures.h to configure.in and config.h.in
+ - disabled sensetivity while filename browse window is open
+ - added handling if fileselection window was closed
+ - moved filename "Browse" button from the right to to the left with disk-image inside
+ - (added image filetype menu to the image filename line - not ready)
+ - replaced button-texts negative, rgb default, auto, default, store and
+   restore by icons
+
+
+xsane-0.35 -> 0.36:
+-------------------
+
+ - moved xsane_generate_dummy_filename in xsane-scan.c out of a
+   #ifdef HAVE_LIBGIMP_H block
+ - changed some icons
+ - added #ifdef HAVE_LIBTIFF around TIFF-relevant definitions in
+   xsane_setup_dialog in xsane-setup.c
+ - included NLS/gettext version 0.10.35
+ - texts that are created by xsane can be converted to other languages
+   now - texts created by the backend can not be translated yet!
+ - added gettext relevant routines to aclocal.m4 and correct some bugs
+ - added french translation - thanks to Vincent Renardias <vincent@ldsol.com>
+ - added german translation table
+ - translation files "*.po" are created by "*.po.in" with help of the
+   preprocessor of gcc, all texts are #defined in frontend/xsane-text.h
+
+
+xsane-0.36 -> 0.37:
+-------------------
+
+ - added some texts to xsane-text.h and newlanguage.po.in[.in],
+   created file add-0.37.po.in where the new entries are listed
+ - moved generation of xsane.backend (backendname like umax)
+   from xsane_help_build_menu to xsane_device_dialog, needed for
+   translation of backend options
+ - added translation for backend options:
+   Backend translation is done with translation table sane-BACKENDNAME.mo 
+ - removed bug in preview_update_selection()
+   (forgotten p->selection.active = TRUE)
+   The selection box is updated correct now
+ - removed bug in aclocal.m4: not fount "-lintl" when gettext is in glibc
+
+
+xsane-0.37 -> 0.38:
+-------------------
+
+ - changed STANDALONE -> XSANE_STANDALONE and
+   GIMP_EXTENSION ->  XSANE_GIMP_EXTENSION because GIMP_EXTENSION
+   now (gimp-1.1.10) is used in the Gimp
+ - changed brightness and contrast range maximum form 300 to 400 %
+ - moved gimp installation texts to xsane-text.h
+   added entries to po/newlamguage*
+ - xsane -g now does not print anything and does not abort if gimp
+   support is compiled in
+ - changed lib/Makefile.in and sanei/Makefile in, make install should
+   work without a previous make now
+ - xsane gimp-plugin is selected via file/acquire now when
+   gimp-version >= 1.1.9
+ - . removed ../intl/libintl.a form frontend/Makefile.in and
+   . added CATOBJEXT=UNKNOWN and XGETTEXT=":" in if "gettext is in libc"
+     to aclocal.m4
+   hope this solves problems with missing "-lintl" now on all systems
+ - moved "show xxx" menu items form menu "Preferences" to menu "View"
+ - added continuous update to histogram sliders and preview selection
+ - added preferences menu item "Update policy"
+ - now options are only changable if SANE_CAP_SOFT_SELECT is set
+ - added test for bitdepth in xsane_scan_dialog for GIMP mode,
+   error message pops up when unsupported bit depths are selected
+ - moved case XSANE_PNM16 out of a #ifdef HAVE_LIBPNG block
+ - position of all windows and size of main window and preview window
+   is save in device settings, setting preview window geometry
+   does not work because window does not exist at relevant times.
+
+
+xsane-0.38 -> 0.39:
+-------------------
+
+ - bounded contrast to >=-100.0
+ - Added test if GIMP_CHECK_VERSION is defined
+
+
+xsane-0.39 -> 0.40:
+-------------------
+
+ - device name is saved in drc file now
+ - xsane version is saved in drc file now
+ - warning is printed if device rc file was not created for active device
+ - removed member device from struct preferences - was never used
+ - changed frontend/Makefile.in (XSCAN->BINPROGS)
+ - changed configure.in:
+   - changed order of some checks
+   - added status messages at the end
+   - added "--enable-intl-patch" which adds -lintl to check for libsane
+   - added "--disable-gimp"
+   - added "--disable-jpeg"
+   - added "--disable-tiff"
+   - added "--disable-png"
+ - moved xsane_generate_dummy_filename and fopen() into if XSANE_STANDALONE block,
+   there is no empty file created in gimp mode any more.
+
+
+xsane-0.40 -> 0.41:
+-------------------
+
+ - renamed xsane-incons.h -> xsane-icons.c and xsane-icons-def.h -> xsane-icons.h
+ - moved all includes that are needed by most xsane sources to xsane.h
+   problem with missing stdio.h is solved that way
+ - changed configure script:
+   - check for sane is moved to the end because of missing libintl,
+   - check for png is done with x_includes and x_libraries,
+     and libpng is added to lib after all checks are done
+
+
+xsane-0.41 -> 0.42:
+-------------------
+
+ - changed configure.in, error message about missing sane is also printed if sane.h
+   is not found.
+ - changed info row (size box, start button): the start button is made smaller when
+   the info box needs more place
+ - changed calculateion of size in info row from unisgned long to float
+   because unsigned long / 10 were to small to fit A4 with 1200x1200 dpi
+ - changed png part of configure, HAVE_LIBPNG is now defined again
+ - corrected png lineart saving
+
+
+xsane-0.42 -> 0.43:
+-------------------
+
+ - disabled LZW-compression for TIFF.
+   Unisys holds a patent for LZW compression. I am not sure
+   about the licence status of LZW and TIFF. GIF is not supported
+   because of the licence problem. LZW for TIFF is disabled now.
+ - removed all LZW entries in sourcecode and translation tables
+
+
+xsane-0.43 -> 0.44:
+-------------------
+
+ - renamed NOTEBOOK_PRINTER_OPTIONS to NOTEBOOK_COPY_OPTIONS
+ - added sane-problems-doc.html to the help menu
+ - added functions around "by ext" menu
+ - all functions in xsane-back-gtk.c are named with xsane_back_gtk_* now
+
+
+xsane-0.44 -> 0.45:
+-------------------
+
+ - added *s = 0; in sanei_codec_ascii.c when reading a string that
+   does not start with '"'
+
+ - added test "if (!w.status)" when reading a string in sanei_load_values.c
+   the missing test caused a segfault when a string was expected but
+   the line did not start with '"'
+
+ - merged together all needed sanei_* routines in xsane-rc-io.c
+   and renamed all sanei_* to xsane_rc_io_*, removed subdir sanei
+   and changed xsane.c and xsane-preferences.c to use xsane-rc-io.[ch]
+   and reprogrammed some things.
+
+ - renamed all xsane_pref_device_* to xsane_device_preferences_*
+   and moved them to xsane-device-preferences.c
+
+ - renamed sanei_w_[load|save]_values to xsane_device_preferencs_[load|save]_values
+   and moved them to xsane-device-preferences.c
+
+
+xsane-0.45 -> 0.46:
+-------------------
+
+ - changed xsane_rc_io_w_space: returns ENODATA instead of EINVAL at EOF
+
+ - added xsane_rc_io_w_skip_newline
+
+ - changed xsane_device_preferences_load_values:
+   - begin at start of file is only inciated if w.status == ENODATA 
+   - if w.status is an other error, the line is skipped
+
+ - moved and renamed w_string, w_int, w_double from xsane-preferences.c
+   to xsane_rc_pref_* in xsane-rc-io.c
+
+ - repleaced fprintf/fscanf for reading xsane device preferences by
+   xsane_rc_io_w_* routines
+   This way the floating point values (xsane- gamma, brightness and contrast)
+   are saved different and the *.drc-files are incompatible in that point.
+
+ - added test for lineart mode (depth == 1) in xsane_enhancement_update
+   solves segmentation fault problem when device settings with lineart enabled
+   are loaded
+ 
+
+xsane-0.46 -> 0.47:
+-------------------
+
+ - if helpfile viewer is netscape-remote and netscape is not running
+   it is started
+
+ - replaced ENODATA (used for EOF detection in xsane-rc-io and
+   xsane-device-preferences) by XSANE_EOF (=-1)
+   (ENODATA is not defined on all systems)
+
+ - If faxproject does not exist, project data entries are made insensitive
+   and buttons "send project" and "delete project" are replaced by "create project"
+
+ - Added missing "&" in xsane_device_preferences_save_values:
+   xsane_rc_io_w_array(w, &len, (void **) &word_array, (WireCodecFunc) xsane_rc_io_w_word, sizeof(SANE_Word));
+   that cause segmentation fault when writing bool, int or fixpoint arrays.
+ 
+
+xsane-0.47 -> 0.48:
+-------------------
+
+ - "START" button is made insensitive in fax mode if project does not exist.
+
+ - Preview window is created at the same time as the main dialog and it is destroyed
+   at program end. Disabling "show preview" hides the preview window. This way the preview
+   window placement does work correct.
+
+ - set default values in xsane_device_preferences_load_file(char *filename)
+   before reading the saved values, show_preview default = true
+
+ - Mouse pointers display relevant mode icons in preview window now.
+
+ - In copy mode the maximum selectable size that fits to the selected printer is drawn
+   by a rect now. Selection is limited to the printer size.
+
+ - if no local xsane.rc, xsane-style.rc or DEVICE.drc file exists it is loaded from SANE_DATA_DIR/xsane
+
+ - all xsane rc files are placed in a subdirectory xsane now (~/.sane/xsane, SANE_DATA/DIR/xsane)
+
+ - temporary files (previews, conversions) are saved in /tmp (defined in SANE_PATH_TMP in xsane.h) now
+
+ - added window decoration icon (top left) to each xsane window (does work with kwm, does not work with fvwm2)
+
+ - added warning icon and error icon
+
+ - removed xsane_files_exit_callback, now xsane_scan_win_delete is used for all exit program calls
+
+ - conversion-* and preview-* files are created with permission "-rw-------",
+   images- and project-files are created with "preferences.image_umask"
+   xsane.rc and *.drc are created with XSANE_DEFAULT_UMASK defined in xsane.h
+
+ - added file permission selection in preferences/saving options for image file and for directory (faxproject)
+
+ - disabled fileoptions (mkdir, rm, mv) in loading/saving preferences
+
+
+xsane-0.48 -> 0.49:
+-------------------
+
+ - added support for different x/y resolutions and zoom factors,
+   the y-resolution slider is added to the xsane main dialog now
+
+ - in gimp mode x- and y-resolution infos are set correct now
+
+ - added resolution and zoom icons for x- and y-dimension
+
+ - added fax_width and fax_height to preferences
+
+ - added paper size frame in fax mode preview
+
+ - added czech translation - thanks to by Stanislav Brabec <utx@k332.feld.cvut.cz>
+
+ - changed gimp_install_procedure(...): "RGB, GRAY" -> 0
+
+ - changed printer geometry setup from 1/72 ich to mm
+
+ - added setup entries for fax- width, height, left_offset and bottom_offset
+
+ - corrected terminating \0 of strings in sane_choose_device
+
+ - when button "Negative" is pressed the white/gray/black points
+   are also inverted
+
+ - split preview_restore_image into preview_restore_image and
+   preview_restore_image_from_file, it can zoom into a saved
+   image now.
+
+ - zoom functions are done now without a new preview scan.
+   3 different zoom levels are stored.
+
+ - in xsane_scan_start the output file is only opend once in multi pass scan
+   three pass scan does work now again.
+
+ - added several missing routines for gamma correction in three pass scan
+
+
+xsane-0.49 -> 0.50:
+-------------------
+
+ - removed bug in calculation of paper size in copy and fax mode
+
+ - added support for rotate image in xsane_save_ps
+
+ - added support for rotate (landscape mode) in copy mode and save-ps mode
+   and added preferences menu "Rotate Postscript"
+
+ - added bugfix for gtk_tooltips_set_colors as long as it does not work in gtk
+
+ - improved memory allocation routines and error handling in preview
+
+ - after the main window is created the resolution, resolution_x amd resolution_y
+   are made up to date now
+
+ - changed dynamic menue list definition in xsane_setup for TIFF_COMPRESSION menu
+
+
+xsane-0.50 -> 0.51:
+-------------------
+
+ - added some rangechecks to histogram->gamma calculation
+   it is done as histogram->gamma->histogram now
+
+ - changed redraw frame in preview_display_partial_image(),
+   now the old image is completely overpainted! 
+
+ - added xsane_set_all_resolutions() to xsane_printer_callback,
+   now paper size frame is updated when printer is changed
+
+ - corrected wrong error message in setting of scansource_selection
+   from "unknown type" to "unknown constraint type"
+
+ - moved xsane.header_size = 0; to the end of xsane_scan_done so it is called in each case
+   the missing command was responsible for a segfault when starting a scan after xsane_cancel
+   has been called
+
+ - moved progress_bar from it's own window to the bottom of the main window
+   progress_bar texts are displayed in info frame and in progress bar
+
+ - added size in mm/cm/in to progress bar when not scanning
+
+ - in scales the number of digits is defined by quantization now, if no quantization is given
+   by backend (quant=0, SANE_TYPE_FIXED) x.2 digits are displayed
+
+ - corrected page_step for scales
+
+ - selection_active is reset in preview_display_partial_image instead of preview_paint_image
+
+ - updated czech translation file cs.po.in - thanks to Stansislav Brabec
+
+
+xsane-0.51 -> 0.52:
+-------------------
+
+ - changed gimp_install_procedure(...) for specified device: "RGB, GRAY" -> 0
+
+ - in xsane-scan.c and xsane-preview.c added " | GDK_INPUT_EXCEPTION" to
+   gdk_input_add(fd, GDK_INPUT_READ | GDK_INPUT_EXCEPTION, preview_read_image_data, p);
+
+ - added static int xsane_set_modus_defaults(void)
+   zoomfactor is set to 1.0 if copy mode is selected
+   full preview area is selected if copy or fax mode is selected
+
+ - removed a second xsane_device_preferences_restore(); in static void xsane_device_dialog(void)
+
+ - zoom factor keeps unchanged when printer is changed
+
+ - added psfile-geometry to setup/saving options, it is used when saving postscript in scanmode
+
+ - moved exisiting routines to open functions to xsane-front-gtk.c:
+   void xsane_define_output_filename(void);
+   void xsane_identify_output_format(char **ext);
+
+ - define_maximum_output_size is called in each routine that changes filename or fileextension
+   because the output frame is also drawn in scanmode with filetype postscript now
+
+ - included Stanislav Brabec's <utx@penguin.cz> sed-scripts and changes for Makefile.in in xsane-*/po
+
+ - added creation of newlanguage.po in po/Makefile.in
+
+ - updated german translation file de.po
+
+ - updated czech translation file cs.po - thanks to Stanislav Brabec <utx@k332.feld.cvut.cz>
+
+ - updated french translation file fr.po
+
+
+xsane-0.52 -> 0.53:
+-------------------
+
+ - added test if vendor, model and type strings do exists (pointer != 0)
+   otherwise "no vendor",... is printed
+
+ - changed
+     ext = &extension;
+   to
+     if (extension)
+     {
+       *ext = strdup(extension);
+     }
+     else
+     {
+       *ext = 0;
+     }
+   in xsane_identify_output_format - bad thing, I get old ;-)
+
+ - added new routine xsane_find_best_resolution that makes sure that the selected resolution
+   fits into range/quantization given by backend.
+   This is used by xsane_set_resolution and when resolution_list is created.
+
+ - added xsane_set_all_resolutions to xsane_set_modus_defaults
+
+ - xsane resolution can be changed by backend now
+
+
+xsane-0.53 -> 0.54:
+-------------------
+
+ - updated french translation table
+
+ - updated german translation table
+
+ - changed type of umask in preferences from mode_t to int because
+   sizeof(mode_t) is on some machines only 2 bytes what cause problems.
+   all calls of umask(foo) are changed to umask((mode_t) foo)
+
+ - changed preferences update_policy from GtkUpdateType to int.
+
+ - selection box can not be moved out of the preview window, the
+   size of the selection keeps unchanged in that case now.
+
+ - removed some gtk_main_iteration and reordered some selection drawing routines.
+
+ - removed unused files/directories from package:
+   sanei, include/sane/sanei_(some).h, po_old
+
+
+xsane-0.54 -> 0.55:
+-------------------
+
+ - added preview support for 16 bpp (transformed to 8bpp)
+
+ - added copyright line in devcie selection dialog
+
+ - preview selection frame is only active when backend supports coordinate selection
+
+ - added preview oversampling factor (multiplier for calculated preview resolution)
+
+ - added lineart enhancement: preview can be done in grayscale now,
+   threshold value change is displayed without a new preview scan.
+
+ - added "device options" to setup dialog:
+   - Scanner dependant options for grayscale->lineart conversion have
+     to be entered there.
+
+ - a color preview is now displayed gray when grayscale mode is selected
+
+ - updated de.po, cs.po, fr.po
+
+ - updated po/xsane-pot.sed
+
+
+xsane-0.55 -> 0.56:
+-------------------
+
+ - added hold timer to preview (update-policy=delayed)
+
+ - added hold timer to xsane_slider (update-policy=delayed)
+
+ - moved help menu from file to help
+
+ - added swedish (sv) translation - thanks to Johan Bengtsson <johanb@lls.se>
+
+ - removed bug in xsane_rc_io_w_string, it returns EINVAL now each time when the string
+   does not begin with "
+
+
+xsane-0.56 -> 0.57:
+-------------------
+
+ - made xsane_choose_device return type to void (was gint32)
+
+ - arranged device-preferences in struct xsane in the order they are used
+   as device preferences, made sure that all variable types are correct:
+   - changed type of xsane.mode from gint32 to int
+   - changed type of xsane.lineart_mode from gint32 to int
+   - changed type of xsane.show_preview from SANE_Bool to int
+   - changed type of xsane.enhancement_rgb_default from SANE_Bool to int
+   - changed type of xsane.fax_finemode from SANE_Bool to int
+
+ - added mask for *_lock in preview motion_notify_event handling
+   Preview selection can be done with locks activated now
+
+ - histogram is cleared before/redrawn after saving/loading device settings
+
+ - added xsane_control_option() that tests if option >= 0 and returns SANE_STATUS_INVAL if not
+
+ - added xsane_get_option_descriptor() that tests if option >= 0 and returns NULL if not
+
+ - changed parameters of preview_area_resize and added preview_area_resize_handler
+
+ - removed a lot of gtk_main_iterations from xsane_preview.c
+   they make problems in the redrawing order and can cause display problems
+
+
+xsane-0.57 -> 0.58:
+-------------------
+
+ - split the preview_event_handler into
+   - preview_press_button_event_handler
+   - preview_motion_event_handler
+   - preview_release_button_event_handler
+
+ - the preview_expose_event_handler now is called twice,
+   the second call has been placed in the preview_event_handler_before
+
+ - reactivated gtk_main_iteration after at the end of motion_event
+
+ - added warning window when xsane is started as root
+
+ - added selection of temporary directory in preferences/setup/saving options
+
+ - added gdk_input_remove(xsane.input_tag); before xsane_start_scan is called
+   in 3-pass scanning mode (suggestion from Heiko_Schroeder@t-online.de)
+
+ - changed output of "xsane -v"
+
+ - in xsane_scan_done moved xsane.header_size = 0; before test for ADF
+   Thanks to Russell Coggrave for the info about it.
+
+ - added gtk_set_locale() before gtk_init()
+
+ - added copyright sign "(c)" to translated texts because it is not available on all charsets
+
+ - temporary filenames are created random and unique (mktemp + random number)
+   due to security problems with fixed/calculateable tempfiles.
+
+ - the preview-files are created (empty) at program startup now
+
+ - when program exits the previews are erased
+   there is no way to store the preview images any more when the program is closed
+
+ - preview_restore_image() creates the xsane-startimage if no preview is stored
+
+ - renamed directory frontend to src
+
+ - create xsane-help script that opens online helpfile
+
+
+xsane-0.58 -> 0.59:
+-------------------
+
+ - preview_do_gamma_correction does test for 3 pass scanner color mode
+
+ - changed fax x-resolution and standard resolution from 98 ppi to 204 ppi
+   and with of faxpage from 210.0 to 215.7 (so we get 1728 pixels in x direction,
+   hxlafax-faq says that is the correct size)
+
+ - split preferences.printer[..].resolution -> lineart, grayscale and color_resolution
+
+ - added setlocale(LC_NUMERIC, "C"); in xsane_init() and #include <locale.h> in xsane.h
+   this should solve the problems with empty images (100%transparent) with gimp
+   and other problems that were caused by local settings (1.3 <=> 1,3).
+
+ - added setup-option "disable gimp preview gamma"
+ 
+ - added selection (preferences/setup/enhancement options) if autoenhancement changes gamma value
+
+ - renamed Preferences/Setup/"Device options" to "Enhancement options"
+
+ - removed xsane internal callbacks from dialog struct, the functions are called directly now
+
+ - changed the reading of the preview image header. The last newline character before the image
+   data starts again made some problems, this seems to depend on the data that follows. So I added
+   a fgets() command to skip the newline character - this seems to work.
+
+ - changed increase_filename_in_counter, does work now if the only character of the base-filename
+   is the counter
+
+ - reduced size of src/xsane-startimage.pnm (1MB => 0.6MB)
+
+
+xsane-0.59 -> 0.60:
+-------------------
+
+ - after filename counter is increased the cursor in the outputfilename entry is moved to the right
+
+ - in preview_read_image_data when image is complete:
+    preview_update_surface(p, 0);
+   is called before
+    preview_display_image(p);
+   this way the geometry of the first preview scan is correct.
+
+ - moved xsane_set_all_resolutions in xsane_update_xsane_callback(),
+   it now also is called when the backend only uses one reesolution
+
+ - added calibration image (xsane-calibration.pnm) that is loaded when setup window is created.
+   The xsane enhancement functions are disabled in calibration mode, the image can not be
+   resized (xscale = yscale = 1.0).
+   The previsous image is reloaded when the setup window is closed again.
+
+ - enviornment variable SANE_DEFAULT_DEVICE is used to activate the radiobutton in the
+   device selection menu
+
+ - removed unused item "custom" from preview surface menu
+
+ - changed preview surface menu items:
+   A3  -> A3P (portrait)
+   A4  -> A4P (portrait)
+   A4H -> A4L (landscape)
+   A5  -> A5P (portrait)
+   A5H -> A5L (landscape)
+
+ - removed script xsane-help, necessary command now is listed in xsane.PROBLEMS
+
+
+xsane-0.60 -> 0.61:
+-------------------
+
+ - added debug output function and messages (environment variable XSANE_DEBUG)
+
+ - moved all global variables and struct GSGdialog to global struct xsane
+
+ - cleaned up some variable names
+
+ - added free gamma curve dialog (not ready)
+
+ - prepared xsane for win32:
+   - when BUGGY_GDK_INPUT_EXCEPTION is defined only blocking mode is used
+     (needed because GDK input exception does not work on win32)
+   - on win32 you cannot get a homedirectory, for this
+     XSANE_FIXED_HOME_PATH has to be set to the path that shall be
+     used as homedirectory
+   - replaced all gtk_dialog_new by gtk_window_new and added hbox and vbox to the window
+     (gtk_dialog_new does not work on WIN32)
+   - added xsane.WIN32 and xsane.WIN32-compilation that describes how xsane
+     is build on WIN32 with CYGWIN
+   - replaced "/" in all paths, added label SLASH that is predefined to '/' if it is
+     not defined by compiler option. For WIN32 it is set to '\' by compiler option
+   - all fopen functions use argument "rb" or "wb" now (b=binary). This is needed for WIN32
+     and the b is ignored on unix systems.
+   - published binary version xsane-win32-0v01 and xsane-win32-0v02 based on
+     xsane-pre0.61 versions
+
+ - removed an ugly bug: in struct Preferences there was predefined a string ("/tmp/")
+   that caused a bad memory state when the string memory was freed,
+   instead the string is defined in xsane_pref_restore now
+
+ - changes for tiff format:
+   - added support for 16 bit tiff format.
+   - predefined tiff-compression is changed from 5 to PACKBITS(16bit), JPEG(8bit), FAXG3(1bit).
+   - add resoultion-tags and datetime-tag to tiff files.
+
+ - added "change directory" entry to preferences menu
+
+ - added "scanning for devices" dialog
+
+
+xsane-0.61 -> 0.62:
+-------------------
+
+ - updated manpage (was about 1 year old)
+
+ - removed sigprocmask.c from xsane-*/lib (not used)
+
+ - added icons (32x32 and 48x48) for unix(xpm) and Windows(ico)
+
+ - some additional changes for rotating preview
+
+ - removed bug in preview_get_color that caused segfault when
+   click with pipette was placed into preview area but outside the image,
+   ( there was no test for image size )
+
+ - in info dialog tiff is now listed as supported 16 bit format
+
+ - filename counter is increased now if path or filename includes a "."
+   and fileytpe is seleced by menu
+
+ - added possibility to move the edge of the preview selection frame
+   thanks to Laurent Martelli for his suggestion for that
+
+ - added sane_get_parameters(xsane.dev, &xsane.param) at end of preview_scan_done
+   this way it is made sure that xsane.param is correct after preview scan
+   (was not correct in copy mode with lineart=grayscale->lineart preview)
+
+ - added explaination of "[DEVICE]" in xsane help message
+
+ - gimp handling now is always called in xsane_scan_done
+   (was not called when an error occured or the cancel button was pressed).
+
+ - moved selection of fax finemode to fax-project window, image is always scanned
+   in fine mode resolution.
+
+ - html-documentation is updated (a bit)
+
+ - removed bad "+ 0.5" from calculation in preview_set_option_float: word = SANE_FIX(value) + 0.5;
+
+ - included italian translation table (it.po), thanks to Mauro Colorio <macolori@tin.it>
+
+ - added error message in xsane_control_option if command failed
+
+ - p->startimage is set to 0 in preview_scan_start
+
+
+xsane-0.62 -> 0.63:
+-------------------
+
+ - added turkish translation (thanks to Togan Muftuoglu <toganm@turk.net>)
+
+ - changed gimp interface from 1.0 to 1.1.2x (GParam->GimpParam etc),
+   added xsane-oldgimp.h that adds #defines for the old gimp interface
+
+ - added "make uninstall"
+
+ - changed confiure.in, added test for x_includes before it is used,
+   renamed it to configure.old
+
+ - new configure.in file that does use "sane-config" now to find the sane libraries
+
+
+xsane-0.63 -> 0.64:
+-------------------
+
+ - changed xsane-oldgimp.h to work with gimp-1.0.4
+
+ - added info icon (green triangle with explanation mark)
+
+ - added info window function: xsane_back_gtk_info
+
+ - ADF mode: if first  scan fails with NO_DOCS => error message: no docs
+             if another scan ends with NO_DOCS => info message: scanned pages: #
+
+ - added some accelerator keys. The key definitions may change any time,
+   this is a first test version. The key-definitions are listed in xsane.ACCELKEYS
+
+ - added grab_default for close buttton in info and about dialog
+
+ - changed test for sane-libs in aclocal.m4, "-lintl" is removed from
+   the output of "sane-config --libs"
+   (this caused segfaults when gettext is included in libc)
+
+ - added about translation dialog
+
+ - added options "-p", "--print-filenames", if enabled and xsane runs in scanmode it
+   prints names of produced image files to stdout 
+
+ - added options "-N name", "--force-filename name", if set the user filename selection
+   is disabled and the given name is used as filename. The filename should be of the
+   form "basename-00001.filetype". The size of the counter has to be suffisunt large.
+
+ - some changes in configure script (missing libs needed by sane are not linked any more)
+
+
+xsane-0.64 -> 0.65:
+-------------------
+
+ - src/Makefile.in: added usage of SANE_CFLAGS and GTK_CFLAGS
+
+ - added secure password transmission for authorisation (md5digest)
+
+ - ~/.sane/pass is used for reading user:password:resource from file before asking the user
+
+ - configure: removed test for X (AC_PATH_X), this is done in GTK (gtk-config)
+   gtk includes and libs are used for png test (because png often is in X directories)
+
+ - changed xsane_*_with_pixmap:
+   old status: routines used xsane.histogram_dialog->window as window for gdk_pixmap_create_from_xpm_d()
+     this made problems with preview window if X default color depth differd from X color depth
+   new status: routines are called with parameter GdkWindow *window now.
+
+
+xsane-0.65 -> 0.66:
+-------------------
+
+ - added setup menu for Automatic Document Feeder Scansource
+   (ADF-Scansource name was predefined to "Automatic Document Feeder" before,
+    now it can be defined for each device (is saved in decice settings))
+
+ - changed setup for lineart->grayscale scanmode from entry to menu with available scanmodes
+
+ - updated xsane.WIN32-compilation and src/Makefile.in.WIN32
+   I compiled a pre version of xsane-0.66 with the cygwin snapshot from 2000-12-10 and
+   gtk+-dev-20001023.zip, glib-dev-20001023.zip, libiconv-dev-20001007.zip
+   with the way described in xsane.WIN32-compilation without any problems.
+   The problem with the fork() seems to be solved in this cygwin version.
+
+ - updated aclocal.m4 and configure (gimp test)
+
+
+xsane-0.66 -> 0.67:
+-------------------
+
+ - added test if (xsane.adf_scansource) before usage of xsane.adf_scansource
+   (caused segfault when no ADF Scanmode was defined in setup)
+
+
+xsane-0.67 -> 0.68:
+-------------------
+
+ - changed src/Makefile.in.WIN32 so that the installation directory can
+   be selected by configure --prefix=... and the used paths are more
+   common to the one on unix (/usr/local => c:\sane)
+
+ - changed src/Makefile.in.WIN32 for gimp support (uncomment GIMP_LIBS)
+
+ - WIN32+gimp-support: set_gimp_PLUG_IN_INFO_PTR(&PLUG_IN_INFO) is called 
+
+ - added extern GimpPlugIn PLUG_IN_INFO to xsane.h (needed in xsane.c for win32)
+
+ - replaced free(xsane.tile) by g_free(xsane.tile)
+   (the free(...) caused a crash on win32)
+
+ - changed aclocal.m4: gimp test does work with gimp-1.0.x version again
+
+ - renamed xsane.WIN32 and xsane.WIN32-compilation to xsane-WIN32.txt
+   and xsane-WIN32-compilation.txt (it is easer to use on windows)
+   
+ - removed (#ifndef _WIN32) gtk_set_locale() from xsane.c for win32
+   (when it was called gimp plugin created transparent images)
+
+ - saved xsane-style.rc in DOS mode (\n\r)
+
+
+xsane-0.68 -> 0.69:
+-------------------
+
+ - some changes in aclocal.m4 for gimp test:
+   - When gimp-config is not found, the output of gtk-config is used
+   - GTK_CFLAGS or GIMP_CFLAGS are added to CPPFLAGS for test for gimp.h and gimpfeatures.h
+   - GTK_CFLAGS and GTK_LIBS are erased when gimp_config is available
+
+ - changed src/Makefile.in: GIMP_CFLAGS is used now
+
+ - saved xsane-style.rc in unix mode (\n) because DOS mode (\n\r) made problems
+
+ - added new way to call netscape remote command:
+   at first xsane tries to find out if netscape is running, for this it tries to
+   find out if there is a link "~/.netscape/lock". If this link exists netscape should
+   be running and xsane calls "netscape -remote openFile(...)". Otherwise xsane calls
+   "netscape ..."
+
+ - changed keywork "netscape-remote" as docviewer to "netscape"
+
+ - changed way to find out home directory in xsane-back-gtk.c:
+   now getenv(ENVIRONMENT_HOME_DIR_NAME) is used instead of getpwuid(...)->pw_dir.
+   (getenv is usable for Win32 and unix, getpwuid makes problems on Win32)
+   
+
+
+xsane-0.69 -> 0.70:
+-------------------
+
+ - removed some bugs in text for pipette in sane-xsane-preview-doc.html
+
+ - changed acloacal.m4: when gimp-config is not found we look for gimptool
+
+ - for WIN32 the filetypes listed in the filetype menu are ".jpg" and ".tif"
+   instead of ".jpeg" and ".tiff"
+
+ - added manufacturer image to bottom of standard and advanced options window.
+   The name of the image is "vendor"-logo.xpm" or "sane-"backend"-logo.xpm",
+   the size of the image should be 256x48 pixels with a transparent background.
+
+ - changed src/Makfile.in: *-logo.xpm are installed (make install) and
+   uninstalled (make uninstall) now
+
+ - changed src/Makfile.in.WIN32: *-logo.xpm are installed (make install)now
+
+ - several changes in xsane-preview.c for rotating preview by 0/90/180/270 degree 
+   the preview rotation is ready now
+
+ - added new routine xsane_save_rotate_image to xsane-save.c
+
+ - added new routine xsane_save_grayscale_image_as_lineart to xsane-save.c
+
+ - lineart images are saved in grayscale mode at first if transformation has to be done
+
+ - xsane_save_rotate_image is called beween scanning and saving image
+
+ - xsane_save_grayscale_image_as_lineart is called beween rotating and saving image
+
+ - aclocal.m4/configure: changed sane_major_version etc to SANE_CURRENT_MAJOR
+
+ - fileheader of raw format changed. This format is not defined, but some programs
+   can read it as 16 bit pnm binary data, so we use a compatible header now:
+     P5
+     # This file is in a not public defined data format.
+     # It is a 16 bit gray binary format.
+     # Some programs can read this as pnm/pgm format.
+     # SANE data follows.
+     100 100
+     65535
+
+
+
+xsane-0.70 -> 0.71:
+-------------------
+
+ - corrected aspect ratio in xsane-preview.c in routine that calculates preview resolution
+
+ - corrected user definition of maximum scanner surface
+ 
+ - added translation of preview menu maximum surface(preset area)
+
+ - added tooltip for maximum surface(preset area) menu and rotation menu
+
+ - finished  preview_autoselect_scanarea()
+
+ - added autoselect scanarea button to preview window
+
+ - changed automaitic increase of filename counter:
+   - the step direction and length is not forced to +1,
+     the user can select one of the values -2/-1/0/+1/+2.
+     It is defined by preferences.filename_counter_step.
+     This way it is possible to scan double sided papers
+     with correct automatic page number generation.
+   - the digits are not increased by a loop any more,
+     the number is read, the new number is calculated
+     and the new filename is generated. The user can
+     select a minimum filename counter length now,
+     it is defined in preferences.filename_counter_len
+     and can be selected by the user in setup/saving options
+   - when the number of digits are not enough the number is
+     automatically increased now.
+   - a message comes up when counter gets smaller than 0
+   
+ - pipette the color is averaged on a square, the size of the
+   square can be defined by the user
+
+ - updated html doc (not complete)
+
+ - added tooltips to permission buttons (r,w,x)
+   permission texts: user, group, all, read, write, execute can be translated now.
+
+ - added japanese translation (thanks to Kimizuka Tomokazu <sgtom@pluto.dti.ne.jp>)
+
+ - renamed oldgimp.h to gimp-1_0-compat.h
+
+
+xsane-0.71 -> 0.72:
+-------------------
+
+ - changed default postscript viewer from xv to gv
+
+ - moved int i, select = 1; in static void xsane_saving_notebook() out of #ifdef HAVE_LIBTIFF block
+
+ - filename counter length correction is only done in sane_start when there is a user selectable filename
+
+ - if external filename is given the counter len is not touched when not necessary
+
+ - added "insert file" function to fax mode
+
+ - added output of gamma, brightness and contrast settings to pnm headers
+
+ - updated xsane online-documentation (html)
+
+ - added license dialog, it is shown when it was not already accepted for this xsane version
+   (tested in local xsane.rc)
+
+ - about and about translation dialogs do not set XSane´s sensitivity to false any more
+
+ - copyright sign is now always defined as "(c)", can be translated with \251 if character is available
+
+ - device preferences are not saved/loaded any more when file selection is aborted
+
+ - in xsane_info_dialog the scanner type is translated now
+
+ - added accelerator keys to device selection dialog:
+     Escape   -> Cancel
+     F1,F2,.. -> select device number 1,2,...
+
+ - added usleep(100ms) in device selection dialog before scanning for devices, this way we make
+   sure that the text "scanning for devices" is displayed
+
+ - added some accelarator keys to the preview window:
+    Alt ESC   Cancel Preview Scan
+    Alt KP+  Zoom in
+    Alt KP-  Zoom out
+    Alt KP*  Zoom not
+    Alt KP/  Zoom undo
+    Alt A     Autoselect scanarea
+    Alt V     Select visible scanarea
+
+ - added accelerator key Escape to file-selection-dialog, about-dialog and about-translation-dialog
+   attached to cancel/close button
+
+ - updated translations:
+   - german translation
+   - czech translation    - thanks to Stanislav Brabec <utx@penguin.cz>
+   - turkish translation  - thanks to Togan Muftuoglo <toganm@yahoo.com>
+   - japanese translation - thanks to Kimizuka Tomokazu <sgtom@pluto.dti.ne.jp>
+   - french translation   - thanks to Laurent Grawet <laurent.grawet@ibelgique.com>
+
+
+xsane-0.72 -> 0.73:
+-------------------
+
+ - moved call to display license after test for command line options,
+   so it is not necessary to accept the license to print help/version/license
+
+ - added slowenian translation, thanks to Ales Kosir <ales.kosir@zaslon.com>
+
+ - an error message is printed when a preview file could not be created
+
+ - netscape is called with option new-window now
+
+ - rotating scanned image uses memory mapped image file if possible
+   thanks to Salvador Pinto Abreu <spa@di.uevora.pt> for his suggestions
+
+ - xsane windows are set insensitive while faxproject is generated/queued.
+   For this waitpid is called in a loop.
+
+ - before a html documentation is displayed xsane does test if the requetsted file
+   does exist in the subdirectory language_dir = gettext("language_dir")
+   (what e.g. gives "de" for german). If it does exist it is displayed, otherwise
+   the original english doc is displayed.
+   "language_dir" has to be part of the translation table, it should be
+   translated to the correct translation direcotry name, e.g. de for german
+
+ - preferences.printer momory is defined dynamicall now (has been defined to 10
+   pointers to printerdefinition before)
+
+ - chaged with of some setup fields - have been too small for large fonts
+
+ - xsane-scan:xsane_scan_dialog():
+   added test for color scan to the test if gamma tables for red, green and blue
+   exists (coolscan backend defines color gamma tables in grayscale mode
+   what caused segfault in xsane).
+
+ - added preselect scanarea after preview scan (selection in enhancment setup)
+
+ - added automatic color correction after preview scan (selection in enhancement setup)
+
+ - removed bug (that caused segfault when opening setup dialog) in xsane_enhance_notebook
+   while setting up menu itmes for grayscale scanmode selection:
+   replaced xsane.well_known.scanSOURCE xsane.well_known.scanMODE
+
+ - added option in prefences/setup saving options: save device preferences at exit
+
+ - now using always gdk_window_get_root_origin() to get a position of a window on desktop
+
+
+xsane-0.73 -> 0.74:
+-------------------
+
+ - transfering data to gimp plugin now is handled like saving to a special file format.
+   this way it is possibe to support handheld scanners and to get advance of
+   some xsane features like image rotation.
+
+ - corrected mmap() part in xsane-save.c/rotation: 
+   data is mmaped with offset pos0, the offset pos0 is removed from pointer calculation
+   
+ - changed xsane_enhancement_by_histogram() and xsane_histogram_to_gamma(): the ranges
+   for gamma, brightness and contrast are checked correct now
+
+ - added function preview_transform_coordinate_window_to_image(), it is used in
+   preview_get_color(). Pipette functions do work with rotated preview now.
+
+ - corrected bug in ruler calculation. The rulers do work correct now with rotated preview
+
+ - corrected bug in reading 16 bit preview data: sizeof(buf16)-> sizeof(buf)
+   now preview transformation from 16 to 8 bit is as fast as 8 bit preview
+
+ - preset areas are defined with position (new) and size (old) now.
+
+ - surface changes (size and rotation) do not change the selected preview area
+   any more if possible
+
+
+xsane-0.74 -> 0.75:
+-------------------
+
+ - xsane_read_image_data() does reduce 16 bit images to 8 bit when necessary/requested
+
+ - when scanning with 16 bits/color in gimp mode, to jpeg-file or postscript-file
+   xsane does ask if the image should be reduced to 8 bits/color
+
+ - added functions for mirroring preview and mirroring while rotating scan
+
+ - moved saving device preferences from xsane_quit() to xsane_scan_win_delete()
+   and replaced call to xsane_quit() by xsane_exit() in choose_device dialog
+   (this could cause a segfault).
+
+ - corrected a bug in calculation of histogram for rotation of 270 degree
+
+ - added xsane_bound_int(&mid, min, max) to xsane_calculate_auto_enhancement()
+   a segfault could occur when autoenhancement was activated when only a few
+   preview-pixels where available for calculation of autoenhancement values
+
+
+xsane-0.75 -> 0.76:
+-------------------
+
+ - rotoation routine: mmap does map the full image file (not only from pos0)
+
+ - added xsane.depth, it stores the depth of the scanned image,
+   it may differ from xsane.param.depth when lineart is converted to grayscale
+   or 16 bit image is reduced to 8 bit
+
+ - preview: preset_area list is read from xsane.rc
+
+ - added context menu to preview preset_area menu, the preset areas can
+   be changed by user now
+
+ - transformation 16->8 bits/color: replaced val/256 by val >> 8,
+   a user said that his compiler is too stupid for such an optimization
+
+ - updated translations: cs, de, fr, ja, sv
+
+ - calibration image is not rotated any more
+
+ - corrected exposure event handling (drawing of the selection frame)
+
+ - added call of preview_restore_image() at the beginning of preview_update_surface().
+   This way the correct image parameters are used for the calculation in
+   preview_update_surface(). preview_restore_image() does not paint the image any
+   more, this is done at the end of preview_update_surface() now.
+
+ - corrected bug in xsane_calculate_histogram() with zoomed and rotated preview
+   with angels 90 and 270 degree.
+
+ - info dialog does print sane version as #.#.# (instead of #.#) again.
+   sane-dll will return the version of the sane package from sane-1.0.5
+   so it is possible to find out the used library version in most cases.
+
+ - xsane-scan.c: scan data is not written with fwrite() in 1 byte steps
+   any more because it looks like some systems (at least HP 9000/B1000
+   (processor PA8500/300 MHz, 384 MB RAM) operating system HP-UX 10.20)
+   have problems with this. The data is stored in the read buffer when
+   any transformation (gamma, 16->8 bit) is needed, the complete
+   buffer that is read with sane_read is written in one part.
+
+ - added xsane.spec - created by Sebastian Wenzler <wenzler@techie.com>
+
+ - autoselection of scanarea is not done for startimage
+
+ - preview image files (level 0-2) are removed and recreated when
+   the temporary directory is changed in the saving setup
+   (Preview scan has to be reacquried after changing the temporary directory)
+
+ - directory selection dialogs (change working directory and select temporary directory)
+   do not display filelist and delete-file widgets.
+
+ - xsane-preview.c and xsane-gamma.c:
+   - raw preview data is stored with 16 bits/color
+   - gamma correction is done with (8-16) bit to 8 bit enhanced data
+     the gamma input bits is set to 12 (but could be changed if we
+     add a widget that can change this value)
+     12 bit = 4096 values for each gamma table, this is a good
+     compromise between image quality, speed and memory usage
+   - All this slows down gamma and histogram routines, because of this
+     I accelerated these routines again:
+     - replaced field indexes by optimized pointer routines
+     - preview_motion_event_handler improved: continuous mode does use
+       a timer function now. this way the selection has a higher priority
+       than displaying the histograms.
+     - the raw histogram is only recalculated and displayed when it has been changed.
+
+ - improved event handling of the histogram sliders:
+   when continuous mode is active xsane_enhancement_by_histogram() is not called
+   directly any more, it is called via the xsane_slider_hold_event handler now
+
+ - split setup notebook "saving options" into "saving options" and "image options"
+
+ - added option "reduce 16 bit image to 8 bit" to setup/image options
+   This way you can use the preview with the full bit depth the scanner
+   can output and save it as image with 8 bits/color.
+   This is interesting e.g. when you scan slides or negatives.
+
+ - changed ouput in parameter box from "width x height (size unit)" to
+   "witdh x height x depth (size unit)"
+
+ - filetype menu is displayed correct now when xsane main window is rebuild
+
+ - removed a bug in aclocal.m4 wehn gimp was not found
+
+
+xsane-0.76 -> 0.77:
+-------------------
+
+ - removed "+0.5" in calculation of gamma table. A gamma value of 1.000 does
+   not change the image data any more
+
+ - xsane_update_gamma_curve(TRUE /* update raw */); is called when setup dialog is closed
+   (apply and cancel), now the preview is displayed with correct gamma values when setup
+   dialog is closed.
+
+ - configure does set gtk parameters correct when compiling gimp testprogram failed
+
+ - xsane internal gamma tables for scanning are created after sane_start is called,
+   this makes sure that the gamma table size calculated with param.depth really is correct
+
+ - setup uses selected length unit
+
+ - length unit is printed in top left edge between rulers in preview window
+
+ - when length unit is saved as inch the length unit submenu "in" now is selected at program start
+
+ - removed xsane.spec because I got a mail that it does not produce working installations
+
+ - length unit also can be selected now when backend length unit is pixel, so it
+   is possible to change the length unit of the setup window
+
+ - save device preferneces dialog is opened when user closes setup dialog and any
+   device options have been changed
+
+ - replaced all fprintf(stderr, ... by DBG(...
+
+ - updated translations: cs, de, fr, ja, sv, tr
+
+
+xsane-0.77 -> 0.78:
+-------------------
+
+ - when the backend defines a new scanner surface it is updated correct now
+   when the reduced preview surface does not limit the new surface
+   (added expand_surface to preview_update_surface()
+
+ - preview scan is aborted when backend sends more image data than expected,
+   the preview image is saved in this case
+ 
+ - the preview image is saved now when the preview scan is canceld, so the
+   already scanned part of the preview keeps visible
+
+ - when two preview levels have comparable quality it is used the preview
+   that is more up to date (scanned later)
+
+ - applied sanei_wire.c patches from sane-backends-1.0.5 to xsane-rc-io.c
+
+ - changed default values: histogram, and standard options windows are visible by default now
+
+ - added function (pirate icon) to delete preview image cache
+
+ - added mail project dialog
+
+ - added mail setup dialog
+
+ - added routines for sending images by mail (base64encoding, mail headers, smtp headers)
+
+
+xsane-0.78 -> 0.79:
+-------------------
+
+ - added test for lstat in configure/configure.in/config.h.in
+
+ - when lstat is available it is used for testing netscape lock file,
+   otherwise stat is used
+
+ - changed order of include lines in xsane-save.c
+
+ - for OS/2: in xsane_back_gtk_make_path() a colon ":" is replacte by "_"
+
+ - changed last argument of xsane_back_gtk_set_tooltip from char to gchar
+
+ - added function xsane_widget_test_uposition(GtkWidget *gtk_window)
+   that does test if gdk_window_get_deskrelative_origin or
+   gdk_window_get_root_origin gives the correct positions.
+   test is done with "scanning for devices" window.
+
+ - in xsane.c changed #if 1 to #ifdef BUGGY_GTK_TOOLTIPS_SET_COLORS
+
+ - split preview_increment_image_y in ... and preview_test_image_y,
+   test is called before a byte is copied into the buffer
+
+ - xsane-preview.c: preview_scan_start: preview image memory is only cleaned for
+   single pass mode and 1 pass of 3 pass mode (3 pass preview does work again)
+
+ - mail is sent in subprocess
+
+ - added "MIME-Version: 1.0" to mail header
+
+ - added mail status in mailfile, error messages while sending are stored in this file too
+
+ - aclocal.m4 test for gimp: moved saving of GTK_* to beginning of routine,
+   the GTK_* things should be set correct now when gimp-config is not found
+
+ - xsane.h: mail is deactivated when png is not available
+
+ - added preferences menu item "Medium":
+   The highlight/shadow/gamma values are defined to the intensity range
+   of the selected medium (e.g. agfa negative).
+   If possible the analog highlight/shadow function is used,
+   if not then the scanner internal digital gamma table is used
+   in bot then xsane´s internal gamma correction is used.
+   When the correct medium is selected it only is necessary to
+   do "soft" color corrections. Because of this the 400% values
+   in brightness/contrast have been reduced to 100% values now.
+   This is a typically range that e.g. also is used by the gimp.
+   If someone needs the larger ranges, change the following definitions
+   in sane.h:
+   #define XSANE_BRIGHTNESS_MIN    -100.0
+   #define XSANE_BRIGHTNESS_MAX    100.0
+   #define XSANE_CONTRAST_GRAY_MIN -100.0
+   #define XSANE_CONTRAST_MIN      -100.0
+   #define XSANE_CONTRAST_MAX      100.0
+
+ - moved call xsane_update_counter_in_filename as correction for counter length from
+   xsane_start_scan to xsane_scan_dialog (before open command), this way the
+   counter also is correct when the file is not transformed (pnm).
+
+ - corrected xsane_update_counter_in_filename: removed some pointer bugs when skipping
+   exisiting filenames 
+
+ - added test for os2.h to configure/configure.in
+
+ - added set_gimp_PLUG_IN_INFO(&PLUG_IN_INFO); for os2
+
+ - removed "+0.5" in calculation of negative preview gamma table. A gamma value of 1.000 does
+   not change the image data any more
+
+ - effective user id is set to real user id in all subprocesses
+
+ - cancel preview does now only call sane_cancel and tests for SANE_STATUS_CANCELLED while
+   reading image data.
+
+
+xsane-0.79 -> 0.80:
+-------------------
+
+ - moved setting of medium gamma correction values from xsane_set_medium_callback in xsane.c
+   to xsane_set_medium in xsane-gamma.c
+
+ - xsane_set_medium is called in xsane_scan_dialog and in preview_scan
+
+ - replaced predefined areas 10x14 cm and 14x10 cm by 10x15 cm and 15x10 cm
+
+ - updated documentation (partly)
+
+ - correcting image height when canceling conversion to jpeg format,
+   program does not crash any more
+
+ - added russian translation - thanks to John Profic <profic@lrn.ru>
+
+ - solved problem with lineart image saved as png (wrong byte width)
+
+ - moved medium selection menue from preferences menu to xsane main dialog
+
+ - inactive backend options are not saved to the device-rc file
+
+ - added progress_bar to the paramter list of xsane_save_*
+
+ - added xsane-viewer.c and xsane-viewer.h to the src directory
+
+ - added fflush(outfile); to end of rotation routine, this seems to
+   solve a problem of incomplete files when rotating the image file
+
+ - added routine xsane_read_pnm_header to get correct header offset
+   and read geometrie values
+
+ - for saving routines now the header offset and geometrie values of
+   xsane_load_pnm_header are used instead of xsane´s internal values
+
+ - changed handling of color identification:
+   old: xsane_color  == 0 => grayscale/lineart
+   new: xsane_colors == 1 => grayscale/lineart
+
+ - when image is saved as postscript file (not copy mode etc)
+   then the bounding box exactly surrounds the image now.
+   Removed psfile parts from setup and preferences.
+
+ - xsane_widget_test_uposition(gtk_window) does wait now until
+   gtk_window is realized before gtk_widget_set/get_uposition
+   test is done
+
+ - for hpux added include of alloca.h to sane.h
+
+ - added function xsane_debug_message that is used for DBG when
+   gcc is not used because defines with variable arguments is
+   not ANSI.
+
+ - updated translations: cs, de, fr, ja, ru, tr
+
+
+xsane-0.80 -> 0.81:
+-------------------
+
+ - xsane-gamma.c:
+     void xsane_calculate_raw_histogram(void): changed "maxval_raw = 0;" to "... = 1;"
+     void xsane_calculate_enh_histogram(void): changed "maxval_enh = 0;" to "... = 1;"
+   this avoids a floating point exception on some systems
+
+ - xsane-viewer.c: set default viewer size from 400, 400 to
+   0.3 * screen_width, 0.5 * screen height
+
+ - xsane-save.c: xsane_save_rotate_image() swaps x and y resolution when
+   rotation 90 or 270 degree
+
+ - removed slash at end of mkdir("~/.sane/xsane/"), OS/2 did not like this
+
+ - when temporary direcotry is not defined (xsane.rc does not exist)
+   then xsane at first tries to read the environment variable
+   defined by ENVIRONMENT_TEMP_DIR_NAME (default TMP) and if that
+   does not exist it uses a predefined (TEMP_PATH) path.
+   When xsane.rc does exist the temporary directory stored in xsane.rc is used.
+
+ - added blur and despeckle selction dialog to select filter radius
+
+ - changed viewer and preview window type from GTK_WINDOW_DIALOG to GTK_WINDOW_TOPLEVEL
+
+ - preview gamma does not have any effect to the enhanced histogram any more
+
+ - preview does medium gamma correction now when scanner does not support
+   gamma tables
+
+ - medium selection is disabled for lineart mode, gamma table is set to default
+   in this case. This guarantees that advanced lineart preview (by grayscale scan)
+   does work conform to the real scan.
+
+ - default resolution set to 72 dpi (if no resolution is defined by backend)
+
+ - added scanning/valid/incomplete/invalid pixmap to preview action area
+
+ - preview cancel does call preview_get_image_data after canceling the
+   scan, this makes sure that xsane does detect a cancled scan when
+   gdk_input does not detect closing the select_fd (what happens when
+   the backend does close the select_fd too early (what is allowed by
+   the sane standard))
+
+ - scan cancel does make sure that xsane_read_image_data is run
+   after sane_cancel is called
+
+ - added SIGTERM handler: xsane_quit() is called on SIGTERM
+
+ - when faxproject/xsane-fax-list can not be created an error
+   message is printed and the creation of the project is aborted
+
+ - in saving mode temporary conversion file is removed after conversion
+
+ - corrected wrong filenames while saving mail image after scanning
+
+ - added ocr function to viewer
+
+
+xsane-0.81 -> 0.82:
+-------------------
+
+ - number of medium items and area definitions is calculated by size of the
+   structure now.
+
+ - Improved security of temporary file handling:
+   - replaced mktemp() my mkstemp() in xsane_back_gtk_make_path.
+     The filename format changed because mkstemp creates the file
+     and so it is not possible to add an extension and the file
+     has to end with "XXXXXX" what is replaced by the safe random number
+     generated by mkstemp.
+
+   - before creating the image filename in xsane-scan.c the filename
+     is removed only if the created file is not a temporary file.
+
+   - removed remove() in xsane_save_image_as_lineart()
+
+   - added routine xsane_create_secure_file() that makes sure that the created
+     file does not follow a symlink
+
+
+ - when an error occurs while saving a file or the saving is aborted then
+   the created image is removed
+
+ - swaped order of opening inputfile and outputfile (outputfile now first) in
+   xsane_save_image_as_lineart()
+
+ - viewer_save_callback(): several changes for saving as lineart
+
+ - moved xsane_update_histogram() at end of xsane_update_gamma_curve()
+   into if (xsane.preview) block - this avoids segfault on some systems
+
+ - despeckle radius and blur radius dialogs are closed before routine is started
+
+ - removed bug in despeckle routine
+
+ - increased speed of despeckle routine by about factor 6
+
+ - changed despeckle radius range from 1-9 to 2-10
+
+ - changed blur radius range from 1-9 to 2-20
+
+ - routines xsane_draw_histogram_with_*() do not have parameter "int invert" any more,
+   the inversion already is done in the medium dependant histogram of the preview.
+
+ - added image scaling routine to viewer
+
+ - added spanish translation (es.po) - thanks to 
+   Gustavo D. Vranjes <gvranjes@abaconet.com.ar>
+
+ - added dutch translation (nl.po) - thanks to 
+   "Wim Sinke" <sinke@wirehub.nl>
+
+
+xsane-0.82 -> 0.83:
+-------------------
+
+ - scaling image size does work for 16 bit images now
+
+ - xsane_create_secure_file() now always removes the file (not only if it is a link),
+   this is needed because open(..., O_EXCL) does fail when the file exists (what can
+   happend when we want to overwrite an existing file).
+
+ - removed buggy ";" at end of if statement in xsane_enhancement_negative_callback
+
+ - default mode is viewer instead of saving mode
+
+ - updated po-files: nl
+
+ - xsane-front-gtk.c: void xsane_progress_cancel(GtkWidget *widget, gpointer data)
+   changed GtkSignalFunc callback = (GtkSignalFunc) data; to
+   GtkFunction callback = (GtkFunction) data;
+
+ - added media, experimentally determined values with UMAX Powerlook3:
+   Agfa XRG 200-4
+   Agfa HDC 100
+   Konica VX 100
+   Rossmann HR 100
+
+ - preview.c: preview_update_surface calls preview_update_selection at first to
+   make sure that the preview selection is up to date. Now xsane comes up with
+   the saved area selection when e.g. transparency mode is stored which forces
+   a change of the surface
+
+ - removed parameter negative from xsane_calculate_auto_enhancement,
+   autoenhancement does work again when negative button is pressed
+
+ - added mode "--Medium-definition"/"-M":
+   - preview is done without scanner gamma correction for medium
+   - added two icons to the main dialog: medium new and medium delete
+
+ - added xsanedocdir to doc/Makefile.in and src/Makefile.in
+   the path is used by xsane.c and the mentioned Makefiles
+
+ - removed in xsane-viewer.c, line 222: xsane_create_secure_file(outputfilename) before
+   xsane_save_image_as(...)
+
+
+xsane-0.83 -> 0.84:
+-------------------
+
+ - if xsane-license.txt is not found when it shall be displayed then xsane does
+   print an error message and behaves like when the user did not accept the license.
+
+ - if xsane-startimage.pnm is not found then an image of the size 1x1 pixel is
+   created instead. This should normally never happen but some people start
+   xsane without that it has been installed. Then the behaviour of the preview
+   has been undefined before.
+
+ - removed "rm -f $cache_file" when gtk or sane was not found in configure.in,
+   this was bad when a user used a global cache file
+
+ - viewer is created with image size - if possible
+
+ - added serbian translation file (sr.po) - thanks to Du¹ko Rusmir <drusmir@gmx.ch>
+
+ - xsane_sigpipe_handler: changed
+   xsane_cancel_save(0);
+   to
+   xsane_cancel_save(&xsane.cancel_save);
+
+ - updated po-files: es, fr, ja, nl, ru, sr, tr
+
+ - x and y resolution information are added to jpeg and png files now
+
+ - preview zoom buttons are now also available when backend does geometry
+   options with unit pixel
+
+ - added Plustek logo
+
+
+xsane-0.84 -> 0.85:
+-------------------
+
+ - replaced xsane_control_option by back_gtk_set_option in xsane_set_resolution.
+   if changing resolution causes a SANE_RELOAD_OPTIONS this is handled now.
+
+ - replaced xsane_save_scaled_image by a routine that does a blur over all covered pixel
+   insetad of using one pixel in the middle of the covered area
+
+ - changed radius definition of blur and despeckle, now r=1 means nothing happens
+
+ - extended blur routine, radius is now of type float, so you e.g. can blur with a 
+   radius of 1.3.
+
+ - replaced all xsane*_scale_new* by xsane*_range_new*, the range can be displayed as:
+   - slider (scale) + value on right
+   - slider (scrollbar) + value on right
+   - spinbutton
+   - scale + spinbutton
+   - scrollbar + spinbutton
+  the user can select, which disply mode he likes to use.
+
+ - added timeout callback for xsane_resolution to set correct quantisation
+
+ - Some people complained that the user has to accept the GPL to use the program.
+   In fact from the view of the GPL it is not necessary that the user accepts
+   the license to run the program. But it is important that the user reads
+   and accepts the "NO WARRANTY" part of the license. Due to this I created
+   two license dialogs:
+    - EULA-Dialog displays the "NO WARRANTY" part of the GPL
+    - GPL-Dialog displays the compelte GPL
+   To run the program the user has to accept the "NO WARRANTY" agreement
+   after installation and each update of xsane.
+   I hope this compromise is usable for every side. Please understand and
+   accept that it is necessary in some countries that the user accepts the
+   no warranty agreement to make sure that the authors and others do not
+   have to pay any compensation in the case of any damage
+
+ - removed bug in scan and in preview-scan 16 bit routines when
+   sane_read returned with odd number of bytes
+
+ - reduced maximum filename counter length from 10 digits to 9 digits.
+   (10 digits need more than long int, long long int is not portable (not ANSI C))
+
+ - update_counter_in_filename does not touch the counter when step = 0 and
+   min_length = 0
+
+ - added preview function autoraise_scanarea (may be the name is stupid?):
+   if you select this function and click to an image then the image
+   is selected as scanarea
+   
+ - colored preview pipette icons and zoom icons
+
+ - Changes/preparation for gtk+-2.0:
+
+   - added xsane-gtk-1_x-compat.h that wraps gtk+-2.0 functions to gtk+-1.x functions
+     when gtk+-1.x is used
+
+   - replaced all gtk_accel_group_attach() by gtk_window_add_accel_group() and
+     gtk_menu_set_accel_group()
+
+   - repleaced all GTK_WINDOW_DIALOG by GTK_WINDOW_TOPLEVEL
+
+   - addeded alternative part that uses gtk_text_view (gtk+-2.0) instead of gtk_text (gtk+-1.x)
+
+   - repleaced all gtk_signal_connect* by g_signal_connect* and defined makros for gtk+-1.x
+   - repleaced all gtk_signal_handler* by g_signal_handlers* and defined makros for gtk+-1.x
+
+   - repleaced (gtk+-1.x)
+       gtk_widget_draw(hist->pixmapwid, &rect);
+     for gtk+-2.0 by 
+       gtk_widget_queue_draw(hist->pixmapwid);
+       gdk_window_process_updates(hist->pixmapwid->window, FALSE); 
+
+   - filename entry is not set directly by gtk_entry_set_text(), it is set
+     by xsane_set_filename() now
+
+
+xsane-0.85 -> 0.86:
+-------------------
+
+ - reversed the change of xsane-0.84->0.85 that replaced
+   xsane_control_option by back_gtk_set_option in xsane_set_resolution.
+   If resolution change causes a SANE_RELOAD_OPTIONS this is not handled any
+   more. 
+   Reason: It caused a segfault in different situations when panel_rebuild
+   was called. I tried to implement that it works like expected, but the
+   resolution option needs a lot of special cases handling that makes it
+   very hard to handle this. Also the gtk slider does not work when
+   the panel is rebuild each time when the value is changed.
+
+ - increased vendor length from 9 to 12 characters.
+
+ - changed dialog of viewer/scale
+   - The dialog uses xsane_range instead of a spinbutton now
+   - The scale sliders for x and y can be binded now,
+
+ - added %%Pages: 1 1 to header of postscript files in xsane-save.c
+
+ - changed preview zoom icons and function names:
+   - changed icon and name of zoom_in to zoom_area
+   - added new function zoom_in: if enabled a zoom cursor
+     is selected and when the user clicks to the preview
+     with the left or middle mouse button then it is zoomed
+     to the clicked position
+    
+
+xsane-0.86 -> 0.87:
+-------------------
+
+ - preview_update_maximum_output_size: function sets block bit
+   at beginning of routine and resets it at end of routine, this
+   way it is made sure that the function is not called
+   recursive. This avoids infinite loops when backend
+   changes geometry options.
+   
+ - xsane-device-preferences.c: saving and loading device options
+   does test for num_options now
+ 
+ - added xsane.ipc_pipefd and gdk_input_add(xsane.ipc_pipefd,...),
+   a child process can write to the pipe and xsane displays the
+   text in an error dialog (not for win32)
+ - added inter process communication pipe. When a child process
+   wants to display an error message it can write the message to
+   ipc_pipefd[1] and xsane will display the message in an error dialog
+
+ - xsane_back_gtk_decision_dialog can handle multiple dialogs now,
+   (used by xsane_back_gtk_error/warning/message/info
+
+ - added clear/redraw histogram to xsane_set_sensitivity()
+   removed clear/redraw histogram near calls to xsane_set_sensitivity()
+
+ - add xsane_sigchld_handler to cleanup zombie child processes,
+   this replaces xsane_mail_send_process_exited()
+
+ - changed progress bar pipe of ocr program:
+   -default option is "-x" (gocr)
+   -default progress keyword is "" (gocr)
+   -expects to values: "%d %d\r", main, sub
+    first value is used for progress bar, both are printed as text
+
+ - moved at the end of function xsane_device_dialog()
+   the call xsane_set_all_resolutions(); after xsane_refresh_dialog();
+   this way the backend default resolution is not overwritten at program startup
+
+ - changed calculation of aspect for startimage in preview_update_surface() from image aspect
+   to preview aspect
+
+ - xsane-scan.c saving lineart image as grayscale does work correct now:
+   - fwrite writes correct number of bytes
+   - x value is stored in global struct XSane so that it is not reset at
+     the beginning of xsane_read_image_data()
+
+ - moved ocr routine from xsane-viewer.c to xsane-save.c
+
+ - ocr routine can be selected by saving image as ".txt" or ".text" format
+
+ - added filetype menu to fileselection dialog
+
+ - changed behaviour of filetype menues: the extension immedeatly is added to/changed in
+   the filename (and is not added/corrected when the scan begins).
+   Now the filetype menu does behave the same way as gimp does. This means that
+   you e.g. can select filetype "jpeg" and name the file "image.pnm", in this
+   case the filetype is (like selected) "jpeg". I do not like this, but this is
+   how most programs do handle this situation.
+
+ - filetype is saved in preferences
+
+ - filetype "by ext" is handled as "" instead of NULL now
+
+ - selected working directory is saved in xsane preferences
+
+ - error_xpm, warning_xpm and info_xpm got a little 3d look
+
+ - added test for gtk2 to aclocal.m4 and configure.in/configure
+
+ - added bind_textdomain_codeset(xsane.prog_name, "UTF-8"); after bindtextdomain
+
+ - gtk-fileselection for selecting directories: for gtk2:
+   - selection_entry hidden
+   - added "/." to end of predefined path
+   - for gtk1 the text in selection_entry is removed from the filename after selection has finished
+
+ - updated translations: de, tr, ja, es, fr, cs, sv
+
+ - new translation: sk (slovakian), thanks to Zdenko Podobný <zdpo@mailbox.sk>
+
+ - changed configure script to support gtk2
+    
+
+xsane-0.87 -> 0.88:
+-------------------
+
+ - xsane_back_gtk_range_new: made sure that digits is not negative
+   and for gtk+-1 that digits<6
+
+ - xsane_load_mail_project: changed "char c" to "int c" to get a chance to
+   identify EOF
+
+ - xsane_load_fax_project: changed "char c" to "int c" to get a chance to
+   identify EOF
+
+ - xsane_resolution_list_callback: changed "gchar *name" to "const gchar *name"
+
+ - xsane_add_medium_definition: changed "char *definition_name" to "const gchar *definition_name"
+
+ - added xsane-batch-scan.[ch]
+
+ - added routine preview_create_batch_icon_from_file() to xsane-preview.c
+
+ - xsane_batch_scan_update_icon_list is called by xsane_enhancement_by_gamma via a timer
+   this way a gamma correction also is visible in the icon list
+
+ - added xsane.scan_rotation that is used by xsane-scan.c instead of xsane.preview->rotation
+
+ - updated translations: cs, de, es, ja, ru, tr
+
+
+xsane-0.88 -> 0.89:
+-------------------
+
+ - 3 pass scanning: data interleaving is done in buffer, patch by <Oliver.Friedrich@hamburg.de>
+
+ - replaced fork() by spawnvp for ocr command in xsane-save.c (patch by Franz Bakan)
+
+ - xsane_save_jpeg does reduce a 16bit/sample images to 8bit/sample at first because jpeg does
+   not support 16 bit/sample
+
+ - xsane_save_ps does reduce 16bit/sample images to 8bit/sample while saving
+
+ - When scanning to file (mode SAVE) then the warning about image depth reduction 16->8 bit/sample
+   for jpeg and postscript is not printed any more.
+
+ - Since april 2000 there is defined a pnm (ppm/pgm) format for 16 bit binary images.
+   With this format the unofficial RAW16 format that has been used by xsane until version 0.88
+   becomes senseless. The RAW16 format has been removed, xsane does create 16 bit binary pnm files
+   now (the difference between the RAW16 and the pnm16binary format is that the pnm16binary format
+   always uses MSB first while RAW16 was written in machine byte order).
+   In preferences-Setup->Image there is a selection if the pnm16 image shall be saved in ascii or
+   binary format.
+   When you have any problems with the pnm16binary format then make sure at first that the program
+   you use does support it correct. imagemagic does support it, the xv version 3.10a does not
+   support it.
+
+ - read_pnm_header now does read the gamma, contrast, brightness, threshold values, so when these
+   data is saved in an image then it is correct now.
+
+ - gamma, brightness, contrast and threshold are added in the header of pnm files now
+
+ - when 16 bit image is scanned and "reduce 16bit image to 8bit" is selected and the image
+   is saved as pnm then the file is created correct now
+
+ - batch scan thumbnail: replaced gdk_image by gtk_preview
+   gdk_image needs pixel colors based on hardware, gtk_preview uses truecolor pixels.
+
+ - added po file converstion to utf8 in po/Makefile[.in]
+
+ - added documentation for batch scan window
+
+ - changed page size in range from (max-min)*1e-40 to (max-min)*1e-30
+   because some systems like solaris had problems (one long bar that
+   could not be moved)
+
+ - xsane-preview.c: in case of an error the error error text is created before
+   preview_scan_done is called when parameters->* are needed for creating the
+   error message
+
+ - made html pages compatible to html 4.01
+
+ - changed header of postscript files, may be this solves the printing problem on some systems
+
+ - added "%%EOF" to end of postscript files
+
+ - updated translations: cs, de, fr, ja, nl, ru, sv (update for 0.88), tr
+ - new translations: pt, pt_BR
+
+ - add no_device icon in error message: no devices available
+
+ - added help_no_devices dialog
+
+ - added device icon in device_scanning_dialog
+
+ - added a frame in the decision dialog
+
+ - when preview_autoselect_scanarea does not find an image then
+   the complete image is used
+
+ - added accelerator key ESC to decision dialog:
+   when a reject button (right) is available then ESC=reject,
+   when no reject button is available then ESC=OK.
+
+ - set block_update_maximum_output_size_clipping in preview_rotation_callback,
+   now rotation does work like expected when in copy mode
+
+ - added paper_orientation menu in copy mode
+
+
+
+xsane-0.89 -> 0.90:
+-------------------
+
+ - replaced "round(i+0.5)" in xsane_save_ps by "ceil(i)" because round is not
+   available on all systems
+
+ - replaced order of includes for sys/types.h ans sys/stat.h in xsane.h
+
+ - removed some includes from some *.c files that are already in xsane.h
+
+ - added to xsane.h:
+   #ifdef HAVE_OS2_H
+   # define strcasecmp stricmp
+   #endif
+
+ - always set position of outputfilename_entry to the right
+
+ - added test for (pid_status < 0) in xsane_fax_send in routine
+   waiting for child process. The program does continue now
+   when the fax is sent.
+
+ - fax setup: added "set program defaults" buttons for efax, hylafax and mgetty+sendfax
+
+ - bindtextdomain for backend is set for sane-"backendname" and sane-backends
+   sane-backends is used when sane-"backendname" does not exist (no "" entry)
+
+ - set codeset for backend textdomain to "UTF-8"
+
+ - xsane-preview.c: motion_notify_event_handler: added 
+   if (p->selection_xedge != -1) and if (p->selection_yedge != -1)
+   before setting new coordinates
+
+ - xsane-preview.c: added aspect_ratio function to motion_event_handler
+
+ - added aspect_ratio menu to preview window
+
+ - xsane-save.c: save_scaled_image: added " 0.5" to round image width and height
+
+ - xsane-viewer.c: added widgets to scale dialog that allow defining image size
+
+ - aclocal.m4: added "-lintl" when gettext is found in libintl
+
+ - aclocal.m4: added warning that check for gtk is not possible when pkg-config
+   is not available
+
+ - added romanian (ro.po), vietnamese (vi.po) and danish (da.po) translation
+
+ - updated translation based on xsane-0.89 texts: es, it, ru
+
+ - updated translations: cs, de, fr, nl, sk, tr
+
+ - replaced some signals for spinbutton by signals for adjustments in xsane-viewer.c
+
+ - xsane_mail_dialog_close() and xsane_fax_dialog_close():
+   removed gtk_window_remove_accel_group(GTK_WINDOW(xsane.mail_dialog), xsane.accelerator_group);
+
+ - xsane-scan.c/xsane_read_image_data() and xsane-preview.c/preview_read_image_data:
+   when we have no select_fd then we don't leave the scanloop with break; but
+   we do a gtk_main_loop and  continue;
+
+ - xsane-scan.c and xsane-preview.c: WIN32 now also does use the gdk_input_add functions.
+
+ - preview: added output of RGB values of the pixel under the pointer in the preview
+
+ - xsane_create_preview_gamma_curve: replaced 255 by 255.99999 to create correct preview gamma table
+
+
+xsane-0.90 -> 0.91:
+-------------------
+
+ - xsane_generate_dummy_filename(): use temporary file in case xsane.mode == XSANE_GIMP_EXTENSION
+
+ - changed <Shift> accellerator keys that used letters to other key (if possible same key with <Ctrl>,
+   because with these accelartor keys it was not possible to enter these letters in any entries.
+
+ - added accelerator group to mail dialog again, it is now possible to enter all texts and use
+   the accelerator keys at the same time
+
+ - added zoom of image under the pointer to the preview window
+
+ - removed all c++ style remarks "//"
+
+ - changed behaviour of medium definition mode:
+   - The raw histogram now does show the raw data when the selected medium definition
+     is not set to the full range
+   - When creating a new medium definition the name of the used definition is preset
+   - When creating a new medium definition then this definition is selected
+   - When deleting a definition then the previous definition is selected
+
+ - renamed temporary file "preview-level*" to "xsane-preview-level*"
+
+ - position of batch scan dialog is saved in device preferences
+
+ - added chines tranlation (zh)
+
+ - corrected RGBA mode
+
+ - added blocking function to viewer: it is not possible to open two dialogs for the same
+   viewer at the same time
+
+ - added signal handling for SIGINT and SIGHUP
+
+ - in Batch scanning mode sane_cancel is called between all scans! This has to be done
+   because it is not allowed to change scan parameters between sane_start and sane_cancel.
+
+
+xsane-0.91 -> 0.92:
+-------------------
+
+ - moved setting of preview gamma table from preview_start_scan (called 3 times for
+   3 pass scan) to preview_scan (called once when "preview scan" button is pressed).
+   This should avoid error messages in 3 pass scanning mode
+
+ - removed parameter label from xsane_back_gtk_autobutton_new()
+
+ - xsane_back_gtk_autobutton_update sets range widget to insensitive in automatic mode
+
+ - added jpeg error_exit handler
+
+ - added several tests for errors after wrting image data (full disk) (not complete)
+
+ - if an advanced option is defined in a standard group then this option is listed in
+   the advanced options window now. For this a standard group also is created in the
+   advanced options window. If a group has no items then the group is not shown.
+
+ - an option without SANE_CAP_SOFT_DETECT is not read any more in xsane_control_option
+
+ - updated translations: sv
+
+
+xsane-0.92 -> 0.93:
+-------------------
+
+ - added ranlib to lib/Makefile.in to process liblib.a
+
+ - added 2 calls xsane_find_best_resolution() in xsane_resolution_widget_new()
+   to make sure that active value really is selectable in a list of resolutions
+
+ - added range values 9-25% to scaling list of xsane-viewer: 9, 13, 18, 25, 35, 50, 71, 100, 141, 200, 282, 400
+
+ - when no docviewer is defined at xsane startup (generally when xsane is started the first time) then
+   xsane tries to read the environment variable $BROWSER, if this fails it sets docviewer to netscape.
+
+ - xsane-preferences.c: mail dependant entries are only used when mail is activated
+
+ - replaced label HAVE_LIBGIMP_GIMP_H by HAVE_ANY_GIMP
+   HAVE_ANY_GIMP is defined in configure.in when HAVE_GIMP=yes
+
+ - added HAVE_GIMP_2 parts to xsane.c, xsane.h and xsane-save.c
+   HAVE_GIMP_2 is defined by configure.in when GIMP-2.0 was found
+
+ - created subdirectory m4 and put self written macros from aclocal.m4 to m4/*.m4,
+   copied gtk.m4, gtk-2.0.m4 and gimp-2.0.m4 from aclocal installation to m4 subdirectory,
+   gimp-orauch.m4 contains a modified gimp.m4 that also can handle gimp-1.0.x
+   (the original script only does work when gimptool is installed, gimp-1.0.x comes without it)
+   a new aclocal.m4 can be created with "aclocal -I m4/."
+
+ - configure.in: changed AM_FUNC_ALLOCA to AC_FUNC_ALLOCA
+
+ - configure.in + src/xsane.c: changed PACKAGE_VERSION to XSANE_PACKAGE_VERSION
+   because PACKAGE_VERSION did not work any more, looks like a new feature of aclocal or autoconf
+
+ - updated translations: de, it, da, cs, nl, es, sk, ro, fr
+
+ - po/Makefile.in: added test for msgfmt, gmsgfmt, gencat
+
+xsane-0.93 -> 0.94:
+-------------------
+
+ - changed "µs" to UTF8 codeset
+
+ - added test and warning message if option is defined without name (NULL)
+   to xsane_panel_build
+
+ - added handling for options with of SANE_TYPE_INT and SANE_TYPE FIXED
+   with CONSTRAINT_TYPE_NONE , uses spinbutton, no sliders
+
+ - changed default medium definition of Slide from highlight=30% to highlight=40%
+
+ - xsane_[back_gtk_]option_menu_new: added empty element to end of list
+   xsane_[back_gtk_]option_menu_lookup: test for existing element before comparision
+
+ - moved media defintions from xsane.rc to xsane.mdf
+
+ - preview: preset area: added definition name to context menu items
+
+ - preview: add preset area: you can change the suggested name now
+
+ - medium definitions: added same context menue like in preset area menu,
+   removed buttons "add medium" and "delete medium", they are in the
+   contect menu now
+
+ - added documentation how to use a medium and how to define a medium
+
+ - improved documentation how to edit the preset area definitions
+
+ - in edit medium definition mode autmatic scanarea selection and automatic
+   color correction is disbaled
+
+ - docs: replaced www.mostang.com/sane by www.sane-project.org
+         and sane-devel@mostang.com by sane-devel@lists.alioth.debian.org
+
+ - batch_scan default list is loaded at program startup
+
+ - added test for BUGGY_GDK_INPUT_EXECEPTION in xsane.c and xsane-preview.c
+   when gdk_input_add shall be used
+
+ - changed order in xsane.h: system includes are moved to the beginning of
+   the file. This way it is possible to test for operating system header files
+   to decide how some #defines are made
+
+ - added m4 makro test for msnative struct for windows
+
+ - BUGGY_GDK_INPUT_EXCEPTION is defined for windows
+
+ - src/Makefile.in: removed both "\" in
+   -DPATH_XSANE_DOC_DIR=\$(xsanedocdir) -DPATH_SANE_DATA_DIR=\$(sanedatadir)
+
+ - created new xsane-WIN32-compilation.txt
+
+ - for windows the GTK1 version of xsane_window_get_position is used
+
+ - xsane_back_gtk_get_filename: directory is prepared with ending SLASH
+   instead of ending "/.", this does work with windows now when SLASH is \
+
+
+xsane-0.94 -> 0.95:
+-------------------
+
+ - For xsane-win32 the xsane icon is added to the windows ressource of xsane.exe:
+   added definition of XSANE_ICON=xsane-icon.opc to configure[.in]
+   added creation rule of xsane-icon.opc to src/Makefile[.in]
+   added @XSANE_ICON@ to XSANE_OBJS
+
+ - in xsane_back_gtk_value_update: removed rounding (+ 0.5) in case SANE_TYPE_INT
+
+ - changed menues in the xsane main dialog:
+   - added new menu "Window"
+   - moved Window menue entries form "View" to "Window"
+   - moved "Show resolution list" entry from menu "Preferences" to "View"
+   - moved "Update policy" entry from menu "Preferences" to "View"
+   - moved "Length unit" entry from menu "Preferences" to "View"
+
+ - added test if resolution list is displayed or scale is displayed in
+   xsane_resolution_timer_callback(). Without this test it sometimes
+   happened that pressing CTRL+L (Swap show resolution list) caused a
+   segfault because the timer callback was executed in a moment where the
+   adjustment is not valid
+
+ - added: if (???->window)
+   before each: gdk_window_process_updates(???->window)
+   in xsane-gamma.c, this made problems with gtk+2.x
+
+ - when a postscript file is added to a faxproject then the original name of the
+   file is also used in the faxproject now. The pagecounter is still increased!
+
+ - fax fine mode selection is stored in preferences now
+
+ - handling of viewer filenames changed:
+   - when an image is saved in the viewer then the viewer shows the filename in
+     the window title and the viewer remembers the filename
+   - when the image has been changed after it has been saved then the filename
+     in the window title is shown in brackets 
+   - when the filename ends with a number (counter) then the number is automatically
+     increased when the file is saved
+   - when a saved image is cloned then the suggested filename of the cloned image is
+     clone-of-"old-filename"
+
+ - viewer: added support for different modification restrictions
+   - VIEWER_NO_MODIFICATION (only view)
+   - VIEWER_NO_NAME_AND_SIZE_MODIFICATION (some filters allowed but keep size, e.g. fax)
+   - VIEWER_NO_NAME_MODIFICATION (use given name, e.g. fax, mail)
+   - VIEWER_FULL_MODIFICATION (normal mode)
+
+ - added undo function (1 step) to viewer
+
+ - changed menues in the xsane viewer dialog:
+   - added menu "Edit"
+   - added menu "Geometry"
+   - moved Scale function from menu "File" to menu "Geometry"
+   - added rotation and mirror functions to menu "Geometry"
+   - added undo function to menu "Edit"
+
+ - changed button boxes/icons in the xsane viewer dialog:
+   - added button boxes equal to menus: file, edit, filters, geometry
+   - added undo icon to edit box
+   - moved blur uand despeckle icon to filter box
+   - moved scale, rotation and mirrir icons to geometry box
+
+ - replaced several "char buf[???];" by "char filename[PATH_MAX];"
+
+ - changed fax mode:
+   - scanned images are stored in pnm format
+   - for each list entry there is a data and a type information now
+   - internal viewer is used now for pnm-fax files
+   - faxviewer is used for ps files
+   - before sending the fax pnm images are converted into ps images
+   - after sending the fax ps images are erased
+
+ - changed e-mail mode:
+   - scanned images are stored in pnm format
+   - for each list entry there is a data and a type information now
+   - internal viewer is used now for pnm-mail files
+   - before sending the mail pnm images are converted into png images
+   - after sending the mail the png images are erased
+   - mail project status is translated now
+   - BUGFIX: end of email text is marked with 0 byte
+
+ - added function xsane_viewer_set_sensitivity()
+   - moved all gtk_widget_set_sensitive(GTK_WIDGET(v->button_box), TRUE/FALSE); to it
+   - added several gtk_widget_set_sensitive(???_menu, TRUE/FALSE); commands to it
+   - moved almost all v->block_actions to it
+   - now it should not be possible any more to crash xsane by closing the viewer
+     while it is saving something
+
+ - added info "reduce to lineart" to image_info + xsane-pnm-header
+
+ - renamed viewer v->reduce_to_lineart to v->allow_reduction_to_lineart
+
+ - save_image_as() now automatically reduces lineart images to pbm before saving
+
+ - new translations: hu
+
+ - updated translations: de, es, ja, pt, pt_BR, sk
+
+
+xsane-0.95 -> 0.96:
+-------------------
+
+ - fax progress bar does not change it's height any more when the fax dialog is resized
+
+ - mail progress bar does not change it's height any more when the mail dialog is resized
+
+ - added lockfile to mail project. The lockfile contains status and progress information
+   from the mail_send_process and is used to display a progress_bar
+
+ - mail status is only translated when it is displayed via gtk, in the data structures
+   the untranslated texts are used
+
+ - changed mail_attach_image_png to mail_attach_image, mime type is defined by parameter
+
+ - added filetype menu to mail dialog with filetypes PNG, JPEG and TIFF
+
+ - bugfix: viewer saves lineart PNM images again as lineart (bug in xsane-0.95)
+
+ - when image is saved as pnm and it is not reduced to lineart then the input file
+   is copied with xsane_copy_file => much faster
+  
+ - xsane-save.c: reordered function parameters for saving/conversion functions to
+   (outfile, infile,...) or (output_filename, input_filename, ...) 
+   (before we had sometimes infile at first and sometimes outfile at first)
+
+ - xsane_set_sensitivity: mail_dialog and fax_dialog:
+   the sensitivity off all but the progress_bar is set
+
+ - While mail is prepared (images are converted) the xsane sensitivity is set to
+   FALSE to make sure that the xsane mode is not changed in this case.
+   while sending the mail (after preparation) the xsane sensitivity is set to
+   TRUE and the project entry sensitivity is also TRUE, it is allowed to
+   changed xsane mode and to change the mailproject, because the
+   sending of the mail is done in a separate process, so there is no
+   influence by changing the mail project name.
+ 
+ - Comment:
+   When xsane is closed while sending one or more mails then xsane is closed
+   but the mail sending subprocesses are not terminated.
+
+ - added SMTP (HELO/FROM/RCPT/DATA) errors to mail status
+
+ - added xsane.fax_status, it is saved in the first line of the xsane-fax-list
+   this means that the fax project directories are incompatible to earlier versions!
+
+ - added mail_status and fax_status = ..._CHANGED when a new page is added to
+   the project
+
+ - updated images in documentation
+
+ - updated email modus in documentation
+
+ - email images are named "image-1" instead of "page-1"
+
+ - fax_dialog_delete() and mail_dialog_delete() return TRUE now.
+   In windows it was possible to delete the dialogs what caused
+   a crash when the window should be used or closed.
+
+ - translations: U=updated, N=not updated
+   cs da de es fr hu it ja nl pt pt_BR ro ru sk sl sr sv tr vi zh
+   U  U  U  U  U  N  N  U  U  U  U     U  U  N  N  N  N  U  U  N
+
+ - xsane-preferences.c: when identifier is unknown or not a string then
+   the parser does not abort or crash any more.
+   XSane now should not have any problems with old config files.
+
+
+xsane-0.96 -> 0.97:
+-------------------
+
+ - write_smtp_footer(): changed ".\r\n" by "\r\n.\r\n", this
+   solves problems with microsoft exchange servers.
+
+ - translations: U=updated, N=not updated, A=added/new
+   cs da de es fr hu it ja nl pl pt pt_BR ro ru sk sl sr sv tr vi zh
+   N  N  N  N  N  N  U  N  N  A  N  N     N  N  N  N  N  N  N  N  U
+
+ - xsane-save.c: xsane_copy_file(): removed fclose(infile) and fclose(outfile)
+   this bug caused the error "*** glibc detected *** double free or corruption (!prev): 0x........ ***"
+   with new gelibc versions
+   xsane-save.c: xsane_copy_file_by_name(): added fclose(infile) and fclose(outfile)
+
+ - rmoved gtk_events_pending() from the waiting loop in xsane_back_gtk_get_filename,
+   it looks like gtk_events_pending() increases CPU load very much.
+
+ - xsane-scan.c: function xsane_reduce_to_lineart(): corrected order of filenames in
+   xsane_save_image_as_lineart()
+
+ - xsane_device_dialog(...): uses sane_control_option instead of xsane_control_option
+   to read option number 0. This means that it is not needed that SANE_CAP_SOFT_DETECT
+   is set for option number 0 
+
+
+xsane-0.97 -> 0.98:
+-------------------
+
+ - void xsane_batch_scan_scan_list(void):
+   added if (gtk_events_pending()) in while (xsane.scanning)
+   (this was removed in xsane-0.97 what made a lot of trouble)
+
+ - corrected bad <Toolbox/...> italian transations for gimp plugin
+
+ - added Postscript Zlib-Compression and Ascii-85 compression
+   (patch by Julien BLACHE <jb@jblache.org>)
+
+ - added (single page) PDF saving routine
+   (patch by Julien BLACHE <jb@jblache.org>)
+
+ - added PDF and Postscript to mail-mode. PDF and Postscript documents can not
+   be displayed inline in html mails. I also do not know a way to display a
+   link to a document that is integrated in the mail. So the <IMAGE> tag
+   has no effect for pdf and postscript documents in html mode.
+
+ - --print-filenames prints the filenames after conversion, so it is
+   safe that the file exists and is complete
+
+ - selected medium definition is stored in preferences now
+
+ - BUGFIX for scanners that do not allow to set all resolutions.
+   In fax mode and possibly also in copy mode the created pages
+   had a wrong scaling when the scanner did not support the
+   desired resolution:
+   - xsane_set_resolution returns bestdpi = selected resolution
+   - xsane_set_all_resolutions stores bestdpi as used resolution
+
+ - when option 0 (num_options) has not defined SANE_CAP_SOFT_DETECT
+   then xsane prints a warning but does try to read the option value
+
+ - added xsane_mode (VIEWER/SAVE/EMAIL/FAX/etc) to preferences
+
+ - po/*: all po files are in UTF-8 code now
+   to transform non-UTF-8 po files to UTF-8 put the po file
+   into the IMPORT_PO_DIR directory and call in the po directory
+   "make import-po-files"
+
+ - rename xsane-logo2.jpg to xsane-logo.jpg and changed all
+   html files to xsane-logo.jpg
+
+ - viewer uses preferences.filetype instead of "by ext"
+
+ - localedir for sane-backends is set by sane-prefix instead of xsane-prefix
+
+ - replaced printf by g_print to get correct output on non-utf-8 terminals
+
+ - question mark '?' and asterisk '*' in filenames are replaced by underscore '_'
+
+ - translations: U=updated, N=not updated, A=added/new
+   cs da de es fr hu it ja nl pl pt pt_BR ro ru sk sl sr sv tr vi zh
+   U  U  U  N  N  U  U  N  N  N  N  N     N  U  U  N  N  N  N  N  N
+
+xsane-0.98 -> 0.98a:
+--------------------
+
+ - corrected gimp_plugin bug:
+   xsane_mode now is hold in xsane.xsane_mode like bevore xsane-0.98,
+   additionally preferences.xsane_mode is used to store the user
+   selection
+   the user selection is loaded at program start when nothing else is predefined
+
+
+xsane-0.98a -> 0.98b:
+---------------------
+
+ - changed bug in header file due to conficting types in xsane-front-gtk.h
+   from:  int xsane_set_resolution(int well_known_option, double resolution);
+   to: double xsane_set_resolution(int well_known_option, double resolution);
+
+
+xsane-0.98b -> 0.99:
+--------------------
+
+ - added preferences/setup options:
+   - save_ps_flatdecoded
+   - save_pdf_flatdecoded
+   - fax_ps_flatdecoded
+   - printer[i].ps_flatdecoded
+
+ - changed xsane-preferences reading routines for printer definitions and
+   preset area definitions
+
+ - changed postscript and tiff saving routines:
+   - split in subroutines:
+     - create_document_header (ps, pdf)
+     - save image as page (ps, pdf, tiff)
+     - create_document_trailer (ps, pdf)
+
+ - split xsane.c into xsane.c, xsane-fax-project.c and xsane-mail-project.c
+
+ - created xsane-multipage.c that adds a multipage project dialog
+   supported file formats:
+   - ps
+   - pdf
+   - tiff
+
+ - corrected viewer to display bits/sample and size correct
+
+ - changed handling of viewer filename and filetype selection:
+   when a new viewer window is created then it copies the active
+   filename and filetype. Changing the viewer´s selection does not
+   change the prefered setting any more.
+
+ - when no resolution option is available then xsane uses a resolution
+   of 72.0 dpi. This e.g. is used for postscript and PDF.
+
+ - changed tiff saving routine:
+   - added deflate (zip) compression for 8 bit and 16 bit / sample images
+   - corrected jpeg rgb compression
+
+ - changed mixed up e-mail names (mail, email, e-mail):
+   - all xsane internal names are: email
+   - all user visible texts are  : e-mail
+   - changed acceleration key for email mode to GDK_E
+   - changed command line option from --mail and -m to --email and -e
+
+ - changed name of notebook "image" to "filetype"
+
+ - when force_filename is set then the filetype is defined by the filename
+   instead of preferences.filetype
+
+ - project dialog position is saved in devices preferences now
+
+ - when a dialog is closed then the position is stored in preferences
+   so it can be saved when the window is invisible at program exit
+
+ - changed handling of ADF:
+   - removed ADF scanmode selection from setup
+   - added entry for number of pages to scan in xsane main dialog
+   - next scan is not started by 
+       g_signal_emit_by_name(xsane.start_button, "clicked"); /* press START button */
+     any more. This executed the next scan before all active scan subroutines
+     have been finished. Now we use
+       gtk_timeout_add(100, (GtkFunction)xsane_scan_dialog, NULL);
+     to start xsane_scan_dialog after 100ms.
+
+ - batch scan window now uses preview levels (zoomed previews) to display batch icons
+
+ - added ASMTP authentication PLAIN and LOGIN
+
+ - changed size definition of preview window for GTK2 to gtk_window_resize()
+
+ - added $(DESTDIR) before each destination path in all Makefile.in
+
+ - made usage of MKINSTALLDIRS unique in all Makefile.in
+
+ - cleaned up subdir intl
+
+ - translations: U=updated (* for 0.99-pre1), N=not updated, A=added/new
+   cs da de es fr hu it ja nl pl pt pt_BR ro ru sk sl sr sv tr vi zh
+   U  U  U  N  N  U  N  N  U* U* N  N     N  U  N  U  N  N  U* N  N
+last upd    96 95    96 95       96 96    96    98    76 92    96 96
+
+
+xsane-0.99 -> 0.991:
+--------------------
+ - replaced all char buf[255], char buf[256] etc by char buf[TEXTBUFSIZE]
+   with #define TEXTBUFSIZE 255
+
+ - replaced all char filename[255] etc by char filename[PATH_MAX]
+
+ - translations: U=updated (* for 0.99-pre1), N=not updated, A=added/new
+   cs da de es fr hu it ja nl pl pt pt_BR ro ru sk sl sr sv tr vi zh
+   N  N  N  N  N  N  U  N  N  N  N  N     N  N  N  N  N  N  N  N  N
+   99 99 99 96 95 99    95 99 99 96 96    96 99 98 99 76 92 99 96 96
+
+ - added default multipage_filetype (PDF).
+   No default multipage_filetype produced the following problem:
+   - error message when creating multipage file: could not create secure file
+
+ - lineart images are expanded to grayscale in multipage mode.
+   solves segmentation fault when "show page" in multipage project was selected
+
+ - corrected calculation of width and height in copy mode for backends
+   that do not support arbitary resolutions
+
+ - multipage mode: lineart images (that are stored as grayscale images)
+   are reduced to lineart before the page is put into the multipage file
+
+ - viewer shows image info with bit depth = 1 when reduce_to_lineart is set
+
+ - change handling of zoom (photocopy mode):
+   - now there is only one zoom value even if there is a resolution_x and
+     a resolution_y option, zoom_x and zoom_y are removed
+   - the zoom factor is directly used to define the image output size
+     (before the scanresolution was used to define the image output size)
+   - the resolution is not changed any more when an other printer with a
+     different printer resolution is selected
+ - replaced all char buf[255], char buf[256] etc by char buf[TEXTBUFSIZE]
+
+xsane-0.991 -> 0.992:
+---------------------
+ - there was still a bug concerning the gimp plugin
+   when xsane has been quit in copy mode and afterwards
+   started as gimp plugin then xsane used the printer paper
+   size in the preview window. This is solved now:
+   replaced preferences.xsane_mode by xsane.xsane_mode
+   in xsane_define_maximum_output_size()
+
+ - xsane_save_scaled_image sometimes did not write the last line
+   and produced a tuncated image. this is corrected now
+
+ - viewer: when saved image is cloned and the viewer of the cloned
+   image is closed then no dialog pops up any more
+
+ - translations: U=updated, N=not updated, A=added/new
+   ca cs da de es fr hu it ja nl pl pt pt_BR ro ru sk sl sr sv tr vi zh zh_CN
+   A  N  N  N  N  N  N  U  N  N  N  N  N     N  N  N  N  N  N  N  N  N  A
+   99299 99 99 96 95 99    95 99 99 96 96    96 99 98 99 76 92 99 96 96 992
+
+ - xsane-preview.c: preview_create_batch_icon():
+   bugfix: files (in) are closed directly after use now,
+   bug report from Norman Hill - thanks
+
+ - corrected order of filetypes in xsane_back_gtk_filetype_menu_set_history, now
+   the filetype are not mixed any more when the disk icon is pressed
+
+ - replaced all "\n" by "\r\n" in email 
+
+ - corrected some signdness warnings in xsane-preview.c (buf)
+
+ - fixed memory bug that caused crash when setup was closed (display_notebook):
+   added strdup to preferences.browser = strdup(getenv(STRINGIFY(ENVIRONMENT_BROWSER_NAME)));
+
+ - added command line option --xsane-rc / -r to change give alternative filename for xsane.rc
+
+ - added support for color management:
+   - added tab "color management" to setup/preferences
+   - preview can display ICC/ICM corrected images with 8bits/color and with 16bits/color input bit depth
+   - viewer can display ICC/ICM corrected images with 8bits/color and with 16bits/color input bit depth
+   - gamma correction and medium selection is disabled when color management is enabled
+   - added support for embedded ICC/ICM files for
+     - tiff
+     - jpeg
+     - png
+     - gimp plugin
+
+ - replaced several GtkObject* by GtkWidget* to avoid type-punned-pointer warning
+
+ - replaced several (void**) typecasts in xsane-rc-io.c to avoid type-punned-pointer warning
+
+xsane-0.992 -> 0.993:
+---------------------
+
+ - removed proofing intent options saturation and perceptual, only relative and absolutle colorimetric are available now
+
+ - added CMS transformation to saving routines: pnm(8bit), pnm(16bit ascii and binary), png, jpeg, tiff, gimp-plugin, ps, pdf
+   (missing routines: multipage)
+
+ - added support for gtk_file_chooser_dialog
+   all filenames are handled as full paths (beginning with a slahs) now,
+   the "change working directory" option has been removed
+
+ - made "CANCEL" and "OK" button positions the same as gimp uses it (CANCEL=left, OK=right)
+
+ - added browse function for projects directories
+
+ - removed bugs in mail mode:
+    write(fd, "\r\n\r\n", 2) -> write(fd, "\r\n\r\n", 4)
+    write(fd, "\r\n", 1)     -> write(fd, "\r\n", 2)
+
+ - added embedded ICC profiles for postscript (CSA+CRD) and pdf
+
+ - added 12 bits/channel support for postscript
+
+ - added flatedecode without Asci85 compression for PDF
+
+
+xsane-0.993 -> 0.994:
+---------------------
+
+ - corrected postscript bug: moved "/DeviceRGB setcolorspace" and "CSA... setcolorspace" from document setup to page setup
+
+ - added black point compensation to printer setup dialog
+
+ - xsane-scan.c: if (channels==1) then scanner_default_gray_icm_profile is used instead of scanner_default_color_icm_profile
+
+ - xsane-scan.c: bugfix segfault when scanning: when scanner_default_color_icm_profile is not defined then "" is used instead of scanner_default_color_icm_profile
+
+
+xsane-0.994 -> 0.995:
+---------------------
+
+ - changed layout of copy setup, removed border around all setup tabs
+
+ - changed layout of xsane main window
+
+ - xsane-front-gtk.c: xsane_browse_filename_callback: xsane.cms_function_option_menu is only updated when xsane.enable_color_management is active
+
+ - xsane-save.c: write_smtp_header(): it is allowed to specify multiple mail receivers in a comma separated list now
+
+ - xsane-save.c: write_smtp_header(): MAIL FROM and RCPT TO use syntax "<user@domain.org>" instead of "user@domain.org" now
+
+ - xsane-front-gtk.c: created xsane_progress_bar_set_fraction which uses the gtk2
+   functions when available and which only updates the progress_bar every 2.5 percent
+   what speeds up several functions - especially saving file routines -
+   
+   xsane*.c: replaced all gtk_progress_bar_update() by xsane_progress_bar_set_fraction()
+
+ - xsane-back-gtk.c: in function xsane_back_gtk_value_update()
+   replaced comparison for SANE_FIX values
+     if (new_val != val) 
+   by
+     if (abs(new_val - val) > 1)
+
+ - changed all "scanarea" to "scan_area" or "scan area"
+
+ - xsane-gtk-1_x-compat.h: changed gtk_progress_bar_set_ellipsize() to
+   gtk_progress_bar_set_ellipsize(pbar, mode)
+
+ - xsane_help_no_devices() changed buf size to 1024
+
+ - translations: U=updated, N=not updated, A=added/new
+   ca cs da de es fi fr hu it ja nl pa pl pt pt_BR ro ru sk sl sr sv tr vi zh zh_CN
+   U  N  U  N  N  A  N  N  U  N  N  U  N  N  N     N  N  U  N  U  N  N  N  N  N
+   99599 99599 96 99595 99 99595 99 99599 96 96    96 99 99599 99592 99 96 96 992
+
+xsane-0.995 -> 0.996:
+---------------------
+
+ - removed bug when deleting medium types: removed free() command, added realloc()
+
+ - xsane_viewer.c: reduced maximum viewer size form gdk_screen_width/gdk_screen_height to
+   gdk_screen_width-1/gdk_screen_height-1
+
+ - xsane-save.c: PDF: ICC object 4+5 are initialized with offset 0
+ - xsane-save.c: PDF: objects with offset 0 are makred free (f) in xref table
+
+
+xsane-0.996 -> 0.997:
+---------------------
+
+ - removed SANE_CAP_ALWAYS_SETTABLE (not SANE1)
+ - added test for (opt->size == 0) for SANE_TYPE_STRING in xsane.c
+ - in gtk_adjustment_new changed page_size from (min-max)*1e-30 to 0
+   because new gtk versions don`t like non zero values for spinbuttons
+ - added several gdk_drawable_unref(mask)
+
+xsane-0.997 -> 0.998:
+---------------------
+ - removed bug saving image as 16 bit png:
+   until now all low byte data has been a copy of the high byte data,
+   so in fact all images saved untile xsane-0.997 are saved as 8 bit image
+   in a 16 bit format.
+ - changed some more gtk_adjustment_new(...) page_sizes to 0
+ - added several bytes_read = and bytes_written = before fread, read, fwrite, write
+ - added some items_done = before fscanf
+ - corrected some format stings (missing "%s")
+
+
+xsane-0.998 -> 0.999:
+---------------------
+ - better preview window size calculation (thanks to Nils Phillipsen)
+ - removed null-pointer bug in xsane_update_param (thanks to Nils Phillipsen)
+ - manual page bugix
+ - changed email password storage

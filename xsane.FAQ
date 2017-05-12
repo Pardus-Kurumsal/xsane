@@ -1,0 +1,8 @@
+Q: scanimage does work, xsane does not (or vice versa). What can I do?
+
+A1: in most cases this is caused by at least two installations of sane-backends.
+Make sure only ony sane-backends version is installed.
+
+A2: may be /usr/local/lib/sane, /usr/lib/sane or /lib/sane is listed in /etc/ld.so.conf
+this is not allowed. Remove theses lines from /etc/ld.so.conf and call
+ldconfig as root.

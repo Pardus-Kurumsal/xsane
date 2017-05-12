@@ -1,0 +1,13 @@
+The onlinehelp viewer can be selected.
+If it shall be done via netscape remote-commands,
+you have to enter the keyword "netscape-remote" as viewer.
+Netscape must be running.
+
+The helpfiles are located in PATH_SANE_DATA_DIR/
+(this is typlically /usr/local/share/sane).
+The file that is loaded is sane-backendname-doc.html,
+the backend may use more html-files:
+sane-backendname-*-doc.html
+
+Images that are only for the backend helpfile should
+have the name sane-backendname-*.*

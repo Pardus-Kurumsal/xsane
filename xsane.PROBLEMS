@@ -1,0 +1,117 @@
+READ THIS FILE IF YOU EXPERIENCE ANY PROBLEM
+
+ - there is a html documentation for xsane.
+   If you have problems compiling xsane call
+     netscape xsane-0.??/doc/sane-xsane-doc.html
+
+   If you can start xsane you can open the online helpfile via the menu
+   help->XSane doc
+
+ - If you get segmentation faults or unexpected problems (device not found):
+   - make sure there is only one sane version installed before
+     you compile xsane
+     (try as root: $find / -name "*sane*" | less)
+     *** !!! ABOUT 50% OF ALL PROBLEM REPORTS I GET ARE CAUSED !!! ***
+     *** !!! BY MULTIPLE SANE VERSIONS INSTALLED !!! ***
+   - If you used an earlier version of xsane before remove the configuration
+     directory: rm -rf ~/.sane/xsane
+     (you have to enter all configurations again afterwards).
+   - make sure there is only one gtk-config and only one gimp-config
+     file on your system (find / -name "g*-config") or set path to
+     the correct one (./configure --help)
+   - Do not install any self compiled source package over binary packages,
+     in most cases the installation paths are different so the old versions
+     are not overwritten and you may have two versions installed!
+
+- If you get an error message  that libsane-dll.so.1 or libsane-so.1 is not found, you have to
+  tell your system where the SANE-libraries are installed.
+   - On some systems the library directory "/usr/local/lib" is not searched by
+     the systems dynamic library loader. If SANE is installed in
+     "/usr/local/..." you have to tell your systems dynamic library loader to
+     search in "/usr/local/lib". For linux: add the path "/usr/local/lib" to
+     /etc/ld.so.conf and call ldconfig (as root).
+   - For sane-1.0.1 you have to add a line with the path to the SANE libraries
+     (normally /usr/local/lib/sane) to /etc/ld.so.conf and call ldconfig (as
+     root). For sane-1.0.2 (and later versions) the path to the SANE libs
+     (normally /usr/local/lib/sane) MUST NOT be listed in /etc/ld.so.conf.
+     (don`t mix it with /usr/local/lib that has to be listed in /etc/ld.so.conf).
+   - If all that does not help, make sure that /usr/local/lib/libsane.so.* are symbolic
+     links to /usr/local/lib/sane/libsane-dll.so.* or ./sane/libsane-dll.so.*
+
+   short explaination:
+     xsane does not search itself for the library libsane.so, that is done by the
+     dynamic library loader of your system.
+     For linux: Edit /etc/ld.so.conf and call ldconfig to tell your
+     dynamic library loader where it shall search for dlls.
+     On other systems this is configured in other ways. Some systems use the
+     environment variable LD_LIBRARY_PATH for additional search paths.
+
+     When sane is installed in "/usr/local/....."
+     the libraries are placed in "/usr/local/lib/sane/".
+     The path "/usr/local/lib" has to be listed in /etc/ld.so.conf
+     (call ldconfig after changing that file).
+     In /usr/local/lib there are some links "libsane.so*" that point
+     to the subdirectory ./sane to the fitting files "libsane-dll.so*".
+
+     The libraries that are placed in ..../lib/sane are not accessed by the
+     system´s dynamic library loader also not by xsane directly. These libraries
+     are loaded by sane´s dynamic library loader (sane-dll).
+
+ - The online-help-viewer is selectable.
+   If you use kde you can enter kdehelp in setup/display.
+   Preselected is netscape with usage of remote commands.
+
+    On some SuSE systems there only is "Netscape" and no "netscape" in the path,
+    in this case you have to set a symbolic link:
+
+      ln -s /usr/bin/Netscape /usr/bin/netscape
+
+ - I have installed gtk+-2.x.x and configure does find it but xsane is compiled with
+   gtk-1.x.x, why?
+
+   When xsane is compiled as gimp plugin then xsane is compiled with the gtk version
+   that is used for gimp. When you disable the gimp plugin then xsane can be compiled
+   with gtk+-2.x.x!
+
+ - If you call ./configure a second time, it may be good to call
+     make distclean
+   before that, if that does not work, remove config.cache:
+     rm -f config.cache
+
+ - If the compilation aborts with
+      /usr/lib/libgimp.so: undefined reference to `g_debug'
+      /usr/lib/libgimp.so: undefined reference to `g_message'
+      /usr/lib/libgimp.so: undefined reference to `g_warning'
+      /usr/lib/libgimp.so: undefined reference to `g_error'
+    update to gimp-1.0.4 or newer! I suggest to use gimp-1.2.0 or newer. 
+
+ - If the compilation aborts with
+      ...: sane/sane.h: No such file or directory
+   you did not install sane-devel.rpm!  Get sane-devel.rpm from
+   the site you got sane.rpm and install it!
+
+ - If make aborts with missing library "-lintl" try
+     make distclean
+     ./configure --with-included-gettext
+     or
+     ./configure --disable-nls
+
+ - If gtk+ is compiled with NLS/gettext, you have to use the same
+   gettext version for xsane. So if gtk+ is compiled with gettext in libc
+   do NOT compile xsane with included gettext!
+   Otherwise gtk will crash when gtk texts shall be translated.
+
+ - If you have any problems with gtk/gdk/gimp, please call print-libs.
+   It prints all libs/includes etc. that are relevant for xsane.
+   Make sure that you do not have installed more than one version of
+   each lib!
+
+ - If you want to remove all sane files from your filesystem:
+   find / -mount -iname "*sane*" -exec rm -rf {} \;
+   pay attantion: this really removes all files containg "sane" in the
+   filename (caseinsensitive)
+
+ - If you are running BSD and gtk-config is not in your path or is
+   named gtk?.?-config, make sure environment variable GTK_CONFIG
+   is set with full path to the config file that shall be used
+

@@ -1,0 +1,134 @@
+README for xsane for win32:
+
+
+This is a win32 of xsane. It may have some bugs.
+
+This version supports:
+ - preview scan, preview zoom
+ - scan and save to pnm, ps and raw file, if compiled in also jpeg, png and tiff
+ - handling of all backend options
+ - helpfiles
+ - copy mode (printing via ghostscript, see section "copy mode")
+ - gimp-plugin (if compiled in)
+
+
+It does not support:
+ - fax mode (no compatible faxsoftware)
+
+
+Installation:
+=============
+ - unpack the archiv to c:\
+   that creates the directory c:\Sane with several files
+   you do not need to copy any files, simply call c:\sane\bin\xsane or
+   c:\sane\bin\scanimage
+ 
+ - Sane MUST BE installed in c:\sane because the paths are hardcoded.
+   Xsane will not work correct if you install it at any other place!
+
+ - make sure you have a directory c:\temp (or whatever you
+   define as temporary directory in xsane's setup)
+
+ - there are three icons (xsane.ico, xsane-32x32.ico and xsane-48x48.ico)
+   in c:\sane\bin that you can use if you set a link from xsane.exe to
+   your desktop, for that use right mouse button and change properties
+   of the link, change icon and select "c:\sane\bin\xsane-??x??.ico"
+
+
+Configuration:
+==============
+ edit c:\Sane\etc\sane.d\net.conf
+ and enter a list of NetBEUI names or of IP-addresses
+ of machines you want to connect to. On some Windows
+ system IP-addresses are not accepted; if you experience
+ any problems try the NetBUI names.
+
+  example for net.conf:
+    myhost1
+    myhost2.mydomain.com
+    192.168.0.1
+    192.169.1.73
+
+ you also can start xsane with net:host:backend:device given as command line option:
+ 	xsane net:192.168.0.1:umax:/dev/scanner
+ or
+	xsane net:myhost:umax:/dev/scanner
+
+
+Localisation:
+=============
+ You have to set the environment variable LANG to the language
+ you want to select, for e.g. german this looks like this:
+  set LANG=de
+  xsane
+ It is a good idea to do this in a script that is started at system boot,
+ e.g. in autoexec.bat
+
+
+Copy-Mode:
+===========
+ If you want to use copy mode, you need ghostscript for win32.
+ You can download it e.g. from http://www.cs.wisc.edu/~ghost/
+ Enter Setup/Copy options:
+ enter as Command:
+	c:/gs/gs6.50/bin/gswin32c -sDEVICE=mswinpr2 -dNOPAUSE -
+ Pay attention: you have to use "/", don´t use "\".
+ With sDEVICE=mswinpr2 you select the Printer Dialog of Windows.
+
+ You also can enter DEVICE-name of your printer (e.g. laserjet).
+ To get a list of available device names open a dos box,
+ and call c:\gs\gs6.50\bin\gswin32c -h
+
+
+Gimp-Plugin:
+===========
+ (Does only work when xsane.exe is compiled as gimp plugin)
+ If you want to use xsane as gimp plugin,
+ copy xsane.exe and *.dll to the GIMP´s plug-ins driectory
+ (e.g. c:\Program Files\GIMP\plug-ins)
+
+
+Support:
+========
+ There is no special support for xsane for win32.
+ I develop xsane on a linux machine and will make a binary version
+ for win32 from time to time.
+
+
+Licence:
+========
+ * xsane and  xsane for win32 stand under the terms of
+   the GNU general public licence (GPL).
+   You can find the sourcecode for xsane at:
+   http://www.xsane.org
+
+ * The gtk-libraries that come with xsane also do stand under the terms of the
+   GNU general public licence - GPL (gdk, gtk, glib, gnu-intl, gmodule)
+
+ * cygwin1.dll stands under the term of the GNU general public licence - GPL
+
+ * The sourcecode of xsane can be found at http://www.xsane.org
+
+ * The sourcecode of sane can be found at http://www.sane-project.org
+
+ * For any information about cygwin take a look at http://cygwin.com
+
+ * For any information about gtk/gdk for win32 take a look at
+   http://www.gtk.org or http://www.gimp.org/win32/
+
+
+Compile it yourself:
+====================
+ * There is an instruction in the file xsane.WIN32-compilation
+
+
+Contact:
+========
+ You can contact me via email: Oliver.Rauch@rauch-domain.de
+ bugreports, bugfixes and feature requests (that are not
+ already listed) are welcome. Please don`t ask for help/support
+ for xsane-win32, I do not have the time to give support for it,
+ I want to use my free time to work on the code - please understand
+ that.
+
+Oliver Rauch

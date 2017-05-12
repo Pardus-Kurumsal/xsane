@@ -1,0 +1,64 @@
+In general:
+Ctl: Main Window
+Shift: Main Window
+Alt: alternative windows
+
+F1-F8		Help functions
+F		Menu File
+P		Menu Preferences
+V		Menu View
+H		Menu Help
+
+Ctl S		Scanmode
+Ctl C		Copymode
+Ctl F		Faxmode
+Ctl V           Viewermode
+Ctl M           Multipagemode
+Ctl E           Emailmode
+
+Ctl ENTER	Start Scan
+ESC		Cancel Scan
+
+Ctl I		Info Dialog
+Ctl Q		Quit
+
+Ctl L		Resolution List
+Ctl R		Rotoate Postscript
+Ctl P		Save Device Settings (Put)
+Ctl G		Load Device Settings (Get)
+Ctl D		Change Directory
+
+Ctl 1		Show preview
+Ctl 2		Show Histogram
+Ctl 3		(Show Gamma Dialog)
+Ctl 4		Show Batch Scan Window
+Ctl 5		Show Standard Options
+Ctl 6		Show Advanced Options
+
+Ctl B		Browse Filename
+
+Shift Fi	Printer selection in copy mode
+
+Ctl B		Bind RGB
+Ctl N		negative
+Ctl A		AutoEnhance
+Ctl 0 (zero)	Default
+Ctl R		Restore Settings
+Ctl +		Memory (store) settings
+Alt S		Setup
+
+Alt P		Start Preview Scan
+Alt ESC		Cancel Preview Scan
+Alt KP_+	Zoom in
+Alt KP_-	Zoom out
+Alt KP_*	Zoom not
+Alt KP_/	Zoom undo
+Alt A		Autoselect scanarea
+Alt V		Select visible scanarea
+
+Alt I		Histogram lines for intensity
+Alt R		Histogram lines for red
+Alt G		Histogram lines for green
+Alt B		Histogram lines for blue
+Alt M		Histogram lines mode (line/pixel)
+Alt L		Histogram lines logarithm

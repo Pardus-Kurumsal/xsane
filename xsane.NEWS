@@ -1,0 +1,18 @@
+
+ NEWS:
+
+  Due to changes in the configuration file routines
+  you have to enter some data in preferences->setup.
+
+  In general there is nothing special you have to care
+  about to get xsane to work.
+  Read xsane.CHANGES if you are interested in details of
+  what has changed.
+
+  If you experience any problems after you upgraded xsane 
+  it may help to remove the setup and preferences files
+  of xsane:
+
+  rm -rf ~/.sane/xsane
+
+

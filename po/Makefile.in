@@ -1,0 +1,227 @@
+# Makefile for program source directory in GNU NLS utilities package.
+# Copyright (C) 1995, 1996, 1997 by Ulrich Drepper <drepper@gnu.ai.mit.edu>
+# Adopted for #define'd messages by Stanislav Brabec <utx@penguin.cz>
+#
+# This file file be copied and used freely without restrictions.  It can
+# be used in projects which are not available under the GNU Public License
+# but which still want to provide support for the GNU gettext functionality.
+# Please note that the actual code is *not* freely available.
+
+PACKAGE = @PACKAGE@
+VERSION = @VERSION@
+
+SHELL = /bin/sh
+@SET_MAKE@
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+VPATH = @srcdir@
+
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+datadir = $(prefix)/@DATADIRNAME@
+localedir = $(datadir)/locale
+gnulocaledir = $(prefix)/share/locale
+gettextsrcdir = $(prefix)/share/gettext/po
+subdir = po
+
+INSTALL = @INSTALL@
+INSTALL_DATA = @INSTALL_DATA@
+MKINSTALLDIRS = @MKINSTALLDIRS@
+
+CC = @CC@
+GENCAT = @GENCAT@
+GMSGFMT = @GMSGFMT@
+MSGFMT = @MSGFMT@
+XGETTEXT = @XGETTEXT@
+MSGMERGE = msgmerge
+
+POFILES = @POFILES@
+GMOFILES = @GMOFILES@
+DISTFILES = ChangeLog Makefile.in xsane-pot.sed sane-text.h $(PACKAGE).pot \
+$(POFILES) $(GMOFILES) $(SOURCES)
+
+POTFILES = $(top_srcdir)/src/xsane-text.h $(srcdir)/sane-text.h
+
+CATALOGS = @CATALOGS@
+CATOBJEXT = @CATOBJEXT@
+INSTOBJEXT = @INSTOBJEXT@
+
+.SUFFIXES:
+.SUFFIXES: .po .pox .gmo .mo .msg .cat
+
+.po.pox:
+	if test "${MSGMERGE}" != "no"; then \
+	  $(MAKE) $(PACKAGE).pot; \
+	  $(MSGMERGE) $< $(srcdir)/$(PACKAGE).pot -o $*.pox; \
+	fi
+
+.po.mo:
+	@if test "${MSGFMT}" != "no"; then \
+	  echo "creating $@" ; \
+	  $(MSGFMT) -o $@ $< ; \
+	fi
+
+.po.gmo:
+	@if test "${GMSGFMT}" != "no"; then \
+	  echo "creating $@" ; \
+	  file=$(srcdir)/`echo $* | sed 's,.*/,,'`.gmo \
+	    && rm -f $$file && $(GMSGFMT) -o $$file $< ; \
+	fi
+
+.po.cat:
+	if test "${GENCAT}" != "no"; then \
+	  echo "creating $@" ; \
+	  sed -f ../intl/po2msg.sed < $< > $*.msg \
+	    && rm -f $@ && $(GENCAT) $@ $*.msg; \
+	fi
+
+
+all: all-@USE_NLS@
+
+all-yes: $(CATALOGS)
+all-no:
+	@echo "*** Nationalziation is disabled! ***"
+
+$(srcdir)/$(PACKAGE).pot: $(srcdir)/xsane-pot.sed $(srcdir)/sane-text.h $(POTFILES)
+	cat $(POTFILES) | \
+	sed -e 's@#define \([^	 (]*\)\([ 	]\)@/* \1 */\2@' -f $(srcdir)/xsane-pot.sed | \
+	$(XGETTEXT) --default-domain=$(PACKAGE) --directory=$(top_srcdir) \
+	  --language=C --no-location \
+	  --add-comments --keyword=_ --keyword=N_ - \
+	&& test ! -f $(PACKAGE).po \
+	   || ( rm -f $(srcdir)/$(PACKAGE).pot \
+		&& mv $(PACKAGE).po $(srcdir)/$(PACKAGE).pot )
+
+
+install: install-exec install-data
+install-exec:
+install-data: install-data-@USE_NLS@
+install-data-no: all
+install-data-yes: all
+	$(MKINSTALLDIRS) $(DESTDIR)$(datadir);
+	@catalogs='$(CATALOGS)'; \
+	for cat in $$catalogs; do \
+	  cat=`basename $$cat`; \
+	  case "$$cat" in \
+	    *.gmo) destdir=$(DESTDIR)$(gnulocaledir);; \
+	    *)     destdir=$(DESTDIR)$(localedir);; \
+	  esac; \
+	  lang=`echo $$cat | sed 's/\$(CATOBJEXT)$$//'`; \
+	  dir=$$destdir/$$lang/LC_MESSAGES; \
+	  $(MKINSTALLDIRS) $$dir; \
+	  if test -r $$cat; then \
+	    $(INSTALL_DATA) $$cat $$dir/$(PACKAGE)$(INSTOBJEXT); \
+	    echo "installing $$cat as $$dir/$(PACKAGE)$(INSTOBJEXT)"; \
+	  else \
+	    $(INSTALL_DATA) $(srcdir)/$$cat $$dir/$(PACKAGE)$(INSTOBJEXT); \
+	    echo "installing $(srcdir)/$$cat as" \
+		 "$$dir/$(PACKAGE)$(INSTOBJEXT)"; \
+	  fi; \
+	  if test -r $$cat.m; then \
+	    $(INSTALL_DATA) $$cat.m $$dir/$(PACKAGE)$(INSTOBJEXT).m; \
+	    echo "installing $$cat.m as $$dir/$(PACKAGE)$(INSTOBJEXT).m"; \
+	  else \
+	    if test -r $(srcdir)/$$cat.m ; then \
+	      $(INSTALL_DATA) $(srcdir)/$$cat.m \
+		$$dir/$(PACKAGE)$(INSTOBJEXT).m; \
+	      echo "installing $(srcdir)/$$cat as" \
+		   "$$dir/$(PACKAGE)$(INSTOBJEXT).m"; \
+	    else \
+	      true; \
+	    fi; \
+	  fi; \
+	done
+
+# Define this as empty until I found a useful application.
+installcheck:
+
+uninstall:
+	catalogs='$(CATALOGS)'; \
+	for cat in $$catalogs; do \
+	  cat=`basename $$cat`; \
+	  lang=`echo $$cat | sed 's/\$(CATOBJEXT)$$//'`; \
+	  rm -f $(DESTDIR)$(localedir)/$$lang/LC_MESSAGES/$(PACKAGE)$(INSTOBJEXT); \
+	  rm -f $(DESTDIR)$(localedir)/$$lang/LC_MESSAGES/$(PACKAGE)$(INSTOBJEXT).m; \
+	  rm -f $(DESTDIR)$(gnulocaledir)/$$lang/LC_MESSAGES/$(PACKAGE)$(INSTOBJEXT); \
+	  rm -f $(DESTDIR)$(gnulocaledir)/$$lang/LC_MESSAGES/$(PACKAGE)$(INSTOBJEXT).m; \
+	done
+
+check: all
+
+dvi info tags TAGS ID:
+
+mostlyclean:
+	rm -f core core.* *.pox $(PACKAGE).po *.old.po
+	rm -fr *.o
+
+clean: mostlyclean
+
+distclean: clean
+	rm -f Makefile *.mo *.msg *.cat *.cat.m
+
+maintainer-clean: distclean
+	@echo "This command is intended for maintainers to use;"
+	@echo "it deletes files that may require special tools to rebuild."
+	rm -f $(GMOFILES)
+
+distdir = ../$(PACKAGE)-$(VERSION)/$(subdir)
+dist distdir: update-po $(DISTFILES)
+	dists="$(DISTFILES)"; \
+	for file in $$dists; do \
+	  ln $(srcdir)/$$file $(distdir) 2> /dev/null \
+	    || cp -p $(srcdir)/$$file $(distdir); \
+	done
+
+update-po: Makefile
+	$(MAKE) $(PACKAGE).pot
+	PATH=`pwd`/../src:$$PATH; \
+	cd $(srcdir); \
+	catalogs='$(CATALOGS)'; \
+	for cat in $$catalogs; do \
+	  cat=`basename $$cat`; \
+	  lang=`echo $$cat | sed 's/\$(CATOBJEXT)$$//'`; \
+	  mv $$lang.po $$lang.old.po; \
+	  echo "$$lang:"; \
+	  if $(MSGMERGE) $$lang.old.po $(PACKAGE).pot -o $$lang.po; then \
+	    rm -f $$lang.old.po; \
+	  else \
+	    echo "msgmerge for $$cat failed!"; \
+	    rm -f $$lang.po; \
+	    mv $$lang.old.po $$lang.po; \
+	  fi; \
+	done
+
+import-po-files_old:
+	for LNG in $(POFILES) ; do \
+	 FORMAT=`grep charset IMPORT_PO_DIR/$$LNG | sed -e '{ s/Content-Type: text\/plain; charset=//g ; s/\\\n// ; s/\"//g ; }'` ;\
+	 COMMAND="s/"$$FORMAT"/UTF-8/g" ;\
+	 echo recoding IMPORT_PO_DIR/$$LNG\($$FORMAT\) to $$LNG\(UTF-8\);\
+	 cat IMPORT_PO_DIR/$$LNG | sed -e $$COMMAND >$$LNG ;\
+	 recode $$FORMAT..UTF-8 $$LNG ;\
+	 mv IMPORT_PO_DIR/$$LNG IMPORT_PO_DIR/$$LNG.import_done
+	done
+
+import-po-files:
+	@cd IMPORT_PO_DIR ;\
+	for LNG in *.po ; do \
+	  if test -r $$LNG; then \
+	    FORMAT=`grep charset $$LNG | sed -e '{ s/Content-Type: text\/plain; charset=//g ; s/\\\n// ; s/\"//g ; }'` ;\
+	    COMMAND="s/"$$FORMAT"/UTF-8/g" ;\
+	    echo recoding $$LNG\($$FORMAT\) to ../$$LNG\(UTF-8\);\
+	    cat $$LNG | sed -e $$COMMAND >../$$LNG ;\
+	    recode $$FORMAT..UTF-8 ../$$LNG ;\
+	    mv $$LNG $$LNG.import_done ;\
+	  fi ;\
+	done
+
+
+
+Makefile: Makefile.in ../config.status
+	cd .. \
+	  && CONFIG_FILES=$(subdir)/$@ CONFIG_HEADERS= \
+	       $(SHELL) ./config.status
+
+# Tell versions [3.59,3.63) of GNU make not to export all variables.
+# Otherwise a system limit (for SysV at least) may be exceeded.
+.NOEXPORT:

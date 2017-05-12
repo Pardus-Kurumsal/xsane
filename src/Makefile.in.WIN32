@@ -1,0 +1,84 @@
+SHELL = /bin/sh
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+top_builddir = ..
+
+sanedir = @prefix@
+
+bindir = $(sanedir)
+datadir = $(sanedir)'\\'share
+sanedatadir = $(datadir)'\\'sane
+xsanedocdir = ${datadir}'\\'sane'\\'xsane'\\'doc
+
+MKINSTALLDIRS = @MKINSTALLDIRS@
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_DATA = @INSTALL_DATA@
+
+CC = @CC@ -mwindows
+INCLUDES = -I. -I$(srcdir) -I$(top_builddir)/include -I$(top_srcdir)/include \
+	   @GTK_CFLAGS@ @INCLUDES@ -I/usr/include -I/usr/include/gdk
+DEFS = -D_WIN32 @DEFS@ -DXSANE_FIXED_HOME_PATH=$(sanedir)'\\'home -DTEMP_PATH=c:'\\'temp -DSLASH=92 -DBUGGY_GDK_INPUT_EXCEPTION -DLOCALEDIR=/cygdrive/c/sane/share/locale
+CPPFLAGS = @CPPFLAGS@ -DPATH_XSANE_DOC_DIR=\$(xsanedocdir) -DPATH_SANE_DATA_DIR=\$(sanedatadir)
+CFLAGS = @CFLAGS@ -fnative-struct
+LDFLAGS = @LDFLAGS@
+LIBS = -lintl -lsane @LIBS@
+# GTK_LIBS = @GTK_LIBS@
+# GIMP_LIBS = @GIMP_LIBS@
+GTK_LIBS = -lgtk-1.3 -lgdk-1.3
+GIMP_LIBS = -lgimp-1.2 -lglib-1.3
+
+COMPILE = $(CC) -c $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
+LINK = $(CC) $(LDFLAGS) -o $@
+
+BINPROGS = @BINPROGS@
+
+@SET_MAKE@
+
+PROGRAMS = $(BINPROGS)
+LIBLIB = ../lib/liblib.a
+
+XSANE_OBJS = xsane-back-gtk.o xsane-front-gtk.o xsane-gamma.o xsane-preview.o \
+             xsane-viewer.o xsane-rc-io.o xsane-device-preferences.o xsane-batch-scan.o \
+             xsane-preferences.o xsane-setup.o xsane-save.o xsane-scan.o \
+             xsane-icons.o xsane.o
+
+.c.o:
+	$(COMPILE) $<
+
+all: $(PROGRAMS)
+
+install: $(PROGRAMS)
+	$(MKINSTALLDIRS) $(bindir) $(datadir) $(sanedatadir) $(xsanedocdir) $(sanedatadir)/xsane
+	@for program in $(BINPROGS); do \
+	  $(INSTALL_PROGRAM) $${program} $(bindir)/$${program}; \
+	done
+	$(INSTALL_DATA) $(srcdir)/xsane-WIN32.txt $(sanedir)/xsane-WIN32.txt
+	$(INSTALL_DATA) $(srcdir)/xsane-style.rc $(sanedatadir)/xsane/xsane-style.rc
+	$(INSTALL_DATA) $(srcdir)/xsane-startimage.pnm $(sanedatadir)/xsane/xsane-startimage.pnm
+	$(INSTALL_DATA) $(srcdir)/xsane-calibration.pnm $(sanedatadir)/xsane/xsane-calibration.pnm
+	$(INSTALL_DATA) $(srcdir)/xsane-logo.xpm $(sanedatadir)/xsane/xsane-logo.xpm
+	$(INSTALL_DATA) $(srcdir)/xsane-gpl.txt $(sanedatadir)/xsane/xsane-gpl.txt
+	$(INSTALL_DATA) $(srcdir)/xsane-eula.txt $(sanedatadir)/xsane/xsane-eula.txt    
+	@for logo in *-logo.xpm; do \
+	  echo installing $(sanedatadir)/xsane/$${logo}; \
+	  $(INSTALL_DATA) $(srcdir)/$${logo} $(sanedatadir)/xsane/$${logo}; \
+	done
+
+xsane: $(XSANE_OBJS) $(LIBLIB)
+	$(LINK) $(XSANE_OBJS) \
+	        $(LIBLIB) $(GIMP_LIBS) $(GTK_LIBS) $(LIBS)
+
+
+clean:
+	rm -f *.o *~ .*~ *.bak
+	rm -rf .libs
+
+distclean: clean
+	rm -f Makefile $(PROGRAMS)
+
+depend:
+	makedepend $(INCLUDES) *.c
+
+.PHONY: all depend clean distclean
