@@ -30,7 +30,6 @@ Recommends:
  cups-client,
  firefox | www-browser
 Suggests:
- gimp,
  gocr | cuneiform | tesseract-ocr | ocrad,
  gv,
  hylafax-client | mgetty-fax
