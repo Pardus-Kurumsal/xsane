@@ -1,3 +1,9 @@
+xsane (0.999-5pardus2) onyedi; urgency=medium
+
+  * Add patches
+
+ -- Yunusemre Şentürk <yunusemre.senturk@pardus.org.tr>  Thu, 14 Sep 2017 16:32:25 +0300
+
 xsane (0.999-5pardus1) onyedi; urgency=medium
 
   * Add .drone.yml
