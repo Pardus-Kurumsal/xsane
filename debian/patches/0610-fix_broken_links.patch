@@ -1,12 +1,16 @@
-Description: Fix broken links in HTML documentation
- Fix/remove a couple of broken links.
-Author: Julien BLACHE <jblache@debian.org>
+From: =?utf-8?q?J=C3=B6rg_Frings-F=C3=BCrst?= <debian@jff-webhosting.net>
+Date: Thu, 14 Sep 2017 15:28:58 +0300
+Subject: fix_broken_links
 
-Index: xsane-0.998/doc/sane-xsane-doc.html
-===================================================================
---- xsane-0.998.orig/doc/sane-xsane-doc.html	2007-03-03 14:11:32.000000000 +0100
-+++ xsane-0.998/doc/sane-xsane-doc.html	2011-02-04 19:51:09.289016000 +0100
-@@ -165,8 +165,7 @@
+---
+ doc/sane-xsane-doc.html | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/doc/sane-xsane-doc.html b/doc/sane-xsane-doc.html
+index 2481be3..f134167 100644
+--- a/doc/sane-xsane-doc.html
++++ b/doc/sane-xsane-doc.html
+@@ -165,8 +165,7 @@ correct or you may not be able to take full advantage of all functions if you do
  <li><a href="sane-xsane-setup-display-doc.html">Display setup</a></li>
  <li><a href="sane-xsane-setup-enhancement-doc.html">Enhancement setup</a></li>
  <li><a href="sane-xsane-setup-fax-doc.html">Fax setup</a></li>

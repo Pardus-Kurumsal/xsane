@@ -1,7 +1,6 @@
-From 30af0e2edbf061b71bed9536d826894449f0390d Mon Sep 17 00:00:00 2001
 From: Nils Philippsen <nils@redhat.com>
 Date: Mon, 23 Sep 2013 16:11:31 +0200
-Subject: [PATCH] patch: lcms2
+Subject: patch: lcms2
 
 Squashed commit of the following:
 
@@ -19,10 +18,10 @@ Date:   Mon Sep 23 14:53:45 2013 +0200
  src/xsane.h         |  8 ++++++-
  6 files changed, 130 insertions(+), 17 deletions(-)
 
-Index: trunk/configure.in
-===================================================================
---- trunk.orig/configure.in
-+++ trunk/configure.in
+diff --git a/configure.in b/configure.in
+index edc0f4a..e4df583 100644
+--- a/configure.in
++++ b/configure.in
 @@ -130,7 +130,17 @@ if test "${USE_TIFF}" = "yes"; then
  fi
  
@@ -60,10 +59,10 @@ Index: trunk/configure.in
  fi
  
  echo "*                                                              *"
-Index: trunk/include/config.h.in
-===================================================================
---- trunk.orig/include/config.h.in
-+++ trunk/include/config.h.in
+diff --git a/include/config.h.in b/include/config.h.in
+index ecc9637..f9a3e40 100755
+--- a/include/config.h.in
++++ b/include/config.h.in
 @@ -290,9 +290,15 @@
  /* Define if you have libtiff.  */
  #undef HAVE_LIBTIFF
@@ -81,11 +80,11 @@ Index: trunk/include/config.h.in
  #ifndef HAVE_STRNCASECMP
    /* OS/2 needs this */
  # define strncasecmp(a, b, c) strnicmp(a, b, c)
-Index: trunk/src/xsane-preview.c
-===================================================================
---- trunk.orig/src/xsane-preview.c
-+++ trunk/src/xsane-preview.c
-@@ -6346,8 +6346,8 @@ int preview_do_color_correction(Preview
+diff --git a/src/xsane-preview.c b/src/xsane-preview.c
+index 9416de5..c5c964f 100644
+--- a/src/xsane-preview.c
++++ b/src/xsane-preview.c
+@@ -6346,8 +6346,8 @@ int preview_do_color_correction(Preview *p)
   cmsHPROFILE hOutProfile = NULL;
   cmsHPROFILE hProofProfile = NULL;
   cmsHTRANSFORM hTransform = NULL;
@@ -96,7 +95,7 @@ Index: trunk/src/xsane-preview.c
   int proof = 0;
   char *cms_proof_icm_profile = NULL;
   int linesize = 0;
-@@ -6355,7 +6355,9 @@ int preview_do_color_correction(Preview
+@@ -6355,7 +6355,9 @@ int preview_do_color_correction(Preview *p)
  
    DBG(DBG_proc, "preview_do_color_correction\n");
  
@@ -106,11 +105,11 @@ Index: trunk/src/xsane-preview.c
  
    if (preferences.cms_bpc)
    {
-Index: trunk/src/xsane-save.c
-===================================================================
---- trunk.orig/src/xsane-save.c
-+++ trunk/src/xsane-save.c
-@@ -832,9 +832,9 @@ cmsHTRANSFORM xsane_create_cms_transform
+diff --git a/src/xsane-save.c b/src/xsane-save.c
+index 81141c9..63550cc 100644
+--- a/src/xsane-save.c
++++ b/src/xsane-save.c
+@@ -832,9 +832,9 @@ cmsHTRANSFORM xsane_create_cms_transform(Image_info *image_info, int cms_functio
   cmsHPROFILE hInProfile = NULL;
   cmsHPROFILE hOutProfile = NULL;
   cmsHTRANSFORM hTransform = NULL;
@@ -123,7 +122,7 @@ Index: trunk/src/xsane-save.c
  
    if (cms_function == XSANE_CMS_FUNCTION_EMBED_SCANNER_ICM_PROFILE)
    {
-@@ -843,7 +843,9 @@ cmsHTRANSFORM xsane_create_cms_transform
+@@ -843,7 +843,9 @@ cmsHTRANSFORM xsane_create_cms_transform(Image_info *image_info, int cms_functio
  
    DBG(DBG_info, "Prepare CMS transform\n");
  
@@ -133,7 +132,7 @@ Index: trunk/src/xsane-save.c
  
    if (cms_bpc)
    {
-@@ -890,10 +892,18 @@ cmsHTRANSFORM xsane_create_cms_transform
+@@ -890,10 +892,18 @@ cmsHTRANSFORM xsane_create_cms_transform(Image_info *image_info, int cms_functio
      if (image_info->channels == 1) /* == 1 (grayscale) */
      {
  #if 1 /* xxx oli */
@@ -152,7 +151,7 @@ Index: trunk/src/xsane-save.c
  #endif
      }
      else
-@@ -2904,7 +2914,11 @@ static int xsane_write_CSA(FILE *outfile
+@@ -2904,7 +2914,11 @@ static int xsane_write_CSA(FILE *outfile, char *input_profile, int intent)
      return -1;
    }
  
@@ -164,7 +163,7 @@ Index: trunk/src/xsane-save.c
    if (n == 0)
    {
      return -2;
-@@ -2916,7 +2930,11 @@ static int xsane_write_CSA(FILE *outfile
+@@ -2916,7 +2930,11 @@ static int xsane_write_CSA(FILE *outfile, char *input_profile, int intent)
      return -3;
    }
  
@@ -176,7 +175,7 @@ Index: trunk/src/xsane-save.c
    buffer[n] = 0;
  
    fprintf(outfile, "%s", buffer);
-@@ -2935,7 +2953,7 @@ static int xsane_write_CRD(FILE *outfile
+@@ -2935,7 +2953,7 @@ static int xsane_write_CRD(FILE *outfile, char *output_profile, int intent, int
   cmsHPROFILE hProfile;
   size_t n;
   char* buffer;
@@ -185,7 +184,7 @@ Index: trunk/src/xsane-save.c
  
    hProfile = cmsOpenProfileFromFile(output_profile, "r");
    if (!hProfile)
-@@ -2948,7 +2966,11 @@ static int xsane_write_CRD(FILE *outfile
+@@ -2948,7 +2966,11 @@ static int xsane_write_CRD(FILE *outfile, char *output_profile, int intent, int
      flags |= cmsFLAGS_BLACKPOINTCOMPENSATION;
    }
  
@@ -197,7 +196,7 @@ Index: trunk/src/xsane-save.c
    if (n == 0)
    {
      return -2;
-@@ -2960,7 +2982,11 @@ static int xsane_write_CRD(FILE *outfile
+@@ -2960,7 +2982,11 @@ static int xsane_write_CRD(FILE *outfile, char *output_profile, int intent, int
      return -3;
    }
  
@@ -209,7 +208,7 @@ Index: trunk/src/xsane-save.c
    buffer[n] = 0;
  
    fprintf(outfile, "%s", buffer);
-@@ -4352,7 +4378,7 @@ static void xsane_jpeg_embed_scanner_icm
+@@ -4352,7 +4378,7 @@ static void xsane_jpeg_embed_scanner_icm_profile(j_compress_ptr cinfo_ptr, const
  {
   FILE *icm_profile;
   size_t size, embed_len;
@@ -218,7 +217,7 @@ Index: trunk/src/xsane-save.c
  
    DBG(DBG_proc, "xsane_jpeg_embed_scanner_icm_profile(%s)\n", icm_filename);
  
-@@ -4366,7 +4392,7 @@ static void xsane_jpeg_embed_scanner_icm
+@@ -4366,7 +4392,7 @@ static void xsane_jpeg_embed_scanner_icm_profile(j_compress_ptr cinfo_ptr, const
    size = ftell(icm_profile);
    fseek(icm_profile, 0, SEEK_SET);
  
@@ -227,11 +226,11 @@ Index: trunk/src/xsane-save.c
    if (embed_buffer)
    {
      embed_len = fread(embed_buffer, 1, size, icm_profile);
-Index: trunk/src/xsane-viewer.c
-===================================================================
---- trunk.orig/src/xsane-viewer.c
-+++ trunk/src/xsane-viewer.c
-@@ -1795,6 +1795,9 @@ static void xsane_viewer_set_cms_gamut_a
+diff --git a/src/xsane-viewer.c b/src/xsane-viewer.c
+index 69a444d..844c077 100644
+--- a/src/xsane-viewer.c
++++ b/src/xsane-viewer.c
+@@ -1795,6 +1795,9 @@ static void xsane_viewer_set_cms_gamut_alarm_color_callback(GtkWidget *widget, g
  {
   Viewer *v = (Viewer *) data;
   int val;
@@ -241,7 +240,7 @@ Index: trunk/src/xsane-viewer.c
  
    g_signal_handlers_block_by_func(GTK_OBJECT(v->cms_gamut_alarm_color_widget[0]), (GtkSignalFunc) xsane_viewer_set_cms_gamut_alarm_color_callback, v);
    g_signal_handlers_block_by_func(GTK_OBJECT(v->cms_gamut_alarm_color_widget[1]), (GtkSignalFunc) xsane_viewer_set_cms_gamut_alarm_color_callback, v);
-@@ -1811,6 +1814,49 @@ static void xsane_viewer_set_cms_gamut_a
+@@ -1811,6 +1814,49 @@ static void xsane_viewer_set_cms_gamut_alarm_color_callback(GtkWidget *widget, g
    v->cms_gamut_alarm_color = val;
    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(v->cms_gamut_alarm_color_widget[v->cms_gamut_alarm_color]), TRUE);
  
@@ -291,7 +290,7 @@ Index: trunk/src/xsane-viewer.c
    switch(v->cms_gamut_alarm_color)
    {
      default:
-@@ -1838,6 +1884,7 @@ static void xsane_viewer_set_cms_gamut_a
+@@ -1838,6 +1884,7 @@ static void xsane_viewer_set_cms_gamut_alarm_color_callback(GtkWidget *widget, g
        cmsSetAlarmCodes(0, 0, 255);
       break;
    }
@@ -299,7 +298,7 @@ Index: trunk/src/xsane-viewer.c
  
    g_signal_handlers_unblock_by_func(GTK_OBJECT(v->cms_gamut_alarm_color_widget[0]), (GtkSignalFunc) xsane_viewer_set_cms_gamut_alarm_color_callback, v);
    g_signal_handlers_unblock_by_func(GTK_OBJECT(v->cms_gamut_alarm_color_widget[1]), (GtkSignalFunc) xsane_viewer_set_cms_gamut_alarm_color_callback, v);
-@@ -2172,9 +2219,9 @@ static int xsane_viewer_read_image(Viewe
+@@ -2172,9 +2219,9 @@ static int xsane_viewer_read_image(Viewer *v)
   cmsHTRANSFORM hTransform = NULL;
   int proof = 0;
   char *cms_proof_icm_profile = NULL;
@@ -312,7 +311,7 @@ Index: trunk/src/xsane-viewer.c
  #endif
  
    /* open imagefile */
-@@ -2203,7 +2250,9 @@ static int xsane_viewer_read_image(Viewe
+@@ -2203,7 +2250,9 @@ static int xsane_viewer_read_image(Viewer *v)
  
    if ((v->enable_color_management) && (v->cms_enable))
    {
@@ -322,7 +321,7 @@ Index: trunk/src/xsane-viewer.c
  
      if (v->cms_bpc)
      {
-@@ -2801,6 +2850,9 @@ Viewer *xsane_viewer_new(char *filename,
+@@ -2801,6 +2850,9 @@ Viewer *xsane_viewer_new(char *filename, char *selection_filetype, int allow_red
   GtkWidget *scrolled_window;
   GtkWidget *zoom_option_menu, *zoom_menu, *zoom_menu_item;
   int i, selection;
@@ -332,7 +331,7 @@ Index: trunk/src/xsane-viewer.c
  
    DBG(DBG_proc, "viewer_new(%s)\n", filename);
  
-@@ -2830,8 +2882,15 @@ Viewer *xsane_viewer_new(char *filename,
+@@ -2830,8 +2882,15 @@ Viewer *xsane_viewer_new(char *filename, char *selection_filetype, int allow_red
    v->cms_proofing_intent = INTENT_ABSOLUTE_COLORIMETRIC;
    v->cms_gamut_check = 0;
    v->cms_gamut_alarm_color = 3; /* red */
@@ -348,10 +347,10 @@ Index: trunk/src/xsane-viewer.c
    if (selection_filetype)
    {
      v->selection_filetype = strdup(selection_filetype);
-Index: trunk/src/xsane.h
-===================================================================
---- trunk.orig/src/xsane.h
-+++ trunk/src/xsane.h
+diff --git a/src/xsane.h b/src/xsane.h
+index 32289a0..899f7bc 100644
+--- a/src/xsane.h
++++ b/src/xsane.h
 @@ -70,7 +70,13 @@
  #include <gtk/gtk.h>
  

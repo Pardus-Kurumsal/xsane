@@ -1,14 +1,15 @@
-Description: Update french translation
- XSane's french translation needed a good update and cleanup, this is it.
-Author: St�phane Blondon <stephane.blondon@gmail.com>
-Origin: other, http://bugs.debian.org/cgi-bin/bugreport.cgi?msg=5;bug=573213
-Bug-Debian: http://bugs.debian.org/573213
-Forwarded: no
+From: =?utf-8?q?J=C3=B6rg_Frings-F=C3=BCrst?= <debian@jff-webhosting.net>
+Date: Thu, 14 Sep 2017 15:28:58 +0300
+Subject: i18n_po_update_fr
 
-Index: xsane-0.998/po/fr.po
-===================================================================
---- xsane-0.998.orig/po/fr.po	2011-02-04 19:51:14.921016003 +0100
-+++ xsane-0.998/po/fr.po	2011-02-04 19:51:37.393016002 +0100
+---
+ po/fr.po | 1348 +++++++++++++++++++++++++-------------------------------------
+ 1 file changed, 532 insertions(+), 816 deletions(-)
+
+diff --git a/po/fr.po b/po/fr.po
+index 51387f5..27637a4 100644
+--- a/po/fr.po
++++ b/po/fr.po
 @@ -1,14 +1,18 @@
  # French translation for XSane.
 -# Copyright (C) 1999-2000
@@ -32,7 +33,7 @@ Index: xsane-0.998/po/fr.po
  "Language-Team: French <fr@li.org>\n"
  "MIME-Version: 1.0\n"
  "Content-Type: text/plain; charset=UTF-8\n"
-@@ -21,7 +25,7 @@
+@@ -21,7 +25,7 @@ msgstr "fr"
  
  #. XSANE_COPYRIGHT_SIGN
  msgid "(c)"
@@ -41,7 +42,7 @@ Index: xsane-0.998/po/fr.po
  
  #. can be translated with \251
  #. FILENAME_PREFIX_CLONE_OF
-@@ -30,7 +34,7 @@
+@@ -30,7 +34,7 @@ msgstr "clone-de-"
  
  #. WINDOW_ABOUT_XSANE
  msgid "About"
@@ -50,7 +51,7 @@ Index: xsane-0.998/po/fr.po
  
  #. WINDOW_ABOUT_TRANSLATION, MENU_ITEM_ABOUT_TRANSLATION
  #. MENU_ITEM_ABOUT_TRANSLATION
-@@ -59,7 +63,7 @@
+@@ -59,7 +63,7 @@ msgstr "Charger la liste"
  
  #. WINDOW_SAVE_BATCH_LIST
  msgid "save batch list"
@@ -59,7 +60,7 @@ Index: xsane-0.998/po/fr.po
  
  #. WINDOW_BATCH_SCAN
  msgid "batch scan"
-@@ -67,67 +71,59 @@
+@@ -67,67 +71,59 @@ msgstr "Numérisation par lots"
  
  #. WINDOW_BATCH_RENAME
  msgid "rename batch area"
@@ -136,7 +137,7 @@ Index: xsane-0.998/po/fr.po
  
  #. WINDOW_MEDIUM_ADD
  msgid "add new medium"
-@@ -143,7 +139,7 @@
+@@ -143,7 +139,7 @@ msgstr "Histogramme"
  
  #. WINDOW_GAMMA
  msgid "Gamma curve"
@@ -145,7 +146,7 @@ Index: xsane-0.998/po/fr.po
  
  #. WINDOW_STANDARD_OPTIONS
  msgid "Standard options"
-@@ -168,7 +164,7 @@
+@@ -168,7 +164,7 @@ msgstr "Visionneuse"
  
  #. WINDOW_VIEWER_OUTPUT_FILENAME
  msgid "Viewer: select output filename"
@@ -154,7 +155,7 @@ Index: xsane-0.998/po/fr.po
  
  #. WINDOW_OCR_OUTPUT_FILENAME
  msgid "Select output filename for OCR text file"
-@@ -218,33 +214,28 @@
+@@ -218,33 +214,28 @@ msgid "No devices available"
  msgstr "Aucun périphérique disponible"
  
  #. WINDOW_SCANNER_DEFAULT_COLOR_ICM_PROFILE
@@ -194,7 +195,7 @@ Index: xsane-0.998/po/fr.po
  
  #. MENU_FILE
  msgid "File"
-@@ -269,7 +260,7 @@
+@@ -269,7 +260,7 @@ msgstr "Aide"
  
  #. MENU_EDIT
  msgid "Edit"
@@ -203,7 +204,7 @@ Index: xsane-0.998/po/fr.po
  
  #. MENU_FILTERS
  msgid "Filters"
-@@ -282,11 +273,11 @@
+@@ -282,11 +273,11 @@ msgstr "Géométrie"
  #. MENU_COLOR_MANAGEMENT
  #. NOTEBOOK_COLOR_MANAGEMENT_OPTIONS
  msgid "Color management"
@@ -217,7 +218,7 @@ Index: xsane-0.998/po/fr.po
  
  #. MENU_ITEM_INFO
  msgid "Info"
-@@ -299,11 +290,11 @@
+@@ -299,11 +290,11 @@ msgstr "Quitter"
  #. MENU_ITEM_SAVE_IMAGE
  #. DESC_VIEWER_SAVE
  msgid "Save image"
@@ -231,7 +232,7 @@ Index: xsane-0.998/po/fr.po
  
  #. MENU_ITEM_CLONE
  msgid "Clone"
-@@ -332,23 +323,23 @@
+@@ -332,23 +323,23 @@ msgstr "Flou"
  
  #. MENU_ITEM_ROTATE90
  msgid "Rotate 90"
@@ -260,7 +261,7 @@ Index: xsane-0.998/po/fr.po
  
  #. FRAME_RAW_IMAGE
  msgid "Raw image"
-@@ -396,7 +387,7 @@
+@@ -396,7 +387,7 @@ msgstr "Parcourir"
  
  #. BUTTON_OVERWRITE
  msgid "Overwrite"
@@ -269,7 +270,7 @@ Index: xsane-0.998/po/fr.po
  
  #. BUTTON_BATCH_LIST_SCAN
  msgid "Scan batch list"
-@@ -404,7 +395,7 @@
+@@ -404,7 +395,7 @@ msgstr "Numériser la liste"
  
  #. BUTTON_BATCH_AREA_SCAN
  msgid "Scan selected area"
@@ -278,7 +279,7 @@ Index: xsane-0.998/po/fr.po
  
  #. BUTTON_PAGE_DELETE
  msgid "Delete page"
-@@ -428,7 +419,7 @@
+@@ -428,7 +419,7 @@ msgstr "Afficher l'image"
  
  #. BUTTON_IMAGE_EDIT
  msgid "Edit image"
@@ -287,7 +288,7 @@ Index: xsane-0.998/po/fr.po
  
  #. BUTTON_IMAGE_RENAME
  msgid "Rename image"
-@@ -447,9 +438,8 @@
+@@ -447,9 +438,8 @@ msgid "Send project"
  msgstr "Envoyer un projet"
  
  #. BUTTON_SAVE_MULTIPAGE
@@ -298,7 +299,7 @@ Index: xsane-0.998/po/fr.po
  
  #. BUTTON_DELETE_PROJECT
  msgid "Delete project"
-@@ -492,13 +482,12 @@
+@@ -492,13 +482,12 @@ msgid "Fine mode"
  msgstr "Mode fin"
  
  #. RADIO_BUTTON_HTML_EMAIL
@@ -314,7 +315,7 @@ Index: xsane-0.998/po/fr.po
  
  #. RADIO_BUTTON_OVERWRITE_WARNING
  msgid "Overwrite warning"
-@@ -506,33 +495,31 @@
+@@ -506,33 +495,31 @@ msgstr "Avertissement en cas d'écrasement"
  
  #. RADIO_BUTTON_SKIP_EXISTING_NRS
  msgid "Skip existing filenames"
@@ -355,7 +356,7 @@ Index: xsane-0.998/po/fr.po
  
  #. RADIO_BUTTON_PRIVATE_COLORMAP
  msgid "Use private colormap"
-@@ -540,12 +527,11 @@
+@@ -540,12 +527,11 @@ msgstr "Utiliser une palette de couleurs privée"
  
  #. RADIO_BUTTON_AUTOENHANCE_GAMMA
  msgid "Autoenhance gamma"
@@ -370,7 +371,7 @@ Index: xsane-0.998/po/fr.po
  
  #. RADIO_BUTTON_AUTOCORRECT_COLORS
  msgid "Autocorrect colors"
-@@ -553,20 +539,20 @@
+@@ -553,20 +539,20 @@ msgstr "Correction automatique des couleurs"
  
  #. RADIO_BUTTON_OCR_USE_GUI_PIPE
  msgid "Use GUI progress pipe"
@@ -395,7 +396,7 @@ Index: xsane-0.998/po/fr.po
  
  #. TEXT_FILETYPE
  msgid "Type"
-@@ -574,45 +560,44 @@
+@@ -574,45 +560,44 @@ msgstr "Type"
  
  #. TEXT_CMS_FUNCTION
  #. DESC_CMS_FUNCTION
@@ -451,7 +452,7 @@ Index: xsane-0.998/po/fr.po
  
  #. TEXT_SCANNER
  msgid "scanner"
-@@ -628,36 +613,35 @@
+@@ -628,36 +613,35 @@ msgstr "aucun"
  
  #. TEXT_GAMMA_INPUT_DEPTH
  msgid "Gamma input depth:"
@@ -496,7 +497,7 @@ Index: xsane-0.998/po/fr.po
  
  #. TEXT_AUTHORIZATION_REQ
  msgid "Authorization required for"
-@@ -665,7 +649,7 @@
+@@ -665,7 +649,7 @@ msgstr "Autorisation requise pour"
  
  #. TEXT_AUTHORIZATION_SECURE
  msgid "Password transmission is secure"
@@ -505,7 +506,7 @@ Index: xsane-0.998/po/fr.po
  
  #. TEXT_AUTHORIZATION_INSECURE
  msgid "Backend requests plain-text password"
-@@ -673,11 +657,11 @@
+@@ -673,11 +657,11 @@ msgstr "Mot de passe pour les requêtes du backend"
  
  #. TEXT_USERNAME
  msgid "Username :"
@@ -519,7 +520,7 @@ Index: xsane-0.998/po/fr.po
  
  #. TEXT_INVALID_PARAMS
  msgid "Invalid parameters."
-@@ -685,16 +669,15 @@
+@@ -685,16 +669,15 @@ msgstr "Paramètres non valides"
  
  #. TEXT_VERSION
  msgid "version:"
@@ -539,7 +540,7 @@ Index: xsane-0.998/po/fr.po
  
  #. TEXT_WITH_GIMP_SUPPORT
  msgid "with GIMP support"
-@@ -759,39 +742,40 @@
+@@ -759,39 +742,40 @@ msgstr ""
  "\n"
  "Ce programme est distribué car potentiellement utile, mais SANS AUCUNNE\n"
  "GARANTIE, sans même les garanties de COMMERCIALISATION ou d'ADAPTATION\n"
@@ -590,7 +591,7 @@ Index: xsane-0.998/po/fr.po
  
  #. TEXT_INFO_BOX
  msgid "0x0: 0KB"
-@@ -799,56 +783,52 @@
+@@ -799,56 +783,52 @@ msgstr "0x0: 0KB"
  
  #. TEXT_ADF_PAGES_SCANNED
  msgid "Scanned pages: "
@@ -659,7 +660,7 @@ Index: xsane-0.998/po/fr.po
  
  #. TEXT_BATCH_AREA_DEFAULT_NAME
  msgid "(no name)"
-@@ -856,27 +836,27 @@
+@@ -856,27 +836,27 @@ msgstr "(sans nom)"
  
  #. TEXT_BATCH_LIST_AREANAME
  msgid "Area name:"
@@ -693,7 +694,7 @@ Index: xsane-0.998/po/fr.po
  
  #. TEXT_BATCH_LIST_BY_GUI
  msgid "as selected"
-@@ -884,105 +864,93 @@
+@@ -884,105 +864,93 @@ msgstr "comme sélectionné"
  
  #. TEXT_SETUP_PRINTER_SEL
  msgid "Printer selection:"
@@ -818,7 +819,7 @@ Index: xsane-0.998/po/fr.po
  
  #. TEXT_SETUP_TMP_PATH
  msgid "Temporary directory"
-@@ -1002,24 +970,23 @@
+@@ -1002,24 +970,23 @@ msgstr "Qualité d'image JPEG"
  
  #. TEXT_SETUP_PNG_COMPRESSION
  msgid "PNG image compression"
@@ -847,7 +848,7 @@ Index: xsane-0.998/po/fr.po
  
  #. TEXT_SETUP_TIFF_COMPRESSION_1
  msgid "TIFF lineart image compression"
-@@ -1027,31 +994,31 @@
+@@ -1027,31 +994,31 @@ msgstr "Compression des images TIFF mode trait"
  
  #. TEXT_SETUP_SHOW_RANGE_MODE
  msgid "Show range as:"
@@ -886,7 +887,7 @@ Index: xsane-0.998/po/fr.po
  
  #. TEXT_SETUP_PREVIEW_PIPETTE_RANGE
  msgid "Preview pipette range"
-@@ -1059,51 +1026,51 @@
+@@ -1059,51 +1026,51 @@ msgstr "Plage de la pipette de l'aperçu"
  
  #. TEXT_SETUP_THRESHOLD_MIN
  msgid "Threshold minimum:"
@@ -950,7 +951,7 @@ Index: xsane-0.998/po/fr.po
  
  #. TEXT_SETUP_FAX_WIDTH
  msgid "Width"
-@@ -1111,7 +1078,7 @@
+@@ -1111,7 +1078,7 @@ msgstr "Largeur"
  
  #. TEXT_SETUP_FAX_HEIGHT
  msgid "Height"
@@ -959,7 +960,7 @@ Index: xsane-0.998/po/fr.po
  
  #. TEXT_SETUP_FAX_LEFT
  msgid "Left offset"
-@@ -1124,69 +1091,67 @@
+@@ -1124,69 +1091,67 @@ msgstr "Marge inférieure"
  #. TEXT_SETUP_FAX_PS_FLATEDECODED
  msgid "Create zlib compressed postscript image (PS level 3) for fax"
  msgstr ""
@@ -1045,7 +1046,7 @@ Index: xsane-0.998/po/fr.po
  
  #. TEXT_SETUP_PERMISSION_USER
  msgid "user"
-@@ -1202,37 +1167,33 @@
+@@ -1202,37 +1167,33 @@ msgstr "tous"
  
  #. TEXT_SETUP_SCANNER_DEFAULT_COLOR_ICM_PROFILE
  #. DESC_SCANNER_DEFAULT_COLOR_ICM_PROFILE
@@ -1089,7 +1090,7 @@ Index: xsane-0.998/po/fr.po
  
  msgid "new media"
  msgstr "nouveau support"
-@@ -1243,7 +1204,6 @@
+@@ -1243,7 +1204,6 @@ msgid "Save"
  msgstr "Enregistrer"
  
  #. NOTEBOOK_FILETYPE_OPTIONS
@@ -1097,7 +1098,7 @@ Index: xsane-0.998/po/fr.po
  msgid "Filetype"
  msgstr "Fichier"
  
-@@ -1259,9 +1219,8 @@
+@@ -1259,9 +1219,8 @@ msgstr "Faxer"
  
  #. NOTEBOOK_EMAIL_OPTIONS
  #. MENU_ITEM_EMAIL
@@ -1108,7 +1109,7 @@ Index: xsane-0.998/po/fr.po
  
  #. NOTEBOOK_OCR_OPTIONS
  msgid "OCR"
-@@ -1277,7 +1236,7 @@
+@@ -1277,7 +1236,7 @@ msgstr "Optimisation"
  
  #. MENU_ITEM_MULTIPAGE
  msgid "Multipage"
@@ -1117,7 +1118,7 @@ Index: xsane-0.998/po/fr.po
  
  #. MENU_ITEM_SHOW_TOOLTIPS
  msgid "Show tooltips"
-@@ -1293,7 +1252,7 @@
+@@ -1293,7 +1252,7 @@ msgstr "Histogramme"
  
  #. MENU_ITEM_SHOW_GAMMA
  msgid "Show gamma curve"
@@ -1126,7 +1127,7 @@ Index: xsane-0.998/po/fr.po
  
  #. MENU_ITEM_SHOW_BATCH_SCAN
  msgid "Show batch scan"
-@@ -1353,9 +1312,8 @@
+@@ -1353,9 +1312,8 @@ msgstr "Rotation PostScript"
  
  #. MENU_ITEM_ENABLE_COLOR_MANAGEMENT
  #. MENU_ITEM_CMS_ENABLE_COLOR_MANAGEMENT
@@ -1137,7 +1138,7 @@ Index: xsane-0.998/po/fr.po
  
  #. MENU_ITEM_EDIT_MEDIUM_DEF
  msgid "Edit medium definition"
-@@ -1383,11 +1341,11 @@
+@@ -1383,11 +1341,11 @@ msgstr "Afficher la licence (GPL)"
  
  #. MENU_ITEM_XSANE_DOC
  msgid "XSane doc"
@@ -1151,7 +1152,7 @@ Index: xsane-0.998/po/fr.po
  
  #. MENU_ITEM_AVAILABLE_BACKENDS
  msgid "Available backends"
-@@ -1399,87 +1357,79 @@
+@@ -1399,87 +1357,79 @@ msgstr "Conseils de numérisation"
  
  #. MENU_ITEM_PROBLEMS
  msgid "Problems?"
@@ -1258,7 +1259,7 @@ Index: xsane-0.998/po/fr.po
  
  #. MENU_ITEM_COUNTER_LEN_INACTIVE
  msgid "inactive"
-@@ -1494,12 +1444,10 @@
+@@ -1494,12 +1444,10 @@ msgid "CCITT 1D Huffman compression"
  msgstr "Compression CCITT 1D Huffman"
  
  #. MENU_ITEM_TIFF_COMP_CCITFAX3
@@ -1271,7 +1272,7 @@ Index: xsane-0.998/po/fr.po
  msgid "CCITT Group 4 fax compression"
  msgstr "Compression CCITT Group 4 Fax"
  
-@@ -1509,12 +1457,11 @@
+@@ -1509,12 +1457,11 @@ msgstr "Compression JPEG DCT"
  
  #. MENU_ITEM_TIFF_COMP_PACKBITS
  msgid "pack bits"
@@ -1286,7 +1287,7 @@ Index: xsane-0.998/po/fr.po
  
  #. MENU_ITEM_RANGE_SCALE
  msgid "Slider (Scale)"
-@@ -1530,7 +1477,7 @@
+@@ -1530,7 +1477,7 @@ msgstr "Bouton de rotation"
  
  #. MENU_ITEM_RANGE_SCALE_SPIN
  msgid "Scale and Spinbutton"
@@ -1295,7 +1296,7 @@ Index: xsane-0.998/po/fr.po
  
  #. MENU_ITEM_RANGE_SCROLL_SPIN
  msgid "Scrollbar and Spinbutton"
-@@ -1581,39 +1528,36 @@
+@@ -1581,39 +1528,36 @@ msgid "Move item down"
  msgstr "Déplacer l'objet vers le bas"
  
  #. MENU_ITEM_AUTH_NONE
@@ -1343,7 +1344,7 @@ Index: xsane-0.998/po/fr.po
  
  #. PROGRESS_SCANNING
  msgid "Scanning"
-@@ -1625,12 +1569,10 @@
+@@ -1625,12 +1569,10 @@ msgid "Receiving %s data"
  msgstr "Réception des données %s..."
  
  #. PROGRESS_PAGE
@@ -1357,7 +1358,7 @@ Index: xsane-0.998/po/fr.po
  msgid "Transferring image"
  msgstr "Transfert de l'image..."
  
-@@ -1640,7 +1582,7 @@
+@@ -1640,7 +1582,7 @@ msgstr "Rotation de l'image..."
  
  #. PROGRESS_MIRRORING_DATA
  msgid "Mirroring image"
@@ -1366,7 +1367,7 @@ Index: xsane-0.998/po/fr.po
  
  #. PROGRESS_PACKING_DATA
  msgid "Packing image"
-@@ -1652,7 +1594,7 @@
+@@ -1652,7 +1594,7 @@ msgstr "Conversion de l'image..."
  
  #. PROGRESS_SAVING_DATA
  msgid "Saving image"
@@ -1375,7 +1376,7 @@ Index: xsane-0.998/po/fr.po
  
  #. PROGRESS_CLONING_DATA
  msgid "Cloning image"
-@@ -1675,9 +1617,8 @@
+@@ -1675,9 +1617,8 @@ msgid "OCR in progress"
  msgstr "OCR en cours..."
  
  #. PROGRESS_ICM_CONVERSION
@@ -1386,7 +1387,7 @@ Index: xsane-0.998/po/fr.po
  
  #. DESC_SCAN_START
  msgid "Start scan <Ctrl-Enter>"
-@@ -1696,16 +1637,14 @@
+@@ -1696,16 +1637,14 @@ msgid "Cancel preview scan <Alt-ESC>"
  msgstr "Annuler l'aperçu <Alt-ESC>"
  
  #. DESC_XSANE_MODE
@@ -1405,7 +1406,7 @@ Index: xsane-0.998/po/fr.po
  msgid ""
  "Select source medium type.\n"
  "To rename, reorder or delete an entry use context menu (alternate mouse "
-@@ -1715,7 +1654,7 @@
+@@ -1715,7 +1654,7 @@ msgid ""
  msgstr ""
  "Choisissez le type de support à utiliser.\n"
  "Pour renommer, réarranger ou effacer une entrée, utilisez le menu contextuel "
@@ -1414,7 +1415,7 @@ Index: xsane-0.998/po/fr.po
  "Pour créer un support, activez l'option éditer la définition du support dans "
  "le menu préférences."
  
-@@ -1725,7 +1664,7 @@
+@@ -1725,7 +1664,7 @@ msgstr "Valeur ajoutée au compteur de noms de fichiers après numérisation"
  
  #. DESC_BROWSE_FILENAME
  msgid "Browse for image filename"
@@ -1423,7 +1424,7 @@ Index: xsane-0.998/po/fr.po
  
  #. DESC_FILENAME
  msgid "Filename for scanned image"
-@@ -1740,171 +1679,161 @@
+@@ -1740,171 +1679,161 @@ msgstr ""
  "automatiquement ajoutée"
  
  #. DESC_FAXPROJECT
@@ -1634,7 +1635,7 @@ Index: xsane-0.998/po/fr.po
  
  #. DESC_RGB_DEFAULT
  msgid ""
-@@ -1914,16 +1843,15 @@
+@@ -1914,16 +1843,15 @@ msgid ""
  " brightness = 0\n"
  " contrast = 0"
  msgstr ""
@@ -1654,7 +1655,7 @@ Index: xsane-0.998/po/fr.po
  
  #. DESC_ENH_DEFAULT
  msgid ""
-@@ -1932,64 +1860,64 @@
+@@ -1932,64 +1860,64 @@ msgid ""
  "brightness = 0\n"
  "contrast = 0"
  msgstr ""
@@ -1733,7 +1734,7 @@ Index: xsane-0.998/po/fr.po
  "imprimées en PostScript"
  
  #. DESC_PRINTER_GRAYSCALE_RESOLUTION
-@@ -2013,17 +1941,17 @@
+@@ -2013,17 +1941,17 @@ msgstr "Largeur de la zone imprimable"
  #. DESC_PRINTER_HEIGHT
  #. DESC_FAX_HEIGHT
  msgid "Height of printable area"
@@ -1754,7 +1755,7 @@ Index: xsane-0.998/po/fr.po
  
  #. DESC_PRINTER_GAMMA
  msgid "Additional gamma value for photocopy"
-@@ -2043,21 +1971,24 @@
+@@ -2043,21 +1971,24 @@ msgstr "Gamma additionnel pour la composante bleue pour la photocopie"
  
  #. DESC_PRINTER_EMBED_CSA
  msgid "Creates a postscript file that contains the ICM profile of the scanner"
@@ -1782,7 +1783,7 @@ Index: xsane-0.998/po/fr.po
  
  #. DESC_TMP_PATH
  msgid "Path to temp directory"
-@@ -2065,10 +1996,9 @@
+@@ -2065,10 +1996,9 @@ msgstr "Chemin du répertoire temporaire"
  
  #. DESC_BUTTON_TMP_PATH_BROWSE
  msgid "Browse for temporary directory"
@@ -1794,7 +1795,7 @@ Index: xsane-0.998/po/fr.po
  msgid ""
  "Quality in percent if image is saved as JPEG or TIFF with JPEG compression"
  msgstr ""
-@@ -2076,7 +2006,6 @@
+@@ -2076,7 +2006,6 @@ msgstr ""
  "compression jpeg"
  
  #. DESC_PNG_COMPRESSION
@@ -1802,7 +1803,7 @@ Index: xsane-0.998/po/fr.po
  msgid "Compression if image is saved as PNG"
  msgstr "Compression si l'image est enregistrée en png"
  
-@@ -2085,22 +2014,18 @@
+@@ -2085,22 +2014,18 @@ msgid "Minimum length of counter in filename"
  msgstr "Longueur minimale du compteur de noms de fichiers"
  
  #. DESC_TIFF_ZIP_COMPRESSION
@@ -1828,7 +1829,7 @@ Index: xsane-0.998/po/fr.po
  msgid "Compression type if lineart image is saved as TIFF"
  msgstr "Type de compression si l'image trait est enregistrée en tiff"
  
-@@ -2118,39 +2043,41 @@
+@@ -2118,39 +2043,41 @@ msgstr "Avertir avant d'écraser un fichier existant"
  msgid ""
  "If filename counter is automatically increased, used numbers are skipped"
  msgstr ""
@@ -1881,7 +1882,7 @@ Index: xsane-0.998/po/fr.po
  
  #. DESC_PSFILE_WIDTH
  msgid "Width of paper for postscript files"
-@@ -2158,14 +2085,14 @@
+@@ -2158,14 +2085,14 @@ msgstr "Largeur du papier pour les fichiers PostScript"
  
  #. DESC_PSFILE_HEIGHT
  msgid "Height of paper for postscript files"
@@ -1898,7 +1899,7 @@ Index: xsane-0.998/po/fr.po
  "PostScript"
  
  #. DESC_PSFILE_BOTTOMOFFSET
-@@ -2173,32 +2100,31 @@
+@@ -2173,32 +2100,31 @@ msgid ""
  "Bottom offset from the edge of the paper to the usable area for postscript "
  "files"
  msgstr ""
@@ -1939,7 +1940,7 @@ Index: xsane-0.998/po/fr.po
  msgid "Value with which the calculated preview resolution is multiplied"
  msgstr ""
  "Valeur avec laquelle la résolution de prévisualisation calculée est "
-@@ -2206,134 +2132,138 @@
+@@ -2206,134 +2132,138 @@ msgstr ""
  
  #. DESC_PREVIEW_GAMMA
  msgid "Set gamma correction value for preview image"
@@ -2109,7 +2110,7 @@ Index: xsane-0.998/po/fr.po
  
  #. DESC_SMTP_SERVER
  msgid "IP Address or Domain name of SMTP server"
-@@ -2341,32 +2271,27 @@
+@@ -2341,32 +2271,27 @@ msgstr "Adresse IP ou nom de domaine du serveur SMTP"
  
  #. DESC_SMTP_PORT
  msgid "port to connect to SMTP server"
@@ -2148,7 +2149,7 @@ Index: xsane-0.998/po/fr.po
  
  #. DESC_POP3_SERVER
  msgid "IP Address or Domain name of POP3 server"
-@@ -2374,45 +2299,40 @@
+@@ -2374,45 +2299,40 @@ msgstr "Adresse IP ou nom de domaine du serveur POP3"
  
  #. DESC_POP3_PORT
  msgid "port to connect to POP3 server"
@@ -2205,7 +2206,7 @@ Index: xsane-0.998/po/fr.po
  
  #. DESC_PERMISSION_READ
  msgid "read"
-@@ -2423,9 +2343,8 @@
+@@ -2423,9 +2343,8 @@ msgid "write"
  msgstr "écriture"
  
  #. DESC_PERMISSION_SEARCH
@@ -2216,7 +2217,7 @@ Index: xsane-0.998/po/fr.po
  
  #. DESC_ADD_BATCH
  msgid "Add selection for batch scan"
-@@ -2433,20 +2352,19 @@
+@@ -2433,20 +2352,19 @@ msgstr "Ajouter la sélection pour la numérisation par lots"
  
  #. DESC_PIPETTE_WHITE
  msgid "Pick white point"
@@ -2241,7 +2242,7 @@ Index: xsane-0.998/po/fr.po
  
  #. DESC_ZOOM_OUT
  #, no-c-format
-@@ -2455,48 +2373,45 @@
+@@ -2455,48 +2373,45 @@ msgstr "Zoom 20% en arrière"
  
  #. DESC_ZOOM_IN
  msgid "Click at position to zoom to"
@@ -2300,7 +2301,7 @@ Index: xsane-0.998/po/fr.po
  
  #. DESC_RATIO
  msgid "Aspect ratio of selection"
-@@ -2504,54 +2419,51 @@
+@@ -2504,54 +2419,51 @@ msgstr "Proportions de la sélection"
  
  #. DESC_PAPER_ORIENTATION
  msgid "Define image position for printing"
@@ -2366,7 +2367,7 @@ Index: xsane-0.998/po/fr.po
  
  #. DESC_SCALE_FACTOR
  msgid "Scale factor"
-@@ -2566,80 +2478,72 @@
+@@ -2566,80 +2478,72 @@ msgid "Y-Scale factor"
  msgstr "Facteur d'échelle vertical"
  
  #. DESC_SCALE_WIDTH
@@ -2462,7 +2463,7 @@ Index: xsane-0.998/po/fr.po
  
  #. ERR_FILENAME_TOO_LONG
  msgid "Filename too long"
-@@ -2652,18 +2556,22 @@
+@@ -2652,18 +2556,22 @@ msgid ""
  "select a temporary directory where you have\n"
  "write permissions."
  msgstr ""
@@ -2488,7 +2489,7 @@ Index: xsane-0.998/po/fr.po
  
  #. ERR_DEVICE_OPEN_FAILED
  msgid "Failed to open device"
-@@ -2679,11 +2587,11 @@
+@@ -2679,11 +2587,11 @@ msgstr "Erreur pendant la lecture"
  
  #. ERR_DURING_SAVE
  msgid "Error during save:"
@@ -2502,7 +2503,7 @@ Index: xsane-0.998/po/fr.po
  
  #. ERR_UNKNOWN_SAVING_FORMAT
  msgid "Unknown file format for saving"
-@@ -2691,29 +2599,28 @@
+@@ -2691,29 +2599,28 @@ msgstr "Format de sauvegarde inconnu"
  
  #. ERR_OPEN_FAILED
  msgid "Failed to open"
@@ -2538,7 +2539,7 @@ Index: xsane-0.998/po/fr.po
  
  #. ERR_NO_OUTPUT_FORMAT
  msgid "No output format given"
-@@ -2729,19 +2636,19 @@
+@@ -2729,19 +2636,19 @@ msgstr "Le backend envoie plus de données image que défini dans les paramètre
  
  #. ERR_LIBTIFF
  msgid "LIBTIFF reports error"
@@ -2562,7 +2563,7 @@ Index: xsane-0.998/po/fr.po
  
  #. ERR_UNKNOWN_TYPE
  msgid "unknown type"
-@@ -2757,38 +2664,37 @@
+@@ -2757,38 +2664,37 @@ msgstr "L'option a un nom vide (NULL)."
  
  #. ERR_BACKEND_BUG
  msgid "This is a backend bug. Please inform the author of the backend!"
@@ -2609,7 +2610,7 @@ Index: xsane-0.998/po/fr.po
  
  #. ERR_ERROR
  msgid "error"
-@@ -2796,7 +2702,7 @@
+@@ -2796,7 +2702,7 @@ msgstr "Erreur"
  
  #. ERR_MAJOR_VERSION_NR_CONFLICT
  msgid "Sane major version number mismatch!"
@@ -2618,7 +2619,7 @@ Index: xsane-0.998/po/fr.po
  
  #. ERR_XSANE_MAJOR_VERSION
  msgid "XSane major version ="
-@@ -2808,23 +2714,23 @@
+@@ -2808,23 +2714,23 @@ msgstr "Version majeure du backend ="
  
  #. ERR_PROGRAM_ABORTED
  msgid "*** PROGRAM ABORTED ***"
@@ -2647,7 +2648,7 @@ Index: xsane-0.998/po/fr.po
  
  #. WARN_COUNTER_UNDERRUN
  msgid "Filename counter underrun"
-@@ -2832,10 +2738,9 @@
+@@ -2832,10 +2738,9 @@ msgstr "Repositionnement du compteur de noms de fichiers"
  
  #. WARN_NO_VALUE_CONSTRAINT
  msgid "warning: option has no value constraint"
@@ -2659,7 +2660,7 @@ Index: xsane-0.998/po/fr.po
  msgid ""
  "You try to run XSane as ROOT, that really is DANGEROUS!\n"
  "\n"
-@@ -2843,11 +2748,12 @@
+@@ -2843,11 +2748,12 @@ msgid ""
  "have any problems while running XSane as root:\n"
  "YOU ARE ALONE!"
  msgstr ""
@@ -2676,7 +2677,7 @@ Index: xsane-0.998/po/fr.po
  
  #. ERR_HEADER_ERROR
  msgid "Error"
-@@ -2867,11 +2773,11 @@
+@@ -2867,11 +2773,11 @@ msgstr "Erreur de processus enfant"
  
  #. ERR_FAILED_CREATE_FILE
  msgid "Failed to create file:"
@@ -2690,7 +2691,7 @@ Index: xsane-0.998/po/fr.po
  
  #. ERR_NO_DRC_FILE
  msgid "is not a device-rc-file !!!"
-@@ -2879,11 +2785,11 @@
+@@ -2879,11 +2785,11 @@ msgstr "n'est pas un fichier périphérique-rc"
  
  #. ERR_NETSCAPE_EXECUTE_FAIL
  msgid "Failed to execute netscape!"
@@ -2704,7 +2705,7 @@ Index: xsane-0.998/po/fr.po
  
  #. ERR_CREATED_FOR_DEVICE
  msgid "has been created for device"
-@@ -2895,12 +2801,12 @@
+@@ -2895,12 +2801,12 @@ msgstr "vous voulez l'utiliser comme périphérique"
  
  #. ERR_MAY_CAUSE_PROBLEMS
  msgid "this may cause problems!"
@@ -2719,7 +2720,7 @@ Index: xsane-0.998/po/fr.po
  
  #. WARN_FILE_EXISTS
  #, c-format
-@@ -2920,37 +2826,31 @@
+@@ -2920,37 +2826,31 @@ msgstr "Le fichier %s n'est pas un fichier PostScript"
  #. ERR_UNSUPPORTED_OUTPUT_FORMAT
  #, c-format
  msgid "Unsupported %d-bit output format: %s"
@@ -2764,7 +2765,7 @@ Index: xsane-0.998/po/fr.po
  
  #. WARN_VIEWER_IMAGE_NOT_SAVED
  msgid "viewer image is not saved"
-@@ -2958,42 +2858,37 @@
+@@ -2958,42 +2858,37 @@ msgstr "L'image de la visionneuse n'est pas sauvegardée"
  
  #. FILE_FILTER_ALL_FILES
  msgid "All files"
@@ -2815,7 +2816,7 @@ Index: xsane-0.998/po/fr.po
  msgid ""
  "Start up graphical user interface to access SANE (Scanner Access Now Easy) "
  "devices.\n"
-@@ -3029,42 +2924,41 @@
+@@ -3029,42 +2924,41 @@ msgid ""
  " --sync                       request a synchronous connection with the X11 "
  "server"
  msgstr ""
@@ -2884,7 +2885,7 @@ Index: xsane-0.998/po/fr.po
  
  #. strings for gimp plugin
  #. XSANE_GIMP_INSTALL_BLURB
-@@ -3077,27 +2971,26 @@
+@@ -3077,27 +2971,26 @@ msgid ""
  "devices through the SANE (Scanner Access Now Easy) interface."
  msgstr ""
  "Cette fonction permet l'accès aux scanners et autres périphériques "
@@ -2916,7 +2917,7 @@ Index: xsane-0.998/po/fr.po
  msgid ""
  "Possible reasons:\n"
  "1) There really is no device that is supported by SANE\n"
-@@ -3108,13 +3001,13 @@
+@@ -3108,13 +3001,13 @@ msgid ""
  "5) The backend is not configured correctly (man sane-\"backendname\")\n"
  "6) Possibly there is more than one SANE version installed"
  msgstr ""
@@ -2934,7 +2935,7 @@ Index: xsane-0.998/po/fr.po
  "6) Il y a peut-être plusieurs versions de SANE installées"
  
  #. strings that are used in structures, so it is not allowed to use _()/gettext() here
-@@ -3125,51 +3018,51 @@
+@@ -3125,51 +3018,51 @@ msgstr "Taille maximum"
  
  #. MENU_ITEM_SURFACE_DIN_A3P
  msgid "DIN A3 port."
@@ -2998,7 +2999,7 @@ Index: xsane-0.998/po/fr.po
  
  #. MENU_ITEM_SURFACE_legal_P
  msgid "legal port."
-@@ -3193,7 +3086,7 @@
+@@ -3193,7 +3086,7 @@ msgstr "Pleine échelle couleur"
  
  #. MENU_ITEM_MEDIUM_SLIDE
  msgid "Slide"
@@ -3007,7 +3008,7 @@ Index: xsane-0.998/po/fr.po
  
  #. MENU_ITEM_MEDIUM_STANDARD_NEG
  msgid "Standard negative"
-@@ -3232,93 +3125,80 @@
+@@ -3232,93 +3125,80 @@ msgid "Rossmann negative HR 100"
  msgstr "Négatif Rossman HR 100"
  
  #. TEXT_PROJECT_STATUS_NOT_CREATED
@@ -3117,7 +3118,7 @@ Index: xsane-0.998/po/fr.po
  
  #. Sane backend messages
  msgid "flatbed scanner"
-@@ -3331,10 +3211,10 @@
+@@ -3331,10 +3211,10 @@ msgid "handheld scanner"
  msgstr "scanner à main"
  
  msgid "still camera"
@@ -3130,7 +3131,7 @@ Index: xsane-0.998/po/fr.po
  
  msgid "virtual device"
  msgstr "périphérique virtuel"
-@@ -3343,7 +3223,7 @@
+@@ -3343,7 +3223,7 @@ msgid "Success"
  msgstr "Succès"
  
  msgid "Operation not supported"
@@ -3139,7 +3140,7 @@ Index: xsane-0.998/po/fr.po
  
  msgid "Operation was cancelled"
  msgstr "Opération annulée"
-@@ -3352,7 +3232,7 @@
+@@ -3352,7 +3232,7 @@ msgid "Device busy"
  msgstr "Périphérique occupé"
  
  msgid "Invalid argument"
@@ -3148,7 +3149,7 @@ Index: xsane-0.998/po/fr.po
  
  msgid "End of file reached"
  msgstr "Fin de fichier atteinte"
-@@ -3367,174 +3247,10 @@
+@@ -3367,174 +3247,10 @@ msgid "Scanner cover is open"
  msgstr "Le capot du scanner est ouvert"
  
  msgid "Error during device I/O"

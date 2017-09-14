@@ -1,13 +1,15 @@
-Description: correct misleadings in man page
-Author: Jörg Frings-Fürst <debian@jff-webhosting.net>
-Forwarded: not-needed
-Last-Update: 2014-10-23
+From: =?utf-8?q?J=C3=B6rg_Frings-F=C3=BCrst?= <debian@jff-webhosting.net>
+Date: Thu, 14 Sep 2017 15:28:58 +0300
+Subject: man_misleading
+
 ---
-This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
-Index: trunk/doc/xsane.man
-===================================================================
---- trunk.orig/doc/xsane.man
-+++ trunk/doc/xsane.man
+ doc/xsane.man | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/doc/xsane.man b/doc/xsane.man
+index ee363a8..f44fe4a 100644
+--- a/doc/xsane.man
++++ b/doc/xsane.man
 @@ -203,8 +203,10 @@ When the flag
  or
  .B -N

@@ -1,13 +1,15 @@
-Description: Fix floats in PDF and PostScript
- Set LC_NUMERIC to POSIX before printing floats when building
- PostScript or PDF output.
-Author: Julien BLACHE <jblache@debian.org>
-Forwarded: yes
+From: =?utf-8?q?J=C3=B6rg_Frings-F=C3=BCrst?= <debian@jff-webhosting.net>
+Date: Thu, 14 Sep 2017 15:28:58 +0300
+Subject: fix_pdf_floats
 
-Index: xsane-0.998/src/xsane-save.c
-===================================================================
---- xsane-0.998.orig/src/xsane-save.c	2010-11-16 22:06:00.000000000 +0100
-+++ xsane-0.998/src/xsane-save.c	2011-02-04 19:51:01.557016000 +0100
+---
+ src/xsane-save.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/src/xsane-save.c b/src/xsane-save.c
+index 84f5d59..0b87bb7 100644
+--- a/src/xsane-save.c
++++ b/src/xsane-save.c
 @@ -26,6 +26,8 @@
  #include "xsane-back-gtk.h"
  #include "xsane-front-gtk.h"
@@ -17,7 +19,7 @@ Index: xsane-0.998/src/xsane-save.c
  #include <time.h>
  #include <sys/wait.h> 
  
-@@ -2415,6 +2417,7 @@
+@@ -2415,6 +2417,7 @@ static void xsane_save_ps_create_image_header(FILE *outfile,
                                                int flatedecode)
  {
   int depth; 
@@ -25,7 +27,7 @@ Index: xsane-0.998/src/xsane-save.c
  
    depth = image_info->depth;
  
-@@ -2432,8 +2435,15 @@
+@@ -2432,8 +2435,15 @@ static void xsane_save_ps_create_image_header(FILE *outfile,
  
    fprintf(outfile, "%d rotate\n", degree);
    fprintf(outfile, "%d %d translate\n", position_left, position_bottom);
@@ -41,7 +43,7 @@ Index: xsane-0.998/src/xsane-save.c
    fprintf(outfile, "<<\n");
    fprintf(outfile, " /ImageType 1\n");
    fprintf(outfile, " /Width %d\n", image_info->image_width);
-@@ -3895,6 +3905,7 @@
+@@ -3895,6 +3905,7 @@ static void xsane_save_pdf_create_page_header(FILE *outfile, struct pdf_xref *xr
   int position_left, position_bottom, box_left, box_bottom, box_right, box_top, depth;
   int left, bottom;
   float rad;
@@ -49,7 +51,7 @@ Index: xsane-0.998/src/xsane-save.c
  
    DBG(DBG_proc, "xsane_save_pdf_create_page_header\n");
  
-@@ -4009,8 +4020,16 @@
+@@ -4009,8 +4020,16 @@ static void xsane_save_pdf_create_page_header(FILE *outfile, struct pdf_xref *xr
  
    fprintf(outfile, "q\n");
    fprintf(outfile, "1 0 0 1 %d %d cm\n", position_left, position_bottom); /* translate */

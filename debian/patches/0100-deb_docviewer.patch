@@ -1,12 +1,15 @@
-Description: Use sensible-browser
- Change default browser to /usr/bin/sensible-browser.
-Author: Julien BLACHE <jblache@debian.org>
-Forwarded: not-needed
+From: =?utf-8?q?J=C3=B6rg_Frings-F=C3=BCrst?= <debian@jff-webhosting.net>
+Date: Thu, 14 Sep 2017 15:28:58 +0300
+Subject: deb_docviewer
 
-Index: xsane-0.998/src/xsane.h
-===================================================================
---- xsane-0.998.orig/src/xsane.h	2011-02-04 19:50:22.945016002 +0100
-+++ xsane-0.998/src/xsane.h	2011-02-04 19:50:32.653016002 +0100
+---
+ src/xsane.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/xsane.h b/src/xsane.h
+index e8101e7..69fe6bc 100644
+--- a/src/xsane.h
++++ b/src/xsane.h
 @@ -251,7 +251,7 @@
  # elif defined(HAVE_OS2_H)
  #  define DEFAULT_BROWSER "netscape"

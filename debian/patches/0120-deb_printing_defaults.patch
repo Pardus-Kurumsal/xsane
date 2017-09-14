@@ -1,13 +1,16 @@
-Description: Set default printing options for lp
- Change default printing options, switch from lpr to lp.
-Author: Julien BLACHE <jblache@debian.org>
-Forwarded: not-needed
+From: =?utf-8?q?J=C3=B6rg_Frings-F=C3=BCrst?= <debian@jff-webhosting.net>
+Date: Thu, 14 Sep 2017 15:28:58 +0300
+Subject: deb_printing_defaults
 
-Index: xsane-0.998/src/xsane.h
-===================================================================
---- xsane-0.998.orig/src/xsane.h	2010-11-16 22:00:33.000000000 +0100
-+++ xsane-0.998/src/xsane.h	2011-02-04 19:50:22.945016002 +0100
-@@ -510,8 +510,8 @@
+---
+ src/xsane.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/xsane.h b/src/xsane.h
+index 67f06d4..e8101e7 100644
+--- a/src/xsane.h
++++ b/src/xsane.h
+@@ -510,8 +510,8 @@ extern void xsane_batch_scan_add(void);
  
  #define OUT_FILENAME     	"out.pnm"
  #define PRINTERNAME	  	"new printer"

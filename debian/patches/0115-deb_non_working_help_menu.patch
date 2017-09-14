@@ -1,12 +1,16 @@
-Description: Remove not working items in Help menu
-Origin: other, https://build.opensuse.org/package/view_file?expand=1&file=remove-non-working-help.patch&package=xsane&project=devel%3AopenSUSE%3AFactory
-Forwarded: no
+From: =?utf-8?q?J=C3=B6rg_Frings-F=C3=BCrst?= <debian@jff-webhosting.net>
+Date: Thu, 14 Sep 2017 15:28:58 +0300
+Subject: deb_non_working_help_menu
 
-Index: xsane-0.998/src/xsane.c
-===================================================================
---- xsane-0.998.orig/src/xsane.c	2013-01-27 01:44:39.000000000 +0100
-+++ xsane-0.998/src/xsane.c	2013-01-29 01:14:28.983590459 +0100
-@@ -4260,27 +4260,6 @@
+---
+ src/xsane.c | 21 ---------------------
+ 1 file changed, 21 deletions(-)
+
+diff --git a/src/xsane.c b/src/xsane.c
+index d45a0d1..7de0bab 100644
+--- a/src/xsane.c
++++ b/src/xsane.c
+@@ -4260,27 +4260,6 @@ static GtkWidget *xsane_help_build_menu(void)
    gtk_widget_show(item);
  
  

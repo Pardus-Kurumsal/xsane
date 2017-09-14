@@ -1,13 +1,16 @@
-Description: Inhibit XSane's click-through license
- Finally give up and inhibit the license click-through.
-Author: Julien BLACHE <jblache@debian.org>
-Forwarded: not-needed
+From: =?utf-8?q?J=C3=B6rg_Frings-F=C3=BCrst?= <debian@jff-webhosting.net>
+Date: Thu, 14 Sep 2017 15:28:58 +0300
+Subject: deb_inhibit_clickthrough
 
-Index: xsane-0.998/src/xsane.c
-===================================================================
---- xsane-0.998.orig/src/xsane.c	2010-11-16 21:57:51.000000000 +0100
-+++ xsane-0.998/src/xsane.c	2011-02-04 19:50:40.957016002 +0100
-@@ -1909,11 +1909,11 @@
+---
+ src/xsane.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/src/xsane.c b/src/xsane.c
+index e7d829c..1e29e80 100644
+--- a/src/xsane.c
++++ b/src/xsane.c
+@@ -1909,11 +1909,11 @@ void xsane_pref_save(void)
  /* ---------------------------------------------------------------------------------------------------------------------- */
  
  static int xsane_pref_restore(void)
@@ -21,7 +24,7 @@ Index: xsane-0.998/src/xsane.c
   int i;
  
    DBG(DBG_proc, "xsane_pref_restore\n");
-@@ -1927,6 +1927,7 @@
+@@ -1927,6 +1927,7 @@ static int xsane_pref_restore(void)
      preferences_restore(fd);
      close(fd);
  
@@ -29,7 +32,7 @@ Index: xsane-0.998/src/xsane.c
      /* the version test only is done for the local xsane.rc file because each user */
      /* shall accept (or not) the license for xsane */
      if (preferences.xsane_version_str)
-@@ -1936,6 +1937,7 @@
+@@ -1936,6 +1937,7 @@ static int xsane_pref_restore(void)
          result = FALSE; /* this version already has been started */
        }
      }
@@ -37,7 +40,7 @@ Index: xsane-0.998/src/xsane.c
    }
    else /* no local sane file, look for system file */
    {
-@@ -5815,7 +5817,10 @@
+@@ -5815,7 +5817,10 @@ static int xsane_init(int argc, char **argv)
      xsane.xsane_rc_set_filename = strdup("xsane"); /* ".rc" is appended later */
    }
  
@@ -48,7 +51,7 @@ Index: xsane-0.998/src/xsane.c
    if (xsane_pref_restore()) /* restore preferences, returns TRUE if license is not accpted yet */
    {
      if (xsane_display_eula(1)) /* show license and ask for accept/not accept */
-@@ -5828,6 +5833,7 @@
+@@ -5828,6 +5833,7 @@ static int xsane_init(int argc, char **argv)
        xsane_pref_save();
      }
    }

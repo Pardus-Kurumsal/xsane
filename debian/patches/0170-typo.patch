@@ -1,66 +1,381 @@
-Description: correct some typos in source
-Author: Jörg Frings-Fürst <debian@jff-webhosting.net>
-Forwarded: not-needed
-Last-Update: 2016-10-15
+From: =?utf-8?q?J=C3=B6rg_Frings-F=C3=BCrst?= <debian@jff-webhosting.net>
+Date: Thu, 14 Sep 2017 15:28:58 +0300
+Subject: typo
+
 ---
-This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
-Index: trunk/src/xsane-text.h
-===================================================================
---- trunk.orig/src/xsane-text.h
-+++ trunk/src/xsane-text.h
-@@ -593,7 +593,7 @@
- #define DESC_TIFF_COMPRESSION_16	_("Compression type if 16 bit image is saved as TIFF")
- #define DESC_TIFF_COMPRESSION_8		_("Compression type if 8 bit image is saved as TIFF")
- #define DESC_TIFF_COMPRESSION_1		_("Compression type if lineart image is saved as TIFF")
--#define DESC_SAVE_DEVPREFS_AT_EXIT	_("Save device dependant preferences in default file at exit of xsane")
-+#define DESC_SAVE_DEVPREFS_AT_EXIT	_("Save device dependent preferences in default file at exit of xsane")
- #define DESC_OVERWRITE_WARNING		_("Warn before overwriting an existing file")
- #define DESC_SKIP_EXISTING		_("If filename counter is automatically increased, used numbers are skipped")
- #define DESC_SAVE_PS_FLATEDECODED	_("compress postscript image with zlib algorithm (flatedecode). " \
-@@ -854,7 +854,7 @@ The format of [DEVICE] is backendname:de
-  -n, --no-mode-selection      disable menu for XSane mode selection\n\
- \n\
-  -F, --Fixed                  fixed main window size (overwrite preferences value)\n\
-- -R, --Resizeable             resizable, scrolled main window (overwrite preferences value)\n\
-+ -R, --Resizable              resizable, scrolled main window (overwrite preferences value)\n\
- \n\
-  -p, --print-filenames        print image filenames created by XSane\n\
-  -N, --force-filename name    force filename and disable user filename selection\n\
-Index: trunk/src/xsane.c
-===================================================================
---- trunk.orig/src/xsane.c
-+++ trunk/src/xsane.c
-@@ -67,7 +67,7 @@ struct option long_options[] =
- #endif
-   {"no-mode-selection", no_argument, 0, 'n'},
-   {"Fixed", no_argument, 0, 'F'},
--  {"Resizeable", no_argument, 0, 'R'},
-+  {"Resizable", no_argument, 0, 'R'},
-   {"print-filenames", no_argument, 0, 'p'},
-   {"force-filename", required_argument, 0, 'N'},
-   {0, }
-@@ -2324,7 +2324,7 @@ static RETSIGTYPE xsane_sigchld_handler(
-     pid = waitpid(childprocess->pid, &status, WNOHANG);
-     if ( (WIFEXITED(status)) && (pid == childprocess->pid) )
-     {
--      DBG(DBG_info, "deleteing pid %d from list\n", childprocess->pid);
-+      DBG(DBG_info, "deleting pid %d from list\n", childprocess->pid);
+ po/ca.po            | 2 +-
+ po/cs.po            | 2 +-
+ po/da.po            | 2 +-
+ po/de.po            | 2 +-
+ po/es.po            | 2 +-
+ po/fi.po            | 2 +-
+ po/fr.po            | 2 +-
+ po/hu.po            | 2 +-
+ po/it.po            | 2 +-
+ po/ja.po            | 2 +-
+ po/nl.po            | 2 +-
+ po/pa.po            | 2 +-
+ po/pl.po            | 2 +-
+ po/pt.po            | 2 +-
+ po/pt_BR.po         | 2 +-
+ po/ro.po            | 2 +-
+ po/ru.po            | 2 +-
+ po/sk.po            | 2 +-
+ po/sl.po            | 2 +-
+ po/sr.po            | 2 +-
+ po/sv.po            | 2 +-
+ po/tr.po            | 2 +-
+ po/vi.po            | 2 +-
+ po/xsane.pot        | 2 +-
+ po/zh.po            | 2 +-
+ po/zh_CN.po         | 2 +-
+ src/xsane-preview.c | 4 ++--
+ src/xsane-text.h    | 4 ++--
+ src/xsane.c         | 6 +++---
+ 29 files changed, 33 insertions(+), 33 deletions(-)
+
+diff --git a/po/ca.po b/po/ca.po
+index 867105a..75852fd 100644
+--- a/po/ca.po
++++ b/po/ca.po
+@@ -2032,7 +2032,7 @@ msgstr ""
+ "(mode línia)"
  
-       nextprocess = childprocess->next;
-       free(childprocess); /* free memory of element */
-@@ -5787,7 +5787,7 @@ static int xsane_init(int argc, char **a
-            xsane.main_window_fixed = 1;
-          break;
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr ""
+ "En sortir de l'XSane, desa les preferències que depenen del dispositiu en el "
+ "fitxer per defecte"
+diff --git a/po/cs.po b/po/cs.po
+index 1bf05cf..76af1ea 100644
+--- a/po/cs.po
++++ b/po/cs.po
+@@ -2081,7 +2081,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "Typ komprese, je-li obrázek zapisován jako TIFF čárová grafika"
  
--        case 'R': /* --Resizeable */
-+        case 'R': /* --Resizable */
-            xsane.main_window_fixed = 0;
-          break;
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr ""
+ "Při skončení zapsat do standardního souboru předvolby závislé na zařízení"
  
-Index: trunk/src/xsane-preview.c
-===================================================================
---- trunk.orig/src/xsane-preview.c
-+++ trunk/src/xsane-preview.c
+diff --git a/po/da.po b/po/da.po
+index 179db40..7060318 100644
+--- a/po/da.po
++++ b/po/da.po
+@@ -2019,7 +2019,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "Kompressionstype når stregtegningsbilleder gemmes som TIFF"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr "Gem enhedsafhængige værdier i standardfil, ved afslutning af XSane"
+ 
+ #. DESC_OVERWRITE_WARNING
+diff --git a/po/de.po b/po/de.po
+index da5cbb0..06801d3 100644
+--- a/po/de.po
++++ b/po/de.po
+@@ -2022,7 +2022,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "Kompression wenn lineart Bild im TIFF-Format gespeichert wird"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr ""
+ "Geräteabhängige Einstellungen werden in der Default-Datei beim Beenden von "
+ "xsane gespeichert"
+diff --git a/po/es.po b/po/es.po
+index 6b426f6..22706af 100644
+--- a/po/es.po
++++ b/po/es.po
+@@ -2111,7 +2111,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "Tipo de compresión si la imagen de línea de arte es guardada como tiff"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr ""
+ "Guardar preferencias dependientes del dispositivo en archivo por omisión al "
+ "salir de XSane"
+diff --git a/po/fi.po b/po/fi.po
+index 64cc0e5..b2c3041 100644
+--- a/po/fi.po
++++ b/po/fi.po
+@@ -2005,7 +2005,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "Pakkaustapa tallennettaessa 8-bittistä kuvaa TIFFinä"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr ""
+ "Tallenna laiteriippuvaiset asetukset oletustiedostoon poistuttaessa xsanesta"
+ 
+diff --git a/po/fr.po b/po/fr.po
+index 5064800..265552f 100644
+--- a/po/fr.po
++++ b/po/fr.po
+@@ -2105,7 +2105,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "Type de compression si l'image trait est enregistrée en tiff"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr ""
+ "Enregister les paramètres du scanner dans le fichier par défaut en quittant "
+ "XSane"
+diff --git a/po/hu.po b/po/hu.po
+index 55262a6..1a94fbd 100644
+--- a/po/hu.po
++++ b/po/hu.po
+@@ -2078,7 +2078,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "A tömörítés módja vonalas tiff kép esetén"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr ""
+ "Az eszközfüggő beállításokat kilépéskor mentsük el az alapértelmezett fájlba"
+ 
+diff --git a/po/it.po b/po/it.po
+index 67b2054..29d2a32 100644
+--- a/po/it.po
++++ b/po/it.po
+@@ -2024,7 +2024,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "Tipo compressione se l'immagine lineart viene salvata come TIFF"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr ""
+ "Salva le impostazioni del dispositivo nel file prestabilito all'uscita da "
+ "XSane"
+diff --git a/po/ja.po b/po/ja.po
+index b61c35e..09b066a 100644
+--- a/po/ja.po
++++ b/po/ja.po
+@@ -2093,7 +2093,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "ラインアート画像がTIFFで保存されている場合の圧縮タイプ"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr "XSane終了時にデバイス依存の設定を既定値としてファイル保存"
+ 
+ #. DESC_OVERWRITE_WARNING
+diff --git a/po/nl.po b/po/nl.po
+index e25f113..cd22e80 100644
+--- a/po/nl.po
++++ b/po/nl.po
+@@ -2091,7 +2091,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "Compressie van zwart wit TIFF afbeeldingen"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr ""
+ "Bewaar apparaatspecifieke instellingen in standaard bestand als XSane eindigt"
+ 
+diff --git a/po/pa.po b/po/pa.po
+index cb2d863..e09f8fd 100644
+--- a/po/pa.po
++++ b/po/pa.po
+@@ -2008,7 +2008,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "ਜੇ ਲੀਨੀਅਰਟ ਚਿੱਤਰ ਨੂੰ TIFF ਵਾਂਗ ਸੰਭਾਲਣ ਹੋਵੇ ਤਾਂ ਕੰਪਰੈੱਸਨ ਕਿਸਮ"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr "xsane ਬੰਦ ਕਰਨ ਸਮੇਂ ਡਿਫਾਲਟ ਫਾਇਲ ਵਿੱਚ ਜੰਤਰ ਨਿਰਭਰਤਾ ਪਸੰਦ ਸੰਭਾਲੋ"
+ 
+ #. DESC_OVERWRITE_WARNING
+diff --git a/po/pl.po b/po/pl.po
+index 2d91422..b62d028 100644
+--- a/po/pl.po
++++ b/po/pl.po
+@@ -2096,7 +2096,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "Typ kompresji przy zapisie jako TIFF obrazka w trybie kreski"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr ""
+ "Zapisz ustawienia urządzenia w domyślnym pliku przy wychodzeniu z XSane"
+ 
+diff --git a/po/pt.po b/po/pt.po
+index 7acf6ed..f1f53ee 100644
+--- a/po/pt.po
++++ b/po/pt.po
+@@ -2103,7 +2103,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "Tipo de compressão se imagem em linha artística é salvada como tiff"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr ""
+ "Salva preferências dependentes do dispositivo em arquivo padrão na saída do "
+ "xsane"
+diff --git a/po/pt_BR.po b/po/pt_BR.po
+index c42d766..3e19187 100644
+--- a/po/pt_BR.po
++++ b/po/pt_BR.po
+@@ -2103,7 +2103,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "Tipo de compressão se imagem em linha artística é salvada como tiff"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr ""
+ "Salva preferências dependentes do dispositivo em arquivo padrão na saída do "
+ "xsane"
+diff --git a/po/ro.po b/po/ro.po
+index c2ba73d..3b288b5 100644
+--- a/po/ro.po
++++ b/po/ro.po
+@@ -2106,7 +2106,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "Tip compresie dacă o imagine alb/negru este salvată ca TIFF"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr ""
+ "Salvează preferinţele dependente de dispozitiv în fişierul implicit la "
+ "terminarea XSane"
+diff --git a/po/ru.po b/po/ru.po
+index 5d98562..ece1ba9 100644
+--- a/po/ru.po
++++ b/po/ru.po
+@@ -2089,7 +2089,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "Тип сжатия для формата TIFF при сохранении штриховых изображений"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr ""
+ "Сохранять параметры устройства в файле по умолчанию при выходе из XSane"
+ 
+diff --git a/po/sk.po b/po/sk.po
+index 4fc0b25..232ff60 100644
+--- a/po/sk.po
++++ b/po/sk.po
+@@ -2030,7 +2030,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "Typ kompresie, ak je obrázok čiarovej grafiky uložený ako TIFF "
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr ""
+ "Uložiť nastavenia závislé na zariadení v štandardnom súbore pri ukončení "
+ "XSane"
+diff --git a/po/sl.po b/po/sl.po
+index 9aa12ff..92e430a 100644
+--- a/po/sl.po
++++ b/po/sl.po
+@@ -2081,7 +2081,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "Vrsta stiskanja pri shranjevanju slik v načinu lineart v zapisu TIFF"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr "Shrani odgovarjajoče nastavitve naprave v privzeto datoteko ob izhodu"
+ 
+ #. DESC_OVERWRITE_WARNING
+diff --git a/po/sr.po b/po/sr.po
+index 47b9316..d8db9c6 100644
+--- a/po/sr.po
++++ b/po/sr.po
+@@ -2017,7 +2017,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "Врста компресије ако се lineart слика памти као TIFF"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr ""
+ "Памти одговарајуће конфигурације уређаја у подразумеваној фајли при "
+ "напуштању XSane"
+diff --git a/po/sv.po b/po/sv.po
+index 832e03e..975e86f 100644
+--- a/po/sv.po
++++ b/po/sv.po
+@@ -2105,7 +2105,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "Kompressionstyp om grafisk bild sparas som tiff"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr "Spara enhetsberoende inställningar i standardfilen när xsane avslutas"
+ 
+ #. DESC_OVERWRITE_WARNING
+diff --git a/po/tr.po b/po/tr.po
+index 70585cc..b0ab8b0 100644
+--- a/po/tr.po
++++ b/po/tr.po
+@@ -2089,7 +2089,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "Eğer lineart resim tiff olarak saklanacaksa sıkıştırma tipi"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr "Xsane'den çıkarken öntanımlı dosyadaki aygıt bağımlı tercihleri sakla"
+ 
+ #. DESC_OVERWRITE_WARNING
+diff --git a/po/vi.po b/po/vi.po
+index 36ce50a..e5925f2 100644
+--- a/po/vi.po
++++ b/po/vi.po
+@@ -2123,7 +2123,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "Kiểu nén nếu ảnh lineart được lưu là tiff"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr ""
+ "Lưu các tùy thích phụ thuộc thiết bị vào tập tin mặc định khi thoát khỏi "
+ "XSane"
+diff --git a/po/xsane.pot b/po/xsane.pot
+index 1fecbfd..c8a37b1 100644
+--- a/po/xsane.pot
++++ b/po/xsane.pot
+@@ -1967,7 +1967,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr ""
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr ""
+ 
+ #. DESC_OVERWRITE_WARNING
+diff --git a/po/zh.po b/po/zh.po
+index d681a5b..4acd8d7 100644
+--- a/po/zh.po
++++ b/po/zh.po
+@@ -2070,7 +2070,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "如果存成png檔的話,就壓縮"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr ""
+ 
+ #. DESC_OVERWRITE_WARNING
+diff --git a/po/zh_CN.po b/po/zh_CN.po
+index 92b29aa..78d8ccf 100644
+--- a/po/zh_CN.po
++++ b/po/zh_CN.po
+@@ -2045,7 +2045,7 @@ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "如果存成png档的话,就压缩"
+ 
+ #. DESC_SAVE_DEVPREFS_AT_EXIT
+-msgid "Save device dependant preferences in default file at exit of xsane"
++msgid "Save device dependent preferences in default file at exit of xsane"
+ msgstr ""
+ 
+ #. DESC_OVERWRITE_WARNING
+diff --git a/src/xsane-preview.c b/src/xsane-preview.c
+index 3eb6479..cacef95 100644
+--- a/src/xsane-preview.c
++++ b/src/xsane-preview.c
 @@ -7575,7 +7575,7 @@ void preview_display_valid(Preview *p)
    }
    else if ((xsane.medium_changed) || (xsane.xsane_channels != p->preview_channels) || (p->invalid) ) /* preview is not valid */
@@ -79,341 +394,56 @@ Index: trunk/src/xsane-preview.c
  
      gtk_widget_show(p->valid_pixmap);
      gtk_widget_hide(p->scanning_pixmap);
-Index: trunk/po/sv.po
-===================================================================
---- trunk.orig/po/sv.po
-+++ trunk/po/sv.po
-@@ -2105,7 +2105,7 @@ msgid "Compression type if lineart image
- msgstr "Kompressionstyp om grafisk bild sparas som tiff"
+diff --git a/src/xsane-text.h b/src/xsane-text.h
+index fc6bbeb..52f7a0f 100644
+--- a/src/xsane-text.h
++++ b/src/xsane-text.h
+@@ -593,7 +593,7 @@
+ #define DESC_TIFF_COMPRESSION_16	_("Compression type if 16 bit image is saved as TIFF")
+ #define DESC_TIFF_COMPRESSION_8		_("Compression type if 8 bit image is saved as TIFF")
+ #define DESC_TIFF_COMPRESSION_1		_("Compression type if lineart image is saved as TIFF")
+-#define DESC_SAVE_DEVPREFS_AT_EXIT	_("Save device dependant preferences in default file at exit of xsane")
++#define DESC_SAVE_DEVPREFS_AT_EXIT	_("Save device dependent preferences in default file at exit of xsane")
+ #define DESC_OVERWRITE_WARNING		_("Warn before overwriting an existing file")
+ #define DESC_SKIP_EXISTING		_("If filename counter is automatically increased, used numbers are skipped")
+ #define DESC_SAVE_PS_FLATEDECODED	_("compress postscript image with zlib algorithm (flatedecode). " \
+@@ -854,7 +854,7 @@ The format of [DEVICE] is backendname:devicefile (e.g. umax:/dev/scanner).\n\
+  -n, --no-mode-selection      disable menu for XSane mode selection\n\
+ \n\
+  -F, --Fixed                  fixed main window size (overwrite preferences value)\n\
+- -R, --Resizeable             resizable, scrolled main window (overwrite preferences value)\n\
++ -R, --Resizable              resizable, scrolled main window (overwrite preferences value)\n\
+ \n\
+  -p, --print-filenames        print image filenames created by XSane\n\
+  -N, --force-filename name    force filename and disable user filename selection\n\
+diff --git a/src/xsane.c b/src/xsane.c
+index 775610e..e7d829c 100644
+--- a/src/xsane.c
++++ b/src/xsane.c
+@@ -67,7 +67,7 @@ struct option long_options[] =
+ #endif
+   {"no-mode-selection", no_argument, 0, 'n'},
+   {"Fixed", no_argument, 0, 'F'},
+-  {"Resizeable", no_argument, 0, 'R'},
++  {"Resizable", no_argument, 0, 'R'},
+   {"print-filenames", no_argument, 0, 'p'},
+   {"force-filename", required_argument, 0, 'N'},
+   {0, }
+@@ -2324,7 +2324,7 @@ static RETSIGTYPE xsane_sigchld_handler(int signal)
+     pid = waitpid(childprocess->pid, &status, WNOHANG);
+     if ( (WIFEXITED(status)) && (pid == childprocess->pid) )
+     {
+-      DBG(DBG_info, "deleteing pid %d from list\n", childprocess->pid);
++      DBG(DBG_info, "deleting pid %d from list\n", childprocess->pid);
  
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr "Spara enhetsberoende inställningar i standardfilen när xsane avslutas"
+       nextprocess = childprocess->next;
+       free(childprocess); /* free memory of element */
+@@ -5787,7 +5787,7 @@ static int xsane_init(int argc, char **argv)
+            xsane.main_window_fixed = 1;
+          break;
  
- #. DESC_OVERWRITE_WARNING
-Index: trunk/po/tr.po
-===================================================================
---- trunk.orig/po/tr.po
-+++ trunk/po/tr.po
-@@ -2089,7 +2089,7 @@ msgid "Compression type if lineart image
- msgstr "Eğer lineart resim tiff olarak saklanacaksa sıkıştırma tipi"
+-        case 'R': /* --Resizeable */
++        case 'R': /* --Resizable */
+            xsane.main_window_fixed = 0;
+          break;
  
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr "Xsane'den çıkarken öntanımlı dosyadaki aygıt bağımlı tercihleri sakla"
- 
- #. DESC_OVERWRITE_WARNING
-Index: trunk/po/vi.po
-===================================================================
---- trunk.orig/po/vi.po
-+++ trunk/po/vi.po
-@@ -2123,7 +2123,7 @@ msgid "Compression type if lineart image
- msgstr "Kiểu nén nếu ảnh lineart được lưu là tiff"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr ""
- "Lưu các tùy thích phụ thuộc thiết bị vào tập tin mặc định khi thoát khỏi "
- "XSane"
-Index: trunk/po/zh.po
-===================================================================
---- trunk.orig/po/zh.po
-+++ trunk/po/zh.po
-@@ -2070,7 +2070,7 @@ msgid "Compression type if lineart image
- msgstr "如果存成png檔的話,就壓縮"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr ""
- 
- #. DESC_OVERWRITE_WARNING
-Index: trunk/po/zh_CN.po
-===================================================================
---- trunk.orig/po/zh_CN.po
-+++ trunk/po/zh_CN.po
-@@ -2045,7 +2045,7 @@ msgid "Compression type if lineart image
- msgstr "如果存成png档的话,就压缩"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr ""
- 
- #. DESC_OVERWRITE_WARNING
-Index: trunk/po/ca.po
-===================================================================
---- trunk.orig/po/ca.po
-+++ trunk/po/ca.po
-@@ -2032,7 +2032,7 @@ msgstr ""
- "(mode línia)"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr ""
- "En sortir de l'XSane, desa les preferències que depenen del dispositiu en el "
- "fitxer per defecte"
-Index: trunk/po/cs.po
-===================================================================
---- trunk.orig/po/cs.po
-+++ trunk/po/cs.po
-@@ -2081,7 +2081,7 @@ msgid "Compression type if lineart image
- msgstr "Typ komprese, je-li obrázek zapisován jako TIFF čárová grafika"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr ""
- "Při skončení zapsat do standardního souboru předvolby závislé na zařízení"
- 
-Index: trunk/po/da.po
-===================================================================
---- trunk.orig/po/da.po
-+++ trunk/po/da.po
-@@ -2019,7 +2019,7 @@ msgid "Compression type if lineart image
- msgstr "Kompressionstype når stregtegningsbilleder gemmes som TIFF"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr "Gem enhedsafhængige værdier i standardfil, ved afslutning af XSane"
- 
- #. DESC_OVERWRITE_WARNING
-Index: trunk/po/de.po
-===================================================================
---- trunk.orig/po/de.po
-+++ trunk/po/de.po
-@@ -2022,7 +2022,7 @@ msgid "Compression type if lineart image
- msgstr "Kompression wenn lineart Bild im TIFF-Format gespeichert wird"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr ""
- "Geräteabhängige Einstellungen werden in der Default-Datei beim Beenden von "
- "xsane gespeichert"
-Index: trunk/po/es.po
-===================================================================
---- trunk.orig/po/es.po
-+++ trunk/po/es.po
-@@ -2111,7 +2111,7 @@ msgid "Compression type if lineart image
- msgstr "Tipo de compresión si la imagen de línea de arte es guardada como tiff"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr ""
- "Guardar preferencias dependientes del dispositivo en archivo por omisión al "
- "salir de XSane"
-Index: trunk/po/fi.po
-===================================================================
---- trunk.orig/po/fi.po
-+++ trunk/po/fi.po
-@@ -2005,7 +2005,7 @@ msgid "Compression type if lineart image
- msgstr "Pakkaustapa tallennettaessa 8-bittistä kuvaa TIFFinä"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr ""
- "Tallenna laiteriippuvaiset asetukset oletustiedostoon poistuttaessa xsanesta"
- 
-Index: trunk/po/fr.po
-===================================================================
---- trunk.orig/po/fr.po
-+++ trunk/po/fr.po
-@@ -2105,7 +2105,7 @@ msgid "Compression type if lineart image
- msgstr "Type de compression si l'image trait est enregistrée en tiff"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr ""
- "Enregister les paramètres du scanner dans le fichier par défaut en quittant "
- "XSane"
-Index: trunk/po/hu.po
-===================================================================
---- trunk.orig/po/hu.po
-+++ trunk/po/hu.po
-@@ -2078,7 +2078,7 @@ msgid "Compression type if lineart image
- msgstr "A tömörítés módja vonalas tiff kép esetén"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr ""
- "Az eszközfüggő beállításokat kilépéskor mentsük el az alapértelmezett fájlba"
- 
-Index: trunk/po/it.po
-===================================================================
---- trunk.orig/po/it.po
-+++ trunk/po/it.po
-@@ -2024,7 +2024,7 @@ msgid "Compression type if lineart image
- msgstr "Tipo compressione se l'immagine lineart viene salvata come TIFF"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr ""
- "Salva le impostazioni del dispositivo nel file prestabilito all'uscita da "
- "XSane"
-Index: trunk/po/ja.po
-===================================================================
---- trunk.orig/po/ja.po
-+++ trunk/po/ja.po
-@@ -2093,7 +2093,7 @@ msgid "Compression type if lineart image
- msgstr "ラインアート画像がTIFFで保存されている場合の圧縮タイプ"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr "XSane終了時にデバイス依存の設定を既定値としてファイル保存"
- 
- #. DESC_OVERWRITE_WARNING
-Index: trunk/po/nl.po
-===================================================================
---- trunk.orig/po/nl.po
-+++ trunk/po/nl.po
-@@ -2091,7 +2091,7 @@ msgid "Compression type if lineart image
- msgstr "Compressie van zwart wit TIFF afbeeldingen"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr ""
- "Bewaar apparaatspecifieke instellingen in standaard bestand als XSane eindigt"
- 
-Index: trunk/po/pa.po
-===================================================================
---- trunk.orig/po/pa.po
-+++ trunk/po/pa.po
-@@ -2008,7 +2008,7 @@ msgid "Compression type if lineart image
- msgstr "ਜੇ ਲੀਨੀਅਰਟ ਚਿੱਤਰ ਨੂੰ TIFF ਵਾਂਗ ਸੰਭਾਲਣ ਹੋਵੇ ਤਾਂ ਕੰਪਰੈੱਸਨ ਕਿਸਮ"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr "xsane ਬੰਦ ਕਰਨ ਸਮੇਂ ਡਿਫਾਲਟ ਫਾਇਲ ਵਿੱਚ ਜੰਤਰ ਨਿਰਭਰਤਾ ਪਸੰਦ ਸੰਭਾਲੋ"
- 
- #. DESC_OVERWRITE_WARNING
-Index: trunk/po/pl.po
-===================================================================
---- trunk.orig/po/pl.po
-+++ trunk/po/pl.po
-@@ -2096,7 +2096,7 @@ msgid "Compression type if lineart image
- msgstr "Typ kompresji przy zapisie jako TIFF obrazka w trybie kreski"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr ""
- "Zapisz ustawienia urządzenia w domyślnym pliku przy wychodzeniu z XSane"
- 
-Index: trunk/po/pt.po
-===================================================================
---- trunk.orig/po/pt.po
-+++ trunk/po/pt.po
-@@ -2103,7 +2103,7 @@ msgid "Compression type if lineart image
- msgstr "Tipo de compressão se imagem em linha artística é salvada como tiff"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr ""
- "Salva preferências dependentes do dispositivo em arquivo padrão na saída do "
- "xsane"
-Index: trunk/po/pt_BR.po
-===================================================================
---- trunk.orig/po/pt_BR.po
-+++ trunk/po/pt_BR.po
-@@ -2103,7 +2103,7 @@ msgid "Compression type if lineart image
- msgstr "Tipo de compressão se imagem em linha artística é salvada como tiff"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr ""
- "Salva preferências dependentes do dispositivo em arquivo padrão na saída do "
- "xsane"
-Index: trunk/po/ro.po
-===================================================================
---- trunk.orig/po/ro.po
-+++ trunk/po/ro.po
-@@ -2106,7 +2106,7 @@ msgid "Compression type if lineart image
- msgstr "Tip compresie dacă o imagine alb/negru este salvată ca TIFF"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr ""
- "Salvează preferinţele dependente de dispozitiv în fişierul implicit la "
- "terminarea XSane"
-Index: trunk/po/ru.po
-===================================================================
---- trunk.orig/po/ru.po
-+++ trunk/po/ru.po
-@@ -2089,7 +2089,7 @@ msgid "Compression type if lineart image
- msgstr "Тип сжатия для формата TIFF при сохранении штриховых изображений"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr ""
- "Сохранять параметры устройства в файле по умолчанию при выходе из XSane"
- 
-Index: trunk/po/sk.po
-===================================================================
---- trunk.orig/po/sk.po
-+++ trunk/po/sk.po
-@@ -2030,7 +2030,7 @@ msgid "Compression type if lineart image
- msgstr "Typ kompresie, ak je obrázok čiarovej grafiky uložený ako TIFF "
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr ""
- "Uložiť nastavenia závislé na zariadení v štandardnom súbore pri ukončení "
- "XSane"
-Index: trunk/po/sl.po
-===================================================================
---- trunk.orig/po/sl.po
-+++ trunk/po/sl.po
-@@ -2081,7 +2081,7 @@ msgid "Compression type if lineart image
- msgstr "Vrsta stiskanja pri shranjevanju slik v načinu lineart v zapisu TIFF"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr "Shrani odgovarjajoče nastavitve naprave v privzeto datoteko ob izhodu"
- 
- #. DESC_OVERWRITE_WARNING
-Index: trunk/po/sr.po
-===================================================================
---- trunk.orig/po/sr.po
-+++ trunk/po/sr.po
-@@ -2017,7 +2017,7 @@ msgid "Compression type if lineart image
- msgstr "Врста компресије ако се lineart слика памти као TIFF"
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr ""
- "Памти одговарајуће конфигурације уређаја у подразумеваној фајли при "
- "напуштању XSane"
-Index: trunk/po/xsane.pot
-===================================================================
---- trunk.orig/po/xsane.pot
-+++ trunk/po/xsane.pot
-@@ -1967,7 +1967,7 @@ msgid "Compression type if lineart image
- msgstr ""
- 
- #. DESC_SAVE_DEVPREFS_AT_EXIT
--msgid "Save device dependant preferences in default file at exit of xsane"
-+msgid "Save device dependent preferences in default file at exit of xsane"
- msgstr ""
- 
- #. DESC_OVERWRITE_WARNING

@@ -1,13 +1,15 @@
-Description: insert missing tag Keywords and some other changes
-Author: Jörg Frings-Fürst <debian@jff-webhosting.net>
-Forwarded: not-needed
-Last-Update: 2014-10-17
+From: =?utf-8?q?J=C3=B6rg_Frings-F=C3=BCrst?= <debian@jff-webhosting.net>
+Date: Thu, 14 Sep 2017 15:28:58 +0300
+Subject: desktop_file
+
 ---
-This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
-Index: trunk/src/xsane.desktop
-===================================================================
---- trunk.orig/src/xsane.desktop
-+++ trunk/src/xsane.desktop
+ src/xsane.desktop | 18 ++++++++++++++----
+ 1 file changed, 14 insertions(+), 4 deletions(-)
+
+diff --git a/src/xsane.desktop b/src/xsane.desktop
+index d5161e5..67cc7b8 100644
+--- a/src/xsane.desktop
++++ b/src/xsane.desktop
 @@ -1,9 +1,19 @@
  [Desktop Entry]
 -Encoding=UTF-8

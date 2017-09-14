@@ -1,15 +1,42 @@
-Description: Fix a typo in GUI messages
- Fix the "postsciptfile" typo in xsane-text.h and po files.
-Author: St�phane Blondon <stephane.blondon@gmail.com>
-Origin: other, http://bugs.debian.org/cgi-bin/bugreport.cgi?msg=5;bug=569747
-Bug-Debian: http://bugs.debian.org/569747
-Forwarded: no
+From: =?utf-8?q?J=C3=B6rg_Frings-F=C3=BCrst?= <debian@jff-webhosting.net>
+Date: Thu, 14 Sep 2017 15:28:58 +0300
+Subject: fix_message_typo
 
-Index: trunk/po/ca.po
-===================================================================
---- trunk.orig/po/ca.po
-+++ trunk/po/ca.po
-@@ -1969,11 +1969,11 @@ msgid "Additional gamma value for blue c
+---
+ po/ca.po         | 4 ++--
+ po/cs.po         | 4 ++--
+ po/da.po         | 4 ++--
+ po/de.po         | 4 ++--
+ po/es.po         | 4 ++--
+ po/fi.po         | 4 ++--
+ po/fr.po         | 4 ++--
+ po/hu.po         | 4 ++--
+ po/it.po         | 4 ++--
+ po/ja.po         | 4 ++--
+ po/nl.po         | 4 ++--
+ po/pa.po         | 4 ++--
+ po/pl.po         | 4 ++--
+ po/pt.po         | 4 ++--
+ po/pt_BR.po      | 4 ++--
+ po/ro.po         | 4 ++--
+ po/ru.po         | 4 ++--
+ po/sk.po         | 4 ++--
+ po/sl.po         | 4 ++--
+ po/sr.po         | 8 ++++----
+ po/sv.po         | 4 ++--
+ po/tr.po         | 4 ++--
+ po/vi.po         | 4 ++--
+ po/xsane.pot     | 4 ++--
+ po/zh.po         | 4 ++--
+ po/zh_CN.po      | 4 ++--
+ src/xsane-text.h | 4 ++--
+ 27 files changed, 56 insertions(+), 56 deletions(-)
+
+diff --git a/po/ca.po b/po/ca.po
+index 75852fd..1051039 100644
+--- a/po/ca.po
++++ b/po/ca.po
+@@ -1969,11 +1969,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "Valor gamma addicional de la component blava per a les fotocòpies"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -23,11 +50,11 @@ Index: trunk/po/ca.po
  msgstr "Crea un fitxer PostScript que conté el perfil ICM de la impressora"
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/cs.po
-===================================================================
---- trunk.orig/po/cs.po
-+++ trunk/po/cs.po
-@@ -2015,11 +2015,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/cs.po b/po/cs.po
+index 76af1ea..7dd51bf 100644
+--- a/po/cs.po
++++ b/po/cs.po
+@@ -2015,11 +2015,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "Dodatečná gama hodnota pro modrou komponentu pro kopírování"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -41,11 +68,11 @@ Index: trunk/po/cs.po
  msgstr ""
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/da.po
-===================================================================
---- trunk.orig/po/da.po
-+++ trunk/po/da.po
-@@ -1960,11 +1960,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/da.po b/po/da.po
+index 7060318..ecb6e2d 100644
+--- a/po/da.po
++++ b/po/da.po
+@@ -1960,11 +1960,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "Supplerende gammaværdi for fotokopiering, blå farvedel"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -59,11 +86,11 @@ Index: trunk/po/da.po
  msgstr "Danner en postscriptfil der indeholder ICM-profilen for printeren"
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/de.po
-===================================================================
---- trunk.orig/po/de.po
-+++ trunk/po/de.po
-@@ -1962,11 +1962,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/de.po b/po/de.po
+index 06801d3..eedcbf1 100644
+--- a/po/de.po
++++ b/po/de.po
+@@ -1962,11 +1962,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "Zusätzlicher Gammawert für blaue Komponente beim Fotokopieren"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -77,11 +104,11 @@ Index: trunk/po/de.po
  msgstr "Erzeugt eine Postscriptdatei die das ICM-Profil des Druckers enthält"
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/es.po
-===================================================================
---- trunk.orig/po/es.po
-+++ trunk/po/es.po
-@@ -2048,11 +2048,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/es.po b/po/es.po
+index 22706af..9f036a3 100644
+--- a/po/es.po
++++ b/po/es.po
+@@ -2048,11 +2048,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "Valor de gamma adicional del valor azul para fotocopia"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -95,11 +122,11 @@ Index: trunk/po/es.po
  msgstr ""
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/fi.po
-===================================================================
---- trunk.orig/po/fi.po
-+++ trunk/po/fi.po
-@@ -1943,11 +1943,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/fi.po b/po/fi.po
+index b2c3041..b0e5899 100644
+--- a/po/fi.po
++++ b/po/fi.po
+@@ -1943,11 +1943,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr ""
  
  #. DESC_PRINTER_EMBED_CSA
@@ -113,11 +140,11 @@ Index: trunk/po/fi.po
  msgstr ""
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/fr.po
-===================================================================
---- trunk.orig/po/fr.po
-+++ trunk/po/fr.po
-@@ -2042,11 +2042,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/fr.po b/po/fr.po
+index 265552f..51387f5 100644
+--- a/po/fr.po
++++ b/po/fr.po
+@@ -2042,11 +2042,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "Gamma additionnel pour la composante bleue pour la photocopie"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -131,11 +158,11 @@ Index: trunk/po/fr.po
  msgstr ""
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/hu.po
-===================================================================
---- trunk.orig/po/hu.po
-+++ trunk/po/hu.po
-@@ -2012,11 +2012,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/hu.po b/po/hu.po
+index 1a94fbd..40c9c5c 100644
+--- a/po/hu.po
++++ b/po/hu.po
+@@ -2012,11 +2012,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "Plusz kék gamma érték a fotómásoláshoz"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -149,11 +176,11 @@ Index: trunk/po/hu.po
  msgstr ""
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/it.po
-===================================================================
---- trunk.orig/po/it.po
-+++ trunk/po/it.po
-@@ -1965,11 +1965,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/it.po b/po/it.po
+index 29d2a32..f84eea8 100644
+--- a/po/it.po
++++ b/po/it.po
+@@ -1965,11 +1965,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "Valore aggiuntivo della gamma per la componente blu per la fotocopia"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -167,11 +194,11 @@ Index: trunk/po/it.po
  msgstr "Crea un file postscript che contiene il profilo ICM della stampante"
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/ja.po
-===================================================================
---- trunk.orig/po/ja.po
-+++ trunk/po/ja.po
-@@ -2031,11 +2031,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/ja.po b/po/ja.po
+index 09b066a..790ea2d 100644
+--- a/po/ja.po
++++ b/po/ja.po
+@@ -2031,11 +2031,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "焼き増しへの青成分追加ガンマ値"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -185,11 +212,11 @@ Index: trunk/po/ja.po
  msgstr ""
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/nl.po
-===================================================================
---- trunk.orig/po/nl.po
-+++ trunk/po/nl.po
-@@ -2025,11 +2025,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/nl.po b/po/nl.po
+index cd22e80..a2e12d8 100644
+--- a/po/nl.po
++++ b/po/nl.po
+@@ -2025,11 +2025,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "Extra gammacorrectie voor blauw voor fotokopie"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -203,11 +230,11 @@ Index: trunk/po/nl.po
  msgstr ""
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/pa.po
-===================================================================
---- trunk.orig/po/pa.po
-+++ trunk/po/pa.po
-@@ -1951,11 +1951,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/pa.po b/po/pa.po
+index e09f8fd..e602e7c 100644
+--- a/po/pa.po
++++ b/po/pa.po
+@@ -1951,11 +1951,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "ਫੋਟੋ-ਕਾਪੀ ਲਈ ਨੀਲੇ ਭਾਗ ਵਾਸਤੇ ਹੋਰ ਗਾਮਾ ਮੁੱਲ"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -221,11 +248,11 @@ Index: trunk/po/pa.po
  msgstr "ਇੱਕ ਪੋਸਟ-ਸਕ੍ਰਿਪਟ ਫਾਇਲ ਬਣਾਓ, ਜੋ ਕਿ ਪਰਿੰਟਰ ਦਾ ICM ਪਰੋਫਾਇਲ ਰੱਖਦੀ ਹੋਵੇ।"
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/pl.po
-===================================================================
---- trunk.orig/po/pl.po
-+++ trunk/po/pl.po
-@@ -2030,11 +2030,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/pl.po b/po/pl.po
+index b62d028..6e4bf94 100644
+--- a/po/pl.po
++++ b/po/pl.po
+@@ -2030,11 +2030,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "Dodatkowy parametr gamma dla niebieskiej składowej kopii"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -239,11 +266,11 @@ Index: trunk/po/pl.po
  msgstr ""
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/pt.po
-===================================================================
---- trunk.orig/po/pt.po
-+++ trunk/po/pt.po
-@@ -2040,11 +2040,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/pt.po b/po/pt.po
+index f1f53ee..1e9002f 100644
+--- a/po/pt.po
++++ b/po/pt.po
+@@ -2040,11 +2040,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "Valor gama adicional para o componente azul para fotocópia"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -257,11 +284,11 @@ Index: trunk/po/pt.po
  msgstr ""
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/pt_BR.po
-===================================================================
---- trunk.orig/po/pt_BR.po
-+++ trunk/po/pt_BR.po
-@@ -2040,11 +2040,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/pt_BR.po b/po/pt_BR.po
+index 3e19187..4e40047 100644
+--- a/po/pt_BR.po
++++ b/po/pt_BR.po
+@@ -2040,11 +2040,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "Valor gama adicional para o componente azul para fotocópia"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -275,11 +302,11 @@ Index: trunk/po/pt_BR.po
  msgstr ""
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/ro.po
-===================================================================
---- trunk.orig/po/ro.po
-+++ trunk/po/ro.po
-@@ -2043,11 +2043,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/ro.po b/po/ro.po
+index 3b288b5..d326339 100644
+--- a/po/ro.po
++++ b/po/ro.po
+@@ -2043,11 +2043,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "Valoare gamma adiţională componentă albastru pt. fotocopie"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -293,11 +320,11 @@ Index: trunk/po/ro.po
  msgstr ""
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/ru.po
-===================================================================
---- trunk.orig/po/ru.po
-+++ trunk/po/ru.po
-@@ -2024,11 +2024,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/ru.po b/po/ru.po
+index ece1ba9..858143d 100644
+--- a/po/ru.po
++++ b/po/ru.po
+@@ -2024,11 +2024,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "Дополнительное значение синего компонента гаммы при копировании"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -311,11 +338,11 @@ Index: trunk/po/ru.po
  msgstr ""
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/sk.po
-===================================================================
---- trunk.orig/po/sk.po
-+++ trunk/po/sk.po
-@@ -1971,11 +1971,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/sk.po b/po/sk.po
+index 232ff60..bde9d52 100644
+--- a/po/sk.po
++++ b/po/sk.po
+@@ -1971,11 +1971,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "Dodatočná gama hodnota pre modrý komponent fotokópie"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -329,11 +356,11 @@ Index: trunk/po/sk.po
  msgstr "Vytvoriť postscript súbor obsahujúci ICM profil tlačiarne"
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/sl.po
-===================================================================
---- trunk.orig/po/sl.po
-+++ trunk/po/sl.po
-@@ -2015,11 +2015,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/sl.po b/po/sl.po
+index 92e430a..155bf1d 100644
+--- a/po/sl.po
++++ b/po/sl.po
+@@ -2015,11 +2015,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "Dodatna vrednost gama za modro komponento pri fotokopiranju"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -347,11 +374,11 @@ Index: trunk/po/sl.po
  msgstr ""
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/sr.po
-===================================================================
---- trunk.orig/po/sr.po
-+++ trunk/po/sr.po
-@@ -1958,12 +1958,12 @@ msgid "Additional gamma value for blue c
+diff --git a/po/sr.po b/po/sr.po
+index d8db9c6..fdc8118 100644
+--- a/po/sr.po
++++ b/po/sr.po
+@@ -1958,12 +1958,12 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "Додатна вредност гама за плаву компоненту при фотокопирању"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -368,11 +395,11 @@ Index: trunk/po/sr.po
  
  #. DESC_PRINTER_CMS_BPC
  msgid "Applies black point compensation"
-Index: trunk/po/sv.po
-===================================================================
---- trunk.orig/po/sv.po
-+++ trunk/po/sv.po
-@@ -2043,11 +2043,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/sv.po b/po/sv.po
+index 975e86f..616e883 100644
+--- a/po/sv.po
++++ b/po/sv.po
+@@ -2043,11 +2043,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "Extra gammavärde för den blåa komponeneten vid fotokopiering"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -386,11 +413,11 @@ Index: trunk/po/sv.po
  msgstr ""
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/tr.po
-===================================================================
---- trunk.orig/po/tr.po
-+++ trunk/po/tr.po
-@@ -2023,11 +2023,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/tr.po b/po/tr.po
+index b0ab8b0..4c63278 100644
+--- a/po/tr.po
++++ b/po/tr.po
+@@ -2023,11 +2023,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "Fotokopi için mavi bileşenin ilave gamma değeri"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -404,11 +431,11 @@ Index: trunk/po/tr.po
  msgstr ""
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/vi.po
-===================================================================
---- trunk.orig/po/vi.po
-+++ trunk/po/vi.po
-@@ -2061,11 +2061,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/vi.po b/po/vi.po
+index e5925f2..fe6ca58 100644
+--- a/po/vi.po
++++ b/po/vi.po
+@@ -2061,11 +2061,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr "Giá trị gamma thêm cho thành phần màu xanh da trời cho photocopy"
  
  #. DESC_PRINTER_EMBED_CSA
@@ -422,11 +449,11 @@ Index: trunk/po/vi.po
  msgstr ""
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/xsane.pot
-===================================================================
---- trunk.orig/po/xsane.pot
-+++ trunk/po/xsane.pot
-@@ -1912,11 +1912,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/xsane.pot b/po/xsane.pot
+index c8a37b1..b324d23 100644
+--- a/po/xsane.pot
++++ b/po/xsane.pot
+@@ -1912,11 +1912,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr ""
  
  #. DESC_PRINTER_EMBED_CSA
@@ -440,11 +467,11 @@ Index: trunk/po/xsane.pot
  msgstr ""
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/zh.po
-===================================================================
---- trunk.orig/po/zh.po
-+++ trunk/po/zh.po
-@@ -2011,11 +2011,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/zh.po b/po/zh.po
+index 4acd8d7..487849f 100644
+--- a/po/zh.po
++++ b/po/zh.po
+@@ -2011,11 +2011,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr ""
  
  #. DESC_PRINTER_EMBED_CSA
@@ -458,11 +485,11 @@ Index: trunk/po/zh.po
  msgstr ""
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/po/zh_CN.po
-===================================================================
---- trunk.orig/po/zh_CN.po
-+++ trunk/po/zh_CN.po
-@@ -1986,11 +1986,11 @@ msgid "Additional gamma value for blue c
+diff --git a/po/zh_CN.po b/po/zh_CN.po
+index 78d8ccf..4a81022 100644
+--- a/po/zh_CN.po
++++ b/po/zh_CN.po
+@@ -1986,11 +1986,11 @@ msgid "Additional gamma value for blue component for photocopy"
  msgstr ""
  
  #. DESC_PRINTER_EMBED_CSA
@@ -476,10 +503,10 @@ Index: trunk/po/zh_CN.po
  msgstr ""
  
  #. DESC_PRINTER_CMS_BPC
-Index: trunk/src/xsane-text.h
-===================================================================
---- trunk.orig/src/xsane-text.h
-+++ trunk/src/xsane-text.h
+diff --git a/src/xsane-text.h b/src/xsane-text.h
+index a1e5956..2cf9b1a 100644
+--- a/src/xsane-text.h
++++ b/src/xsane-text.h
 @@ -579,8 +579,8 @@
  #define DESC_PRINTER_GAMMA_RED		_("Additional gamma value for red component for photocopy")
  #define DESC_PRINTER_GAMMA_GREEN	_("Additional gamma value for green component for photocopy")

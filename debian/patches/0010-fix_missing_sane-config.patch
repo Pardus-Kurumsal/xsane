@@ -1,16 +1,15 @@
-Description: Fix FTBFS against libsane-dev >= 1.0.25-3
- Fix missing sane-config
-Author: Andreas Metzler <ametzler@bebt.de>
-Bug-Debian: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=852840
-Forwarded: https://github.com/nphilipp/xsane/issues/1
-Reviewed-by: Jörg Frings-Fürst <debian@jff-webhosting.net>
-Last-Update: 2017-01-28 
+From: =?utf-8?q?J=C3=B6rg_Frings-F=C3=BCrst?= <debian@jff-webhosting.net>
+Date: Thu, 14 Sep 2017 15:28:58 +0300
+Subject: fix_missing_sane-config
+
 ---
-This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
-Index: trunk/configure.in
-===================================================================
---- trunk.orig/configure.in
-+++ trunk/configure.in
+ configure.in | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/configure.in b/configure.in
+index bcd28ac..82393e8 100644
+--- a/configure.in
++++ b/configure.in
 @@ -165,8 +165,10 @@ fi
  
  AC_SUBST(INTLSUB)

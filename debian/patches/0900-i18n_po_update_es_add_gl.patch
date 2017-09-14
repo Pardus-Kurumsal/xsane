@@ -1,12 +1,18 @@
-Description: PO updates, update es and add gl
- Update es translation, add new gl translation.
-Author: Miguel Bouzada <mbouzada@gmail.com>
-Forwarded: yes
+From: =?utf-8?q?J=C3=B6rg_Frings-F=C3=BCrst?= <debian@jff-webhosting.net>
+Date: Thu, 14 Sep 2017 15:28:58 +0300
+Subject: i18n_po_update_es_add_gl
 
-Index: trunk/configure
-===================================================================
---- trunk.orig/configure
-+++ trunk/configure
+---
+ configure |    2 +-
+ po/es.po  | 1325 +++++++++++---------------
+ po/gl.po  | 3127 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 3652 insertions(+), 802 deletions(-)
+ create mode 100644 po/gl.po
+
+diff --git a/configure b/configure
+index 7009109..eb0169f 100755
+--- a/configure
++++ b/configure
 @@ -2234,7 +2234,7 @@ PACKAGE=xsane
  BINPROGS="xsane"
  
@@ -16,10 +22,10 @@ Index: trunk/configure
  
  SANE_V_MAJOR=1
  VERSION=${V_MAJOR}.${V_MINOR}
-Index: trunk/po/es.po
-===================================================================
---- trunk.orig/po/es.po
-+++ trunk/po/es.po
+diff --git a/po/es.po b/po/es.po
+index 9f036a3..46a5a69 100644
+--- a/po/es.po
++++ b/po/es.po
 @@ -1,21 +1,24 @@
 -# translation of es.po to Castellano
 -# XSane Spanish .po file
@@ -75,7 +81,7 @@ Index: trunk/po/es.po
  
  #. WINDOW_INFO
  msgid "info"
-@@ -66,67 +69,59 @@ msgstr "guardar lista de proceso por lot
+@@ -66,67 +69,59 @@ msgstr "guardar lista de proceso por lotes"
  
  #. WINDOW_BATCH_SCAN
  msgid "batch scan"
@@ -416,7 +422,7 @@ Index: trunk/po/es.po
  
  #. RADIO_BUTTON_SKIP_EXISTING_NRS
  msgid "Skip existing filenames"
-@@ -513,16 +501,15 @@ msgstr "Omitir nombres de archivos exist
+@@ -513,16 +501,15 @@ msgstr "Omitir nombres de archivos existentes"
  
  #. RADIO_BUTTON_SAVE_PS_FLATEDECODED
  msgid "Save postscript zlib compressed (PS level 3)"
@@ -436,7 +442,7 @@ Index: trunk/po/es.po
  
  #. RADIO_BUTTON_REDUCE_16BIT_TO_8BIT
  msgid "Reduce 16 bit image to 8 bit"
-@@ -530,12 +517,11 @@ msgstr "Reducir imagen de 16 bits a imag
+@@ -530,12 +517,11 @@ msgstr "Reducir imagen de 16 bits a imagen de 8 bits"
  
  #. RADIO_BUTTON_WINDOW_FIXED
  msgid "Main window size fixed"
@@ -562,7 +568,7 @@ Index: trunk/po/es.po
  
  #. TEXT_AUTHORIZATION_SECURE
  msgid "Password transmission is secure"
-@@ -673,7 +655,7 @@ msgstr "La transmisión de contraseña e
+@@ -673,7 +655,7 @@ msgstr "La transmisión de contraseña es segura"
  
  #. TEXT_AUTHORIZATION_INSECURE
  msgid "Backend requests plain-text password"
@@ -866,7 +872,7 @@ Index: trunk/po/es.po
  
  #. TEXT_SETUP_TIFF_COMPRESSION_16
  msgid "TIFF 16 bit image compression"
-@@ -1031,11 +987,11 @@ msgstr "Compresión de imagen TIFF de l�
+@@ -1031,11 +987,11 @@ msgstr "Compresión de imagen TIFF de línea de arte"
  
  #. TEXT_SETUP_SHOW_RANGE_MODE
  msgid "Show range as:"
@@ -1737,7 +1743,7 @@ Index: trunk/po/es.po
  "gamma = 1.0\n"
  "brillo = 0\n"
  "contraste = 0"
-@@ -1951,28 +1852,27 @@ msgstr "Guardar valores de mejora activo
+@@ -1951,28 +1852,27 @@ msgstr "Guardar valores de mejora activos a preferencias <Ctrl-+>"
  
  #. DESC_HIST_INTENSITY
  msgid "Show histogram of intensity/gray <Alt-i>"
@@ -1772,7 +1778,7 @@ Index: trunk/po/es.po
  
  #. DESC_PRINTER_SETUP
  msgid "Select definition to change"
-@@ -1984,47 +1884,38 @@ msgstr "Definir un nombre para la selecc
+@@ -1984,47 +1884,38 @@ msgstr "Definir un nombre para la selección de ésta definición"
  
  #. DESC_PRINTER_COMMAND
  msgid "Enter command to be executed in copy mode (e.g. \"lpr\")"
@@ -1830,7 +1836,7 @@ Index: trunk/po/es.po
  
  #. DESC_PRINTER_BOTTOMOFFSET
  #. DESC_FAX_BOTTOMOFFSET
-@@ -2033,37 +1924,39 @@ msgstr "Deplazamiento hacia abajo desde
+@@ -2033,37 +1924,39 @@ msgstr "Deplazamiento hacia abajo desde el borde del papel al área imprimible"
  
  #. DESC_PRINTER_GAMMA
  msgid "Additional gamma value for photocopy"
@@ -2205,7 +2211,7 @@ Index: trunk/po/es.po
  
  #. DESC_FAX_FINE_MODE
  msgid "Send fax with high vertical resolution (196 lpi instead of 98 lpi)"
-@@ -2342,89 +2162,71 @@ msgstr "Enviar fax con resolución verti
+@@ -2342,89 +2162,71 @@ msgstr "Enviar fax con resolución vertical alta (196 lpp en vez de 98 lpp)"
  
  #. DESC_FAX_PS_FLATEDECODED
  msgid "Create zlib compressed postscript image for fax (flatedecode)"
@@ -2463,7 +2469,7 @@ Index: trunk/po/es.po
  
  #. DESC_BATCH_ADD
  msgid "Add selected preview area to batch list"
-@@ -2609,45 +2399,39 @@ msgstr "Añadir vista previa seleccionad
+@@ -2609,45 +2399,39 @@ msgstr "Añadir vista previa seleccionada a la lista de proceso por lotes"
  
  #. DESC_BATCH_DEL
  msgid "Delete selected area from batch list"
@@ -2518,7 +2524,7 @@ Index: trunk/po/es.po
  
  #. ERR_CHANGE_WORKING_DIR
  msgid "Failed to change working directory to"
-@@ -2655,7 +2439,7 @@ msgstr "Falló al cambiar el directorio
+@@ -2655,7 +2439,7 @@ msgstr "Falló al cambiar el directorio de trabajo a"
  
  #. ERR_FILENAME_TOO_LONG
  msgid "Filename too long"
@@ -2641,7 +2647,7 @@ Index: trunk/po/es.po
  
  #. ERR_OPTION_NAME_NULL
  msgid "Option has empty name (NULL)."
-@@ -2769,32 +2555,31 @@ msgstr "La opción tiene nombre vacío (
+@@ -2769,32 +2555,31 @@ msgstr "La opción tiene nombre vacío (NULL)."
  
  #. ERR_BACKEND_BUG
  msgid "This is a backend bug. Please inform the author of the backend!"
@@ -2700,7 +2706,7 @@ Index: trunk/po/es.po
  
  #. ERR_PREVIEW_BAD_DEPTH
  msgid "Preview cannot handle bit depth"
-@@ -2831,22 +2616,21 @@ msgstr "La vista previa no puede manejar
+@@ -2831,22 +2616,21 @@ msgstr "La vista previa no puede manejar la profundidad de bits"
  
  #. ERR_GIMP_SUPPORT_MISSING
  msgid "GIMP support missing"
@@ -2776,7 +2782,7 @@ Index: trunk/po/es.po
  
  #. ERR_USED_FOR_DEVICE
  msgid "you want to use it for device"
-@@ -2906,7 +2690,7 @@ msgstr "usted quiere usarlo para el disp
+@@ -2906,7 +2690,7 @@ msgstr "usted quiere usarlo para el dispositivo"
  
  #. ERR_MAY_CAUSE_PROBLEMS
  msgid "this may cause problems!"
@@ -2785,7 +2791,7 @@ Index: trunk/po/es.po
  
  #. WARN_UNSAVED_IMAGES
  #, c-format
-@@ -2934,34 +2718,28 @@ msgid "Unsupported %d-bit output format:
+@@ -2934,34 +2718,28 @@ msgid "Unsupported %d-bit output format: %s"
  msgstr "Formato de salida de %d-bit no soportado: %s"
  
  #. ERR_CMS_CONVERSION
@@ -2825,7 +2831,7 @@ Index: trunk/po/es.po
  
  #. WARN_VIEWER_IMAGE_NOT_SAVED
  msgid "viewer image is not saved"
-@@ -2969,31 +2747,27 @@ msgstr "La imagen del visor no se guard�
+@@ -2969,31 +2747,27 @@ msgstr "La imagen del visor no se guardó"
  
  #. FILE_FILTER_ALL_FILES
  msgid "All files"
@@ -3121,7 +3127,7 @@ Index: trunk/po/es.po
  msgid "Queueing fax"
  msgstr "Poniendo el fax en la cola de envío"
  
-@@ -3334,22 +3074,22 @@ msgstr "el fax está en la cola de enví
+@@ -3334,22 +3074,22 @@ msgstr "el fax está en la cola de envío"
  
  #. Sane backend messages
  msgid "flatbed scanner"
@@ -3277,10 +3283,11 @@ Index: trunk/po/es.po
  #~ msgid "Mail"
  #~ msgstr "Correo electrónico"
 +
-Index: trunk/po/gl.po
-===================================================================
+diff --git a/po/gl.po b/po/gl.po
+new file mode 100644
+index 0000000..2ffcd35
 --- /dev/null
-+++ trunk/po/gl.po
++++ b/po/gl.po
 @@ -0,0 +1,3127 @@
 +# Galego translation
 +# XSane Galician gl.po file

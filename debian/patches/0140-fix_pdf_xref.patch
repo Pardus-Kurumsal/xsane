@@ -1,13 +1,16 @@
-Description: Fix xref table generation
- Mark non-existent objects as free in the xref table.
-Author: Julien BLACHE <jblache@debian.org>
-Forwarded: yes
+From: =?utf-8?q?J=C3=B6rg_Frings-F=C3=BCrst?= <debian@jff-webhosting.net>
+Date: Thu, 14 Sep 2017 15:28:58 +0300
+Subject: fix_pdf_xref
 
-Index: xsane-0.998/src/xsane-multipage-project.c
-===================================================================
---- xsane-0.998.orig/src/xsane-multipage-project.c	2010-11-16 21:25:50.000000000 +0100
-+++ xsane-0.998/src/xsane-multipage-project.c	2011-02-04 19:50:53.929016002 +0100
-@@ -973,6 +973,10 @@
+---
+ src/xsane-multipage-project.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/xsane-multipage-project.c b/src/xsane-multipage-project.c
+index f23e5f8..f81eca5 100644
+--- a/src/xsane-multipage-project.c
++++ b/src/xsane-multipage-project.c
+@@ -973,6 +973,10 @@ static void xsane_multipage_save_file()
      else if (output_format == XSANE_PDF)
      {
        xsane_save_pdf_create_document_header(outfile, &xref, pages, preferences.save_pdf_flatedecoded);

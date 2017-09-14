@@ -1,13 +1,15 @@
-Description: Fix mouse events handling in preview window
- Event handling was using key values as masks on mouse events, leading
- to valid mouse events being discarded in some setups.
-Bug-Debian: http://bugs.debian.org/583661
-Author: Reinhard Fössmeier <info@ais-sanmarino.org>
+From: =?utf-8?q?J=C3=B6rg_Frings-F=C3=BCrst?= <debian@jff-webhosting.net>
+Date: Thu, 14 Sep 2017 15:28:58 +0300
+Subject: fix_preview_mouse_events
 
-Index: xsane-0.998/src/xsane-preview.c
-===================================================================
---- xsane-0.998.orig/src/xsane-preview.c	2010-11-16 21:52:39.000000000 +0100
-+++ xsane-0.998/src/xsane-preview.c	2011-02-04 19:51:41.789016002 +0100
+---
+ src/xsane-preview.c | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
+
+diff --git a/src/xsane-preview.c b/src/xsane-preview.c
+index cacef95..9416de5 100644
+--- a/src/xsane-preview.c
++++ b/src/xsane-preview.c
 @@ -80,7 +80,6 @@
  #include "xsane-preview.h"
  #include "xsane-preferences.h"
@@ -16,7 +18,7 @@ Index: xsane-0.998/src/xsane-preview.c
  
  
  #ifndef PATH_MAX
-@@ -3023,9 +3022,9 @@
+@@ -3023,9 +3022,9 @@ static gint preview_motion_event_handler(GtkWidget *window, GdkEvent *event, gpo
      preview_display_color_components(p, event->motion.x, event->motion.y);
  
      switch (((GdkEventMotion *)event)->state &
@@ -28,7 +30,7 @@ Index: xsane-0.998/src/xsane-preview.c
  
          DBG(DBG_info2, "left button\n");
  
-@@ -3292,8 +3291,8 @@
+@@ -3292,8 +3291,8 @@ static gint preview_motion_event_handler(GtkWidget *window, GdkEvent *event, gpo
          }
         break;
  

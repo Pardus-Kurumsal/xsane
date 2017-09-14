@@ -1,14 +1,15 @@
-Description: Change default XSane umask from 0007 to 0077
- A default umask of 0007 can be mildly insecure in a multiuser environment,
- so tighten things up a bit and go with 0077 instead.
-Author: Adrien Thebo
-Bug-Debian: http://bugs.debian.org/592972
-Bug-Ubuntu: https://bugs.launchpad.net/ubuntu/+source/xsane/+bug/611950
+From: =?utf-8?q?J=C3=B6rg_Frings-F=C3=BCrst?= <debian@jff-webhosting.net>
+Date: Thu, 14 Sep 2017 15:28:58 +0300
+Subject: fix_tighten_default_umask
 
-Index: xsane-0.998/src/xsane.h
-===================================================================
---- xsane-0.998.orig/src/xsane.h	2011-02-04 19:50:32.653016002 +0100
-+++ xsane-0.998/src/xsane.h	2011-06-02 15:26:56.869664052 +0200
+---
+ src/xsane.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/xsane.h b/src/xsane.h
+index 69fe6bc..32289a0 100644
+--- a/src/xsane.h
++++ b/src/xsane.h
 @@ -104,7 +104,7 @@
  #define XSANE_DEBUG_ENVIRONMENT	"XSANE_DEBUG"
  

@@ -1,0 +1,1222 @@
+From: =?utf-8?q?Yunusemre_=C5=9Eent=C3=BCrk?=
+ <yunusemre.senturk@pardus.org.tr>
+Date: Thu, 14 Sep 2017 16:31:49 +0300
+Subject: Update TR translation and .desktop file
+
+---
+ po/tr.po          | 396 +++++++++++++++++++-----------------------------------
+ src/xsane.desktop |   2 +
+ 2 files changed, 143 insertions(+), 255 deletions(-)
+
+diff --git a/po/tr.po b/po/tr.po
+index 4c63278..625aaf3 100644
+--- a/po/tr.po
++++ b/po/tr.po
+@@ -2,20 +2,22 @@
+ # translation of tr.po to Turkish
+ # Turkish Translation for XSane
+ # TOGAN MUFTUOGLU  <toganm@yahoo.com>, 2000.
+-# Togan Muftuoglu <toganm@yahoo.com>, 2004,2005
++# Togan Muftuoglu <toganm@yahoo.com>, 2004,2005, 2017.
++# Yunusemre Şentürk <yunusemre.senturk@pardus.org.tr>, 2017.
+ #
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: xsane_tr\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2007-08-13 09:22+0200\n"
+-"PO-Revision-Date: 2005-12-22 10:01+0100\n"
+-"Last-Translator: Togan Muftuoglu <toganm@yahoo.com>\n"
+-"Language-Team: Turkish <kde-i18n-tr@kde.org>\n"
++"PO-Revision-Date: 2017-09-14 16:31+0300\n"
++"Last-Translator: Yunusemre Şentürk <yunusemre.senturk@pardus.org.tr>\n"
++"Language-Team: Türkçe <>\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"X-Generator: KBabel 1.0.1\n"
++"X-Generator: Gtranslator 2.91.7\n"
++"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+ 
+ #. Please translate this to the correct directory name (eg. german=>de)
+ #. XSANE_LANGUAGE_DIR
+@@ -38,7 +40,7 @@ msgstr "Hakkında"
+ #. WINDOW_ABOUT_TRANSLATION, MENU_ITEM_ABOUT_TRANSLATION
+ #. MENU_ITEM_ABOUT_TRANSLATION
+ msgid "About translation"
+-msgstr "Tercüme hakkında"
++msgstr "Çeviri hakkında"
+ 
+ #. WINDOW_AUTHORIZE
+ msgid "authorization"
+@@ -77,27 +79,24 @@ msgid "fax project"
+ msgstr "fax projesi"
+ 
+ #. WINDOW_FAX_PROJECT_BROWSE
+-#, fuzzy
+ msgid "browse for fax project"
+-msgstr "faks projesinin adını girin"
++msgstr "faks projesine göz at"
+ 
+ #. WINDOW_FAX_RENAME
+ msgid "rename fax page"
+ msgstr "fax sayfasını yeniden isimlendir"
+ 
+ #. WINDOW_FAX_INSERT
+-#, fuzzy
+ msgid "insert PS-file into fax"
+-msgstr "ps-dosyasını faxa yerleştirin"
++msgstr "PS-dosyasını faksa yerleştirin"
+ 
+ #. WINDOW_EMAIL_PROJECT
+ msgid "E-mail project"
+ msgstr "E-posta projesi"
+ 
+ #. WINDOW_EMAIL_PROJECT_BROWSE
+-#, fuzzy
+ msgid "browse for email project"
+-msgstr "E-Posta projesinin adını girin "
++msgstr "E-Posta projesine göz at "
+ 
+ #. WINDOW_EMAIL_RENAME
+ msgid "rename e-mail image"
+@@ -112,9 +111,8 @@ msgid "multipage project"
+ msgstr "Çok sayfalı proje"
+ 
+ #. WINDOW_MULTIPAGE_PROJECT_BROWSE
+-#, fuzzy
+ msgid "browse for multipage project"
+-msgstr "Çok sayfalı proje"
++msgstr "Çok sayfalı projeye göz at"
+ 
+ #. WINDOW_PRESET_AREA_RENAME
+ msgid "rename preset area"
+@@ -217,33 +215,28 @@ msgid "No devices available"
+ msgstr "Hiçbir aygıt mevcut değil"
+ 
+ #. WINDOW_SCANNER_DEFAULT_COLOR_ICM_PROFILE
+-#, fuzzy
+ msgid "select scanner default color ICM-profile"
+-msgstr "Yazıcı sil"
++msgstr "tarayıcı ICM-profili varsayılan rengini seçin"
+ 
+ #. WINDOW_SCANNER_DEFAULT_GRAY_ICM_PROFILE
+-#, fuzzy
+ msgid "select scanner default gray ICM-profile"
+-msgstr "Yazıcı sil"
++msgstr "tarayıcı ICM-profili varsayılan siyah-beyaz seçin "
+ 
+ #. WINDOW_DISPLAY_ICM_PROFILE
+ msgid "select display ICM-profile"
+-msgstr ""
++msgstr "Görüntü ICM profilini seç"
+ 
+ #. WINDOW_CUSTOM_PROOFING_ICM_PROFILE
+-#, fuzzy
+ msgid "select custom proofing ICM-profile"
+-msgstr "çıktı dosya adını seçiniz"
++msgstr "özel prova ICM profili seç"
+ 
+ #. WINDOW_WORKING_COLOR_SPACE_ICM_PROFILE
+-#, fuzzy
+ msgid "select working color space ICM-profile"
+-msgstr "Yazıcı sil"
++msgstr "ICM profili çalışma renk uzayı seç"
+ 
+ #. WINDOW_PRINTER_ICM_PROFILE
+-#, fuzzy
+ msgid "select printer ICM-profile"
+-msgstr "Yazıcı sil"
++msgstr "yazıcı ICM profili seç"
+ 
+ #. MENU_FILE
+ msgid "File"
+@@ -281,7 +274,7 @@ msgstr "Geometri"
+ #. MENU_COLOR_MANAGEMENT
+ #. NOTEBOOK_COLOR_MANAGEMENT_OPTIONS
+ msgid "Color management"
+-msgstr ""
++msgstr "Renk yönetimi"
+ 
+ #. MENU_ITEM_ABOUT_XSANE
+ msgid "About XSane"
+@@ -506,7 +499,6 @@ msgid "Skip existing filenames"
+ msgstr "Varolan dosya isimlerini atla"
+ 
+ #. RADIO_BUTTON_SAVE_PS_FLATEDECODED
+-#, fuzzy
+ msgid "Save postscript zlib compressed (PS level 3)"
+ msgstr "Postscript dosyayı zlib sıkıştırmalı kaydet (ps 3 seviyesinde)"
+ 
+@@ -515,7 +507,6 @@ msgid "Save PDF zlib compressed"
+ msgstr "PDF dosyayı zlib sıkıştırmalı kaydet"
+ 
+ #. RADIO_BUTTON_SAVE_PNM16_AS_ASCII
+-#, fuzzy
+ msgid "Save 16bit PNM in ASCII format"
+ msgstr "16bit pnm'yi ascii formatında sakla"
+ 
+@@ -528,9 +519,8 @@ msgid "Main window size fixed"
+ msgstr "Ana pencere boyutu sabitlendi"
+ 
+ #. RADIO_BUTTON_DISABLE_GIMP_PREVIEW_GAMMA
+-#, fuzzy
+ msgid "Disable GIMP preview gamma"
+-msgstr "Gimp önizleme gamması pasif kılındı"
++msgstr "Gimp önizleme gamması devre dışı bırak"
+ 
+ #. RADIO_BUTTON_PRIVATE_COLORMAP
+ msgid "Use private colormap"
+@@ -541,7 +531,6 @@ msgid "Autoenhance gamma"
+ msgstr "Gamma otomatik düzenlensin"
+ 
+ #. RADIO_BUTTON_PRESELECT_SCAN_AREA
+-#, fuzzy
+ msgid "Preselect scan area"
+ msgstr "Tarama alanını önceden seç"
+ 
+@@ -556,7 +545,7 @@ msgstr "GUI ilerleme çubuğunu kullan"
+ #. RADIO_BUTTON_CMS_BPC
+ #. MENU_ITEM_CMS_BLACK_POINT_COMPENSATION
+ msgid "Black point compensation"
+-msgstr ""
++msgstr "Siyah nokta dengelemesi"
+ 
+ #. TEXT_SCANNING_DEVICES
+ msgid "scanning for devices"
+@@ -572,9 +561,8 @@ msgstr "Tip"
+ 
+ #. TEXT_CMS_FUNCTION
+ #. DESC_CMS_FUNCTION
+-#, fuzzy
+ msgid "Color management function"
+-msgstr "Tüm renk aralığı"
++msgstr "Renk yönetimi işlevi"
+ 
+ #. TEXT_SCANNER_BACKEND
+ msgid "Scanner and backend:"
+@@ -649,7 +637,6 @@ msgid "16 bit output formats:"
+ msgstr "16 bit formatları:"
+ 
+ #. TEXT_REDUCE_16BIT_TO_8BIT
+-#, fuzzy
+ msgid ""
+ "Bit depth 16 bits/channel is not supported for this output format.\n"
+ "Do you want to reduce the depth to 8 bits/channel?"
+@@ -690,9 +677,8 @@ msgid "package"
+ msgstr "paket"
+ 
+ #. TEXT_WITH_CMS_FUNCTION
+-#, fuzzy
+ msgid "with color management function"
+-msgstr "Tüm renk aralığı"
++msgstr "Renk yönetimi işlevi ile"
+ 
+ #. TEXT_WITH_GIMP_SUPPORT
+ msgid "with GIMP support"
+@@ -825,10 +811,10 @@ msgid "Medium Name:"
+ msgstr "Ortam ismi"
+ 
+ #. TEXT_VIEWER_IMAGE_INFO
+-#, fuzzy, c-format
++#, c-format
+ msgid ""
+-"Size %d x %d pixel, %d bits/channel, %d channels, %1.0f dpi x %1.0f dpi, %"
+-"1.1f %s"
++"Size %d x %d pixel, %d bits/channel, %d channels, %1.0f dpi x %1.0f dpi, "
++"%1.1f %s"
+ msgstr ""
+ "Boyut %d x %d piksel, %d bit/color, %d renkler, %1.0f dpi x %1.0f dpi, %1.1f "
+ "%s"
+@@ -891,91 +877,77 @@ msgid "Copy number option:"
+ msgstr "Kopyalanacak sayı seçeneği:"
+ 
+ #. TEXT_SETUP_SCAN_RESOLUTION_PRINTER
+-#, fuzzy
+ msgid "Scan resolution:"
+-msgstr "Tarama çözünürlüğünü ayarla"
++msgstr "Tarama çözünürlüğünü:"
+ 
+ #. TEXT_SETUP_PRINTER_LINEART_RES
+-#, fuzzy
+ msgid "lineart [dpi]"
+ msgstr "Lineart çözünürlük (dpi):"
+ 
+ #. TEXT_SETUP_PRINTER_GRAYSCALE_RES
+-#, fuzzy
+ msgid "grayscale [dpi]"
+-msgstr "Grayscale çözünürlük (dpi):"
++msgstr "Gri tonlama çözünürlük (dpi):"
+ 
+ #. TEXT_SETUP_PRINTER_COLOR_RES
+ msgid "color [dpi]"
+-msgstr ""
++msgstr "renk [dpi]"
+ 
+ #. TEXT_SETUP_PRINTER_PAPER_GEOMETRIE
+ msgid "Paper geometrie:"
+-msgstr ""
++msgstr "Kağıt geometrisi"
+ 
+ #. TEXT_SETUP_PRINTER_WIDTH
+-#, fuzzy
+ msgid "width"
+-msgstr "En "
++msgstr "En"
+ 
+ #. TEXT_SETUP_PRINTER_HEIGHT
+-#, fuzzy
+ msgid "height"
+-msgstr "Yükseklik"
++msgstr "yükseklik"
+ 
+ #. TEXT_SETUP_PRINTER_LEFT
+-#, fuzzy
+ msgid "left offset"
+ msgstr "Sol boşluk "
+ 
+ #. TEXT_SETUP_PRINTER_BOTTOM
+-#, fuzzy
+ msgid "bottom offset"
+-msgstr "Alt boşluk "
++msgstr "Alt boşluk"
+ 
+ #. TEXT_SETUP_PRINTER_GAMMA_CORRECTION
+-#, fuzzy
+ msgid "Printer gamma:"
+-msgstr "Yazıcı kırmızı gamma: "
++msgstr "Yazıcı gama: "
+ 
+ #. TEXT_SETUP_PRINTER_GAMMA
+-#, fuzzy
+ msgid "common value"
+-msgstr "Son değerler:"
++msgstr "Ortak değer"
+ 
+ #. TEXT_SETUP_PRINTER_GAMMA_RED
+-#, fuzzy
+ msgid "red"
+-msgstr "okuma"
++msgstr "kırmızı"
+ 
+ #. TEXT_SETUP_PRINTER_GAMMA_GREEN
+ msgid "green"
+-msgstr ""
++msgstr "yeşil"
+ 
+ #. TEXT_SETUP_PRINTER_GAMMA_BLUE
+-#, fuzzy
+ msgid "blue"
+-msgstr "Bulanıklaştırma"
++msgstr "mavi"
+ 
+ #. TEXT_SETUP_PRINTER_EMBED_CSA
+-#, fuzzy
+ msgid "Embed scanner ICM profile as CSA"
+-msgstr "Yazıcı sil"
++msgstr "Tarayıcı ICM profilini CSA olarak yerleştirin"
+ 
+ #. TEXT_SETUP_PRINTER_EMBED_CRD
+-#, fuzzy
+ msgid "Embed printer ICM profile as CRD"
+-msgstr "Yazıcı sil"
++msgstr "Yazıcı ICM profilini CSA olarak yerleştirin"
+ 
+ #. TEXT_SETUP_PRINTER_CMS_BPC
+ msgid "Apply black point compensation"
+-msgstr ""
++msgstr "Siyah nokta dengelemesi kullanarak dönüştür."
+ 
+ #. TEXT_SETUP_PRINTER_PS_FLATEDECODED
+-#, fuzzy
+ msgid "Create zlib compressed postscript image (PS level 3) for printing"
+ msgstr ""
+-"Yazdırmak için zlib sıkıştırılmış postscript (ps 3. seviye) resim yarat "
++"Yazdırmak için zlib sıkıştırılmış postscript (ps 3. seviye) resim oluştur "
+ 
+ #. TEXT_SETUP_TMP_PATH
+ msgid "Temporary directory"
+@@ -1114,9 +1086,8 @@ msgid "Bottom offset"
+ msgstr "Alt boşluk "
+ 
+ #. TEXT_SETUP_FAX_PS_FLATEDECODED
+-#, fuzzy
+ msgid "Create zlib compressed postscript image (PS level 3) for fax"
+-msgstr "Faks için zlib sıkıştırılmış postscript (ps 3. seviye) resim yarat "
++msgstr "Faks için zlib sıkıştırılmış postscript (ps 3. seviye) resim oluştur"
+ 
+ #. TEXT_SETUP_SMTP_SERVER
+ msgid "SMTP server:"
+@@ -1135,19 +1106,16 @@ msgid "Reply to:"
+ msgstr "Yanıt Adresi"
+ 
+ #. TEXT_SETUP_EMAIL_AUTHENTICATION
+-#, fuzzy
+ msgid "E-mail authentication"
+-msgstr "POP3 otorizasyon"
++msgstr "E-posta kimlik doğrulaması"
+ 
+ #. TEXT_SETUP_EMAIL_AUTH_USER
+-#, fuzzy
+ msgid "User:"
+-msgstr "Kullanım:"
++msgstr "Kullanıcı:"
+ 
+ #. TEXT_SETUP_EMAIL_AUTH_PASS
+-#, fuzzy
+ msgid "Password:"
+-msgstr "Şifre:"
++msgstr "Parola:"
+ 
+ #. TEXT_SETUP_POP3_SERVER
+ msgid "POP3 server:"
+@@ -1195,37 +1163,33 @@ msgstr "hepsi"
+ 
+ #. TEXT_SETUP_SCANNER_DEFAULT_COLOR_ICM_PROFILE
+ #. DESC_SCANNER_DEFAULT_COLOR_ICM_PROFILE
+-#, fuzzy
+ msgid "Scanner default color ICM-profile"
+-msgstr "Yazıcı sil"
++msgstr "Tarayıcı varsayılan renk ICM profili"
+ 
+ #. TEXT_SETUP_SCANNER_DEFAULT_GRAY_ICM_PROFILE
+ #. DESC_SCANNER_DEFAULT_GRAY_ICM_PROFILE
+-#, fuzzy
+ msgid "Scanner default gray ICM-profile"
+-msgstr "Yazıcı sil"
++msgstr "Tarayıcı varsayılan siyah/beyaz ICM profili"
+ 
+ #. TEXT_SETUP_DISPLAY_ICM_PROFILE
+ #. DESC_DISPLAY_ICM_PROFILE
+ msgid "Display ICM-profile"
+-msgstr ""
++msgstr "Görüntü ICM-profili"
+ 
+ #. TEXT_SETUP_CUSTOM_PROOFING_ICM_PROFILE
+ #. DESC_CUSTOM_PROOFING_ICM_PROFILE
+-#, fuzzy
+ msgid "Custom proofing ICM-profile"
+-msgstr "Yazıcı sil"
++msgstr "Özel prova ICM profili"
+ 
+ #. TEXT_SETUP_WORKING_COLOR_SPACE_ICM_PROFILE
+ #. DESC_WORKING_COLOR_SPACE_ICM_PROFILE
+-#, fuzzy
+ msgid "Working color space ICM-profile"
+-msgstr "resim dosyası ara"
++msgstr "Çalışma renk alanı ICM-profili"
+ 
+ #. TEXT_SETUP_PRINTER_ICM_PROFILE
+ #. DESC_PRINTER_ICM_PROFILE
+ msgid "Printer ICM-profile"
+-msgstr ""
++msgstr "Yazıcı ICM profili"
+ 
+ msgid "new media"
+ msgstr "Yeni medya"
+@@ -1344,9 +1308,8 @@ msgstr "Postscripti döndür"
+ 
+ #. MENU_ITEM_ENABLE_COLOR_MANAGEMENT
+ #. MENU_ITEM_CMS_ENABLE_COLOR_MANAGEMENT
+-#, fuzzy
+ msgid "Enable color management"
+-msgstr "Tüm renk aralığı"
++msgstr "Renk yönetimini etkinleştir"
+ 
+ #. MENU_ITEM_EDIT_MEDIUM_DEF
+ msgid "Edit medium definition"
+@@ -1393,84 +1356,76 @@ msgid "Problems?"
+ msgstr "Problemler ?"
+ 
+ #. MENU_ITEM_CMS_PROOFING
+-#, fuzzy
+ msgid "Proofing"
+-msgstr "Yazıcı ekle"
++msgstr "Prova"
+ 
+ #. SUBMENU_ITEM_CMS_PROOF_OFF
+ msgid "no proofing (Display)"
+-msgstr ""
++msgstr "sağlama yok (Görüntü)"
+ 
+ #. SUBMENU_ITEM_CMS_PROOF_PRINTER
+-#, fuzzy
+ msgid "Proof printer"
+-msgstr "Yazıcı ekle"
++msgstr "Yazıcı prova et"
+ 
+ #. SUBMENU_ITEM_CMS_PROOF_CUSTOM
+ msgid "Proof custom device"
+-msgstr ""
++msgstr "Cihazı elle sağla"
+ 
+ #. MENU_ITEM_CMS_RENDERING_INTENT
+-#, fuzzy
+ msgid "Rendering intent"
+-msgstr "Yazıcı ekle"
++msgstr "Oluşturma amacı"
+ 
+ #. MENU_ITEM_CMS_PROOFING_INTENT
+-#, fuzzy
+ msgid "Proofing rendering intent"
+-msgstr "Yazıcı ekle"
++msgstr "Oluşturma amacı prova et"
+ 
+ #. SUBMENU_ITEM_CMS_INTENT_PERCEPTUAL
+ msgid "Perceptual"
+-msgstr ""
++msgstr "Algısal"
+ 
+ #. SUBMENU_ITEM_CMS_INTENT_RELATIVE_COLORIMETRIC
+ msgid "Relative colorimetric"
+-msgstr ""
++msgstr "Bağıl renk ölçümsel"
+ 
+ #. SUBMENU_ITEM_CMS_INTENT_ABSOLUTE_COLORIMETRIC
+ msgid "Absolute colorimentric"
+-msgstr ""
++msgstr "Mutlak renklilik"
+ 
+ #. SUBMENU_ITEM_CMS_INTENT_SATURATION
+-#, fuzzy
+ msgid "Saturation"
+-msgstr "Otorizasyon"
++msgstr "Dolgunluk"
+ 
+ #. MENU_ITEM_CMS_GAMUT_CHECK
+ msgid "Gamut check"
+-msgstr ""
++msgstr "Kum kontrol"
+ 
+ #. MENU_ITEM_CMS_GAMUT_ALARM_COLOR
+ msgid "Gamut alarm color"
+-msgstr ""
++msgstr "Kum alarm rengi"
+ 
+ #. SUBMENU_ITEM_CMS_COLOR_BLACK
+ msgid "Black"
+-msgstr ""
++msgstr "Siyah"
+ 
+ #. SUBMENU_ITEM_CMS_COLOR_GRAY
+ msgid "Gray"
+-msgstr ""
++msgstr "Gri"
+ 
+ #. SUBMENU_ITEM_CMS_COLOR_WHITE
+-#, fuzzy
+ msgid "White"
+-msgstr "yazma"
++msgstr "Beyaz"
+ 
+ #. SUBMENU_ITEM_CMS_COLOR_RED
+-#, fuzzy
+ msgid "Red"
+-msgstr "Azalt"
++msgstr "Kırmızı"
+ 
+ #. SUBMENU_ITEM_CMS_COLOR_GREEN
+ msgid "Green"
+-msgstr ""
++msgstr "Yeşil"
+ 
+ #. SUBMENU_ITEM_CMS_COLOR_BLUE
+-#, fuzzy
+ msgid "Blue"
+-msgstr "Bulanıklaştırma"
++msgstr "Mavi"
+ 
+ #. MENU_ITEM_COUNTER_LEN_INACTIVE
+ msgid "inactive"
+@@ -1485,14 +1440,12 @@ msgid "CCITT 1D Huffman compression"
+ msgstr "CCITT 1D Huffman sıkıştırması"
+ 
+ #. MENU_ITEM_TIFF_COMP_CCITFAX3
+-#, fuzzy
+ msgid "CCITT Group 3 fax compression"
+-msgstr "CCITT Grup 3 Faks sıkıştırması"
++msgstr "CCITT Grup 3 faks sıkıştırması"
+ 
+ #. MENU_ITEM_TIFF_COMP_CCITFAX4
+-#, fuzzy
+ msgid "CCITT Group 4 fax compression"
+-msgstr "CCITT Grup 4 Faks sıkıştırması"
++msgstr "CCITT Grup 4 faks sıkıştırması"
+ 
+ #. MENU_ITEM_TIFF_COMP_JPEG
+ msgid "JPEG DCT compression"
+@@ -1571,39 +1524,36 @@ msgid "Move item down"
+ msgstr "Aşağı taşı"
+ 
+ #. MENU_ITEM_AUTH_NONE
+-#, fuzzy
+ msgid "no authentication"
+-msgstr "POP3 otorizasyon"
++msgstr "kimlik doğrulama yok"
+ 
+ #. MENU_ITEM_AUTH_POP3
+ msgid "POP3 before SMTP"
+-msgstr ""
++msgstr "SMTP öncesi POP"
+ 
+ #. MENU_ITEM_AUTH_ASMTP_PLAIN
+ msgid "ASMTP Plain"
+-msgstr ""
++msgstr "ASMTP Yalın"
+ 
+ #. MENU_ITEM_AUTH_ASMTP_LOGIN
+ msgid "ASMTP Login"
+-msgstr ""
++msgstr "ASMTP Giriş"
+ 
+ #. MENU_ITEM_AUTH_ASMTP_CRAM_MD5
+ msgid "ASMTP CRAM-MD5"
+-msgstr ""
++msgstr "ASMTP CRAM-MD5"
+ 
+ #. MENU_ITEM_CMS_FUNCTION_EMBED_SCANNER_ICM_PROFILE
+-#, fuzzy
+ msgid "Embed scanner ICM profile"
+-msgstr "Yazıcı sil"
++msgstr "Tarayıcı ICM profilini göm"
+ 
+ #. MENU_ITEM_CMS_FUNCTION_CONVERT_TO_SRGB
+ msgid "Convert to sRGB"
+-msgstr ""
++msgstr "sRGB'ye çevir"
+ 
+ #. MENU_ITEM_FUNCTION_CONVERT_TO_WORKING_CS
+-#, fuzzy
+ msgid "Convert to working color space"
+-msgstr "Renkleri otomatik düzelt"
++msgstr "Çalışan renk alanına dönüştürün"
+ 
+ #. PROGRESS_SCANNING
+ msgid "Scanning"
+@@ -1619,9 +1569,8 @@ msgid "page"
+ msgstr "sayfa"
+ 
+ #. PROGRESS_TRANSFERRING_DATA
+-#, fuzzy
+ msgid "Transferring image"
+-msgstr "Resmi aktarıyor"
++msgstr "Resim aktarılıyor"
+ 
+ #. PROGRESS_ROTATING_DATA
+ msgid "Rotating image"
+@@ -1664,9 +1613,8 @@ msgid "OCR in progress"
+ msgstr "OCR çalışmakta"
+ 
+ #. PROGRESS_ICM_CONVERSION
+-#, fuzzy
+ msgid "converting colors"
+-msgstr "Renkleri otomatik düzelt"
++msgstr "Renkler çeviriliyor"
+ 
+ #. DESC_SCAN_START
+ msgid "Start scan <Ctrl-Enter>"
+@@ -1693,7 +1641,6 @@ msgstr ""
+ "<Ctrl-f> veya email-<Ctrl-e>"
+ 
+ #. DESC_XSANE_MEDIUM
+-#, fuzzy
+ msgid ""
+ "Select source medium type.\n"
+ "To rename, reorder or delete an entry use context menu (alternate mouse "
+@@ -1703,9 +1650,9 @@ msgid ""
+ msgstr ""
+ "Kaynak ortam tipini seçin. \n"
+ "Yeniden isimlendirmek, sıralamak veya silmek için, içeril menüsünü ( sağ "
+-"fare tuşu) kullanın \n"
++"fare tuşu) kullanın\n"
+ "Ortam yaratmak için, tercihler menüsünde ortam tanımı düzeltme seçeneğini "
+-"etkin kılın. "
++"etkin kılın."
+ 
+ #. DESC_FILENAME_COUNTER_STEP
+ msgid "Value that is added to filenamecounter after scan"
+@@ -1728,9 +1675,8 @@ msgstr ""
+ "eklenir"
+ 
+ #. DESC_FAXPROJECT
+-#, fuzzy
+ msgid "Enter fax project directory name"
+-msgstr "Geçici dizine göz at"
++msgstr "Faks proje dizini adını girin"
+ 
+ #. DESC_FAXPAGENAME
+ msgid "Enter new name for faxpage"
+@@ -1741,14 +1687,12 @@ msgid "Enter receiver phone number or address"
+ msgstr "Alıcının telefon numrasını veya adresini girin"
+ 
+ #. DESC_FAX_PROJECT_BROWSE
+-#, fuzzy
+ msgid "Browse for fax project directory"
+-msgstr "Geçici dizine göz at"
++msgstr "Faks proje dizinine gözatın"
+ 
+ #. DESC_EMAIL_PROJECT
+-#, fuzzy
+ msgid "Enter e-mail project directory name"
+-msgstr "Geçici dizine göz at"
++msgstr "E-posta proje dizini adını girin"
+ 
+ #. DESC_EMAIL_IMAGENAME
+ msgid "Enter new name for e-mail image"
+@@ -1759,9 +1703,8 @@ msgid "Enter e-mail address"
+ msgstr "E-posta adresi girin "
+ 
+ #. DESC_EMAIL_PROJECT_BROWSE
+-#, fuzzy
+ msgid "Browse for email project directory"
+-msgstr "Geçici dizine göz at"
++msgstr "E-posta proje dizinine göz atın"
+ 
+ #. DESC_EMAIL_SUBJECT
+ msgid "Enter subject of e-mail"
+@@ -1772,14 +1715,12 @@ msgid "Select filetype for image attachments"
+ msgstr "Resim ekleri için dosya tipini seçin"
+ 
+ #. DESC_MULTIPAGE_PROJECT
+-#, fuzzy
+ msgid "Enter multipage project directory name"
+-msgstr "Geçici dizine göz at"
++msgstr "Çok sayfalı proje dizin adı girin"
+ 
+ #. DESC_MULTIPAGE_PROJECT_BROWSE
+-#, fuzzy
+ msgid "Browse for multipage project directory"
+-msgstr "Geçici dizine göz at"
++msgstr "Çok sayfalı proje dizinine göz atın"
+ 
+ #. DESC_MULTIPAGE_FILETYPE
+ msgid "Select filetype for multipage file"
+@@ -1904,10 +1845,8 @@ msgstr ""
+ " kontrast =0"
+ 
+ #. DESC_ENH_AUTO
+-#, fuzzy
+ msgid "Autoadjust gamma, brightness and contrast <Ctrl-a>"
+-msgstr ""
+-"Seçilen alana bağlı olarak gamma, ışık ve kontrastı otomatik ayarla<Ctrl-e>"
++msgstr "Gama, ışık ve kontrastı otomatik ayarla<Ctrl-a>"
+ 
+ #. DESC_ENH_DEFAULT
+ msgid ""
+@@ -2024,24 +1963,23 @@ msgstr "Fotokopi için mavi bileşenin ilave gamma değeri"
+ 
+ #. DESC_PRINTER_EMBED_CSA
+ msgid "Creates a postscript file that contains the ICM profile of the scanner"
+-msgstr ""
++msgstr "Tarayıcının ICM profilini içeren bir postscript dosyası oluşturur."
+ 
+ #. DESC_PRINTER_EMBED_CRD
+ msgid "Creates a postscript file that contains the ICM profile of the printer"
+-msgstr ""
++msgstr "Yazıcının ICM profilini içeren bir postscript dosyası oluşturur."
+ 
+ #. DESC_PRINTER_CMS_BPC
+ msgid "Applies black point compensation"
+-msgstr ""
++msgstr "Siyah nokta dengelemesi kullanarak dönüştür."
+ 
+ #. DESC_PRINTER_PS_FLATEDECODED
+-#, fuzzy
+ msgid ""
+ "Create zlib compressed postscript image for printer (flatedecode).\n"
+ "The printer has to understand postscript level 3!"
+ msgstr ""
+ "Yazıcı için zlib sıkıştırılmış postscript görüntü yarat (flatdecode)\n"
+-"Yazıcı postscript 3 dilini anlamalı "
++"Yazıcı postscript 3 dilini anlamalı"
+ 
+ #. DESC_TMP_PATH
+ msgid "Path to temp directory"
+@@ -2052,7 +1990,6 @@ msgid "Browse for temporary directory"
+ msgstr "Geçici dizine göz at"
+ 
+ #. DESC_JPEG_QUALITY
+-#, fuzzy
+ msgid ""
+ "Quality in percent if image is saved as JPEG or TIFF with JPEG compression"
+ msgstr ""
+@@ -2060,31 +1997,26 @@ msgstr ""
+ "olarak kalitesi"
+ 
+ #. DESC_PNG_COMPRESSION
+-#, fuzzy
+ msgid "Compression if image is saved as PNG"
+-msgstr "Eğer resim png olarak saklanırsa sıkıştırma"
++msgstr "Eğer resim png olarak saklanırsa sıkıştırılması"
+ 
+ #. DESC_FILENAME_COUNTER_LEN
+ msgid "Minimum length of counter in filename"
+ msgstr "Dosya adı sayacının mimum uzunluğu"
+ 
+ #. DESC_TIFF_ZIP_COMPRESSION
+-#, fuzzy
+ msgid "Compression rate for zip compressed TIFF (deflate)"
+-msgstr "Zip sıkıştırmalı tiff sıkıştırma oranı (indirgeme)"
++msgstr "Zip sıkıştırmalı tiff sıkıştırma oranı (indirge)"
+ 
+ #. DESC_TIFF_COMPRESSION_16
+-#, fuzzy
+ msgid "Compression type if 16 bit image is saved as TIFF"
+ msgstr "Eğer 16 bit resim tiff olarak saklanacaksa sıkıştırma tipi"
+ 
+ #. DESC_TIFF_COMPRESSION_8
+-#, fuzzy
+ msgid "Compression type if 8 bit image is saved as TIFF"
+ msgstr "Eğer 8 bit resim tiff olarak saklanacaksa sıkıştırma tipi"
+ 
+ #. DESC_TIFF_COMPRESSION_1
+-#, fuzzy
+ msgid "Compression type if lineart image is saved as TIFF"
+ msgstr "Eğer lineart resim tiff olarak saklanacaksa sıkıştırma tipi"
+ 
+@@ -2104,7 +2036,6 @@ msgstr ""
+ "atlanır"
+ 
+ #. DESC_SAVE_PS_FLATEDECODED
+-#, fuzzy
+ msgid ""
+ "compress postscript image with zlib algorithm (flatedecode). When you want "
+ "to print such a file your printer has to understand postscript level 3"
+@@ -2114,12 +2045,10 @@ msgstr ""
+ "dilini anlamalı "
+ 
+ #. DESC_SAVE_PDF_FLATEDECODED
+-#, fuzzy
+ msgid "compress PDF image with zlib algorithm (flatedecode)."
+ msgstr "PDF dosyayı zlib algoritması ile sıkıştır (indirge)"
+ 
+ #. DESC_SAVE_PNM16_AS_ASCII
+-#, fuzzy
+ msgid ""
+ "When a 16 bit image shall be saved in PNM format then use ASCII format "
+ "instead of binary format. The binary format is a new format that is not "
+@@ -2132,7 +2061,6 @@ msgstr ""
+ "tarafından kullanılmasına karşın oldukça büyük dosyalar üretir."
+ 
+ #. DESC_REDUCE_16BIT_TO_8BIT
+-#, fuzzy
+ msgid ""
+ "If scanner sends image with 16 bits/channel save image with 8 bits/channel"
+ msgstr ""
+@@ -2166,7 +2094,6 @@ msgstr ""
+ "kullan"
+ 
+ #. DESC_DISABLE_GIMP_PREVIEW_GAMMA
+-#, fuzzy
+ msgid "Disable preview gamma when XSane runs as GIMP plugin"
+ msgstr "Xsane gimp plugini olarak çalıştırılırsa önizleme gammasını iptal et"
+ 
+@@ -2180,9 +2107,8 @@ msgid "Select how a range is displayed"
+ msgstr "Aralığın nasıl gösterileceğini seçin"
+ 
+ #. DESC_PREVIEW_OVERSAMPLING
+-#, fuzzy
+ msgid "Value with which the calculated preview resolution is multiplied"
+-msgstr "Hesaplanmış önizleme çözünürlüğünün çarpıldığı değer "
++msgstr "Hesaplanmış önizleme çözünürlüğünün çarpıldığı değer"
+ 
+ #. DESC_PREVIEW_GAMMA
+ msgid "Set gamma correction value for preview image"
+@@ -2244,11 +2170,10 @@ msgid "dimension of square that is used to average color for pipette function"
+ msgstr "Pipette fonksiyonu için ortalama renkte kullanılan karenin boyutları"
+ 
+ #. DESC_DOC_VIEWER
+-#, fuzzy
+ msgid ""
+ "Enter command to be executed to display helpfiles, must be a HTML-viewer!"
+ msgstr ""
+-"yardım dosyalarını göstermek için çalıştırılacak komutu girin, html-"
++"Yardım dosyalarını göstermek için çalıştırılacak komutu girin, HTML-"
+ "göstericisi olmalıdır!"
+ 
+ #. DESC_AUTOENHANCE_GAMMA
+@@ -2256,22 +2181,20 @@ msgid "Change gamma value when autoenhancement button is pressed"
+ msgstr "otomatik geliştirme tuşuna basılınca gamma değerini değiştir"
+ 
+ #. DESC_PRESELECT_SCAN_AREA
+-#, fuzzy
+ msgid "Select scan area after preview scan has finished"
+-msgstr "Önizleme taraması tamamlandıktan sonra tarama aranını seç"
++msgstr "Önizleme taraması tamamlandıktan sonra tarama alanını seç"
+ 
+ #. DESC_AUTOCORRECT_COLORS
+ msgid "Do color correction after preview scan has finished"
+ msgstr "Önizleme taraması bittikten sonra renk düzeltmesini yap"
+ 
+ #. DESC_RENDERING_INTENT
+-#, fuzzy
+ msgid "Select rendering intent for preview and saving"
+-msgstr "Önizleme taraması tamamlandıktan sonra tarama aranını seç"
++msgstr "Önizleme ve kaydetme için oluşturma amacını seçin"
+ 
+ #. DESC_CMS_BPC
+ msgid "Apply black point compensation when color transformation is done"
+-msgstr ""
++msgstr "Renk dönüşümü yapılırken siyah nokta düzeltmesi uygula"
+ 
+ #. DESC_FAX_COMMAND
+ msgid "Enter command to be executed in fax mode"
+@@ -2302,9 +2225,8 @@ msgid "Send fax with high vertical resolution (196 lpi instead of 98 lpi)"
+ msgstr "Faksı yüksek dikey çözünürlükle (98 lpi yerine 196 lpi ile)gönder"
+ 
+ #. DESC_FAX_PS_FLATEDECODED
+-#, fuzzy
+ msgid "Create zlib compressed postscript image for fax (flatedecode)"
+-msgstr "Faks için zlib sıkıştırlmış postscript görüntü yarat (flatdecode)"
++msgstr "Faks için zlib sıkıştırlmış postscript görüntü yarat (indirge)"
+ 
+ #. DESC_SMTP_SERVER
+ msgid "IP Address or Domain name of SMTP server"
+@@ -2323,19 +2245,16 @@ msgid "enter e-mail address for replied e-mails"
+ msgstr "Yanıtlama adresini girin "
+ 
+ #. DESC_EMAIL_AUTHENTICATION
+-#, fuzzy
+ msgid "Type of authentication before sending e-mail"
+-msgstr "E-posta yollamadan önce POP3 sunucusundan otorizayon iste"
++msgstr "E-posta göndermeden önce kimlik doğrulama türü"
+ 
+ #. DESC_EMAIL_AUTH_USER
+-#, fuzzy
+ msgid "user name for e-mail server"
+-msgstr "POP3 sunucusundaki kullanıcı adı"
++msgstr "e-posta sunucusu için kullanıcı adı"
+ 
+ #. DESC_EMAIL_AUTH_PASS
+-#, fuzzy
+ msgid "password for e-mail server"
+-msgstr "POP3 sunucusu için şifre"
++msgstr "e-posta sunucusu için parola"
+ 
+ #. DESC_POP3_SERVER
+ msgid "IP Address or Domain name of POP3 server"
+@@ -2346,37 +2265,32 @@ msgid "port to connect to POP3 server"
+ msgstr "POP3 sunusunda bağlanılacak port"
+ 
+ #. DESC_HTML_EMAIL
+-#, fuzzy
+ msgid "E-mail is sent in HTML mode, place image with: <IMAGE>"
+-msgstr "E-Posta HTML olarak yollandı, resmi yerleştirmek için :<IMAGE>"
++msgstr "E-Posta HTML olarak yollandı, yerleştirilen resim :<IMAGE>"
+ 
+ #. DESC_OCR_COMMAND
+-#, fuzzy
+ msgid "Enter command to start OCR program"
+ msgstr "OCR prograrımın başlatmak için komutu girin"
+ 
+ #. DESC_OCR_INPUTFILE_OPT
+-#, fuzzy
+ msgid "Enter option of the OCR program to define input file"
+-msgstr "Çıktı dosyası için ocr programının seçeneğini belirleyin"
++msgstr "Giriş dosyasını tanımlamak için OCR programının seçeneklerini girin"
+ 
+ #. DESC_OCR_OUTPUTFILE_OPT
+-#, fuzzy
+ msgid "Enter option of the OCR program to define output file"
+-msgstr "Çıktı dosyası için ocr programının seçeneğini belirleyin"
++msgstr "Çıktı dosyasını tanımlamak için OCR programının seçeneklerini girin"
+ 
+ #. DESC_OCR_USE_GUI_PIPE_OPT
+-#, fuzzy
+ msgid "Define if the OCR program supports gui progress pipe"
+ msgstr ""
+-"OCR programının gui ilerleme çubuğunu destekleyip desteklemediğini tanımlayın"
++"OCR programının gui progress pipe destekleyip desteklemediğini tanımlayın"
+ 
+ #. DESC_OCR_OUTFD_OPT
+-#, fuzzy
+ msgid ""
+ "Enter option of the OCR program to define output filedescripor in GUI mode"
+ msgstr ""
+-"Çıktı dosyası tanımı için ocr programının seçeneğini GUI konumunda belirleyin"
++"GUI modunda çıktı dosyalayıcıyı tanımlamak için OCR programının "
++"seçeneklerini girin"
+ 
+ #. DESC_OCR_PROGRESS_KEYWORD
+ msgid "Define Keyword that is used to mark progress information"
+@@ -2392,9 +2306,8 @@ msgid "write"
+ msgstr "yazma"
+ 
+ #. DESC_PERMISSION_SEARCH
+-#, fuzzy
+ msgid "search"
+-msgstr "kullanıcı"
++msgstr "arama"
+ 
+ #. DESC_ADD_BATCH
+ msgid "Add selection for batch scan"
+@@ -2413,7 +2326,6 @@ msgid "Pick black point"
+ msgstr "Siyah nokta seç"
+ 
+ #. DESC_ZOOM_FULL
+-#, fuzzy
+ msgid "Use full scan area"
+ msgstr "Tüm tarama alanını kullan"
+ 
+@@ -2439,12 +2351,10 @@ msgid "Select visible area"
+ msgstr "Görülen alanı belirleyin"
+ 
+ #. DESC_AUTOSELECT_SCAN_AREA
+-#, fuzzy
+ msgid "Autoselect scan area"
+ msgstr "Tarama alanını otomatik seç"
+ 
+ #. DESC_AUTORAISE_SCAN_AREA
+-#, fuzzy
+ msgid "Autoraise scan area"
+ msgstr "Tarama alanını otomatik olarak öne çıkar"
+ 
+@@ -2453,7 +2363,6 @@ msgid "Delete preview image cache"
+ msgstr "Önizleme resim kaşesini sil"
+ 
+ #. DESC_PRESET_AREA
+-#, fuzzy
+ msgid ""
+ "Preset area:\n"
+ "To add new area or edit an existing area use context menu (alternate mouse "
+@@ -2488,17 +2397,14 @@ msgid "Clone image"
+ msgstr "Resmi çoğalt"
+ 
+ #. DESC_ROTATE90
+-#, fuzzy
+ msgid "Rotate image 90 degrees"
+ msgstr "Resmi 90 derece döndür"
+ 
+ #. DESC_ROTATE180
+-#, fuzzy
+ msgid "Rotate image 180 degrees"
+ msgstr "Resmi 180 derece döndür"
+ 
+ #. DESC_ROTATE270
+-#, fuzzy
+ msgid "Rotate image 270 degrees"
+ msgstr "Resmi 270 derece döndür"
+ 
+@@ -2535,14 +2441,12 @@ msgid "Y-Scale factor"
+ msgstr "Y ölçek çarpanı"
+ 
+ #. DESC_SCALE_WIDTH
+-#, fuzzy
+ msgid "Scale image to width [pixels]"
+-msgstr "Resmin enini boyutlandır [piksel olarak]"
++msgstr "Resmi genişliğe ölçeklendir [piksel olarak]"
+ 
+ #. DESC_SCALE_HEIGHT
+-#, fuzzy
+ msgid "Scale image to height [pixels]"
+-msgstr "Resmin yüksekliğini boyutlandır [piksel olarak]"
++msgstr "Resmi yüksekliğe ölçeklendir [piksel olarak]"
+ 
+ #. DESC_BATCH_LIST_EMPTY
+ msgid "Empty batch list"
+@@ -2573,34 +2477,28 @@ msgid "Turns on automatic mode"
+ msgstr "Otomatik modu ethin kılar"
+ 
+ #. DESC_BUTTON_SCANNER_DEFAULT_COLOR_ICM_PROFILE_BROWSE
+-#, fuzzy
+ msgid "Browse for scanner default color ICM-profile"
+-msgstr "resim dosyası ara"
++msgstr "Tarayıcı varsayılan renk ICM profili için göz atın"
+ 
+ #. DESC_BUTTON_SCANNER_DEFAULT_GRAY_ICM_PROFILE_BROWSE
+-#, fuzzy
+ msgid "Browse for scanner default gray ICM-profile"
+-msgstr "resim dosyası ara"
++msgstr "Tarayıcı varsayılan siyah/beyaz ICM profili için göz atın"
+ 
+ #. DESC_BUTTON_DISPLAY_ICM_PROFILE_BROWSE
+-#, fuzzy
+ msgid "Browse for display ICM-profile"
+-msgstr "resim dosyası ara"
++msgstr "Ekran ICM-profil için gözatın"
+ 
+ #. DESC_BUTTON_PRINTER_ICM_PROFILE_BROWSE
+-#, fuzzy
+ msgid "Browse for printer ICM-profile"
+-msgstr "resim dosyası ara"
++msgstr "resim dosyası araYazıcı ICM profili için göz atın"
+ 
+ #. DESC_BUTTON_CUSTOM_PROOFING_ICM_PROFILE_BROWSE
+-#, fuzzy
+ msgid "Browse for custom proofing ICM-profile"
+-msgstr "resim dosyası ara"
++msgstr "Özel prova ICM profili için göz atın"
+ 
+ #. DESC_BUTTON_WORKING_COLOR_SPACE_ICM_PROFILE_BROWSE
+-#, fuzzy
+ msgid "Browse for working color space ICM-profile"
+-msgstr "resim dosyası ara"
++msgstr "ICM-profili çalışma renk uzayına göz atın"
+ 
+ #. ERR_HOME_DIR
+ msgid "Failed to determine home directory:"
+@@ -2621,6 +2519,10 @@ msgid ""
+ "select a temporary directory where you have\n"
+ "write permissions."
+ msgstr ""
++"Geçici dosya oluşturulamadı.\n"
++"Menü Tercihleri -> Kurulum sekmesini açın.\n"
++"Yazma izinlerine sahip geçici bir dizini seçin.\n"
++"ve kaydedin."
+ 
+ #. ERR_SET_OPTION
+ msgid "Failed to set value of option"
+@@ -2663,9 +2565,8 @@ msgid "Failed to open"
+ msgstr "Açmada hata"
+ 
+ #. ERR_CREATE_SECURE_FILE
+-#, fuzzy
+ msgid "Could not create secure file (maybe a link does exist):"
+-msgstr "Güvenli dosya yaratılamadı (belki bağ mevcut değil)"
++msgstr "Güvenli dosya oluşturulamadı (belki bir bağ mevcut):"
+ 
+ #. ERR_FAILED_PRINTER_PIPE
+ msgid "Failed to open pipe for executing printercommand"
+@@ -2742,9 +2643,8 @@ msgid "Failed to execute fax command:"
+ msgstr "faks komutunu çalıştıramadı:"
+ 
+ #. ERR_FAILED_EXEC_OCR_CMD
+-#, fuzzy
+ msgid "Failed to execute OCR command:"
+-msgstr "faks komutunu çalıştıramadı:"
++msgstr "OCR komutu çalıştırılamadı:"
+ 
+ #. ERR_BAD_FRAME_FORMAT
+ msgid "bad frame format"
+@@ -2804,7 +2704,6 @@ msgid "warning: option has no value constraint"
+ msgstr "uyarı: seçeneğin değeri belirtilmemiş"
+ 
+ #. WARN_XSANE_AS_ROOT
+-#, fuzzy
+ msgid ""
+ "You try to run XSane as ROOT, that really is DANGEROUS!\n"
+ "\n"
+@@ -2892,34 +2791,28 @@ msgid "Unsupported %d-bit output format: %s"
+ msgstr "Desteklenmeyen %d-bit çıktı formatı:%s"
+ 
+ #. ERR_CMS_CONVERSION
+-#, fuzzy
+ msgid "Error during CMS conversion:"
+-msgstr "Saklama esnasında hata"
++msgstr "CMS dönüştürme işlemi sırasında hata oluştu:"
+ 
+ #. ERR_CMS_OPEN_ICM_FILE
+-#, fuzzy
+ msgid "Could not open"
+-msgstr "Açmada hata"
++msgstr "Açılamadı"
+ 
+ #. CMS_SCANNER_ICM
+-#, fuzzy
+ msgid "scanner ICM profile"
+-msgstr "Yazıcı sil"
++msgstr "tarayıcı ICM profili"
+ 
+ #. CMS_DISPLAY_ICM
+-#, fuzzy
+ msgid "display ICM profile"
+-msgstr "resim dosyası ara"
++msgstr "ekran ICM profili"
+ 
+ #. CMS_PROOF_ICM
+-#, fuzzy
+ msgid "proofing ICM profile"
+-msgstr "Yazıcı sil"
++msgstr "prova ICM profili"
+ 
+ #. ERR_CMS_CREATE_TRANSFORM
+-#, fuzzy
+ msgid "Could not create transform"
+-msgstr "Geçici dosya yaratılamadı"
++msgstr "Dönüşüm oluşturulamadı"
+ 
+ #. WARN_VIEWER_IMAGE_NOT_SAVED
+ msgid "viewer image is not saved"
+@@ -2927,31 +2820,27 @@ msgstr "İzleme resmi saklanamadı"
+ 
+ #. FILE_FILTER_ALL_FILES
+ msgid "All files"
+-msgstr ""
++msgstr "Bütün dosyalar"
+ 
+ #. FILE_FILTER_IMAGES
+-#, fuzzy
+ msgid "Images"
+-msgstr "Sayfalar:"
++msgstr "Resimler"
+ 
+ #. FILE_FILTER_XBL
+-#, fuzzy
+ msgid "XSane batch list"
+-msgstr "Tarama listesini sakla"
++msgstr "XSane toplu listesi"
+ 
+ #. FILE_FILTER_ICM
+ msgid "ICC/ICM Profiles"
+-msgstr ""
++msgstr "ICC/ICM Profilleri"
+ 
+ #. FILE_FILTER_DRC
+-#, fuzzy
+ msgid "XSane device preferences"
+-msgstr "Aygıt tercihlerini sakla ve çık"
++msgstr "XSane cihaz tercihleri"
+ 
+ #. FILE_FILTER_RC
+-#, fuzzy
+ msgid "XSane preferences"
+-msgstr "Ayarlar"
++msgstr "XSane tercihleri"
+ 
+ #. TEXT_USAGE
+ msgid "Usage:"
+@@ -3061,7 +2950,6 @@ msgid "<Toolbox>/Xtns/XSane/"
+ msgstr "<Araçkutusu>/Xtns/XSane/"
+ 
+ #. HELP_NO_DEVICES
+-#, fuzzy
+ msgid ""
+ "Possible reasons:\n"
+ "1) There really is no device that is supported by SANE\n"
+@@ -3235,9 +3123,8 @@ msgid "POP3 login failed"
+ msgstr "POP3 login hatalı"
+ 
+ #. TEXT_EMAIL_STATUS_ASMTP_AUTH_FAILED
+-#, fuzzy
+ msgid "ASMTP authentication failed"
+-msgstr "SMTP bağlantısı yapılamadı"
++msgstr "ASMTP kimlik doğrulaması başarısız oldu"
+ 
+ #. TEXT_EMAIL_STATUS_SMTP_CONNECTION_FAILED
+ msgid "SMTP connection failed"
+@@ -3264,7 +3151,6 @@ msgid "E-mail has been sent"
+ msgstr "E-Posta gönderildi"
+ 
+ #. TEXT_FAX_STATUS_QUEUEING_FAX
+-#, fuzzy
+ msgid "Queueing fax"
+ msgstr "Faks kuyruğa alınıyor"
+ 
+diff --git a/src/xsane.desktop b/src/xsane.desktop
+index 67cc7b8..786c5e6 100644
+--- a/src/xsane.desktop
++++ b/src/xsane.desktop
+@@ -4,11 +4,13 @@ Name[ru]=Программа для сканирования изображени
+ Name[ca]=Programa d'escaneig d'imatges XSane
+ Name[es]=Programa de escaneo de imágenes XSane
+ Name[fr]=Programme d'acquisition d'images XSane
++Name[tr]=XSane Tarayıcı Programı
+ Comment=A program to work with scanner. Can be used as a scanning, copier, OCR, fax tools.
+ Comment[ru]=Программа для работы со сканером. Может быть использована в качестве копировального аппарата, факса, и др.
+ Comment[ca]=Un programa per a treballar amb escànners. Es pot utilitzar com una eina d'escanejat, copiat, OCR i fax.
+ Comment[es]=Un programa para trabajar con escáners. Se puede utilizar como una herramienta para escanear, copiar, OCR y fax.
+ Comment[fr]=Un programme d'acquisition d'images pour votre scanner. Peut également photocopier, faxer ou faire de la reconnaissance de caractères.
++Comment[tr]=Tarayıcı ile çalışan bir program. Tarama, fotokopi makinesi, OCR, faks araçları olarak kullanılabilir
+ Exec=xsane
+ Icon=xsane
+ Terminal=false

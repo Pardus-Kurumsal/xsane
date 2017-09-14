@@ -1,13 +1,15 @@
-Description: correct some typos in man page
-Author: Jörg Frings-Fürst <debian@jff-webhosting.net>
-Forwarded: not-needed
-Last-Update: 2014-10-17
+From: =?utf-8?q?J=C3=B6rg_Frings-F=C3=BCrst?= <debian@jff-webhosting.net>
+Date: Thu, 14 Sep 2017 15:28:58 +0300
+Subject: typo_manpage
+
 ---
-This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
-Index: trunk/doc/xsane.man
-===================================================================
---- trunk.orig/doc/xsane.man
-+++ trunk/doc/xsane.man
+ doc/xsane.man | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/doc/xsane.man b/doc/xsane.man
+index f44fe4a..558bcfd 100644
+--- a/doc/xsane.man
++++ b/doc/xsane.man
 @@ -57,38 +57,38 @@ To run
  under the
  .BR gimp (1),

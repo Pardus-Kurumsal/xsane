@@ -1,14 +1,20 @@
-Description: Fixup options handling
- Duplicate string values for options with constraint type of
- SANE_CONSTRAINT_STRING_LIST. The string list is not guaranteed to
- be stable, and actually isn't stable when the net backend is used.
-Author: Julien BLACHE <jblache@debian.org>
+From: =?utf-8?q?J=C3=B6rg_Frings-F=C3=BCrst?= <debian@jff-webhosting.net>
+Date: Thu, 14 Sep 2017 15:28:58 +0300
+Subject: fix_options_handling_fix
 
-Index: trunk/src/xsane-back-gtk.c
-===================================================================
---- trunk.orig/src/xsane-back-gtk.c
-+++ trunk/src/xsane-back-gtk.c
-@@ -2229,11 +2229,13 @@ static void xsane_back_gtk_option_menu_c
+---
+ src/xsane-back-gtk.c  | 20 +++++++++++++++-----
+ src/xsane-back-gtk.h  |  2 +-
+ src/xsane-front-gtk.c | 23 ++++++++++++++++-------
+ src/xsane-front-gtk.h |  4 ++--
+ src/xsane.c           | 14 +++++++-------
+ 5 files changed, 41 insertions(+), 22 deletions(-)
+
+diff --git a/src/xsane-back-gtk.c b/src/xsane-back-gtk.c
+index bca9eb2..96e91bc 100644
+--- a/src/xsane-back-gtk.c
++++ b/src/xsane-back-gtk.c
+@@ -2229,11 +2229,13 @@ static void xsane_back_gtk_option_menu_callback(GtkWidget * widget, gpointer dat
  /* ----------------------------------------------------------------------------------------------------------------- */
  
  void xsane_back_gtk_option_menu_new(GtkWidget *parent, const char *name, char *str_list[],
@@ -23,7 +29,7 @@ Index: trunk/src/xsane-back-gtk.c
   int i, num_items;
  
    DBG(DBG_proc, "xsane_back_gtk_option_menu_new(%s)\n", name);
-@@ -2251,16 +2253,23 @@ void xsane_back_gtk_option_menu_new(GtkW
+@@ -2251,16 +2253,23 @@ void xsane_back_gtk_option_menu_new(GtkWidget *parent, const char *name, char *s
  
    menu_items = malloc((num_items + 1) * sizeof(menu_items[0]));
  
@@ -49,7 +55,7 @@ Index: trunk/src/xsane-back-gtk.c
      menu_items[i].elem = elem;
      menu_items[i].index = i;
    }
-@@ -2406,14 +2415,15 @@ static void xsane_back_gtk_panel_destroy
+@@ -2406,14 +2415,15 @@ static void xsane_back_gtk_panel_destroy(void)
    xsane.standard_hbox = NULL;
    xsane.advanced_hbox = NULL;
  
@@ -67,11 +73,11 @@ Index: trunk/src/xsane-back-gtk.c
        {
          for (j = 0; j < elem->menu_size; ++j)
          {
-Index: trunk/src/xsane-back-gtk.h
-===================================================================
---- trunk.orig/src/xsane-back-gtk.h
-+++ trunk/src/xsane-back-gtk.h
-@@ -117,7 +117,7 @@ extern void xsane_back_gtk_value_new(Gtk
+diff --git a/src/xsane-back-gtk.h b/src/xsane-back-gtk.h
+index a1a49bf..6137591 100644
+--- a/src/xsane-back-gtk.h
++++ b/src/xsane-back-gtk.h
+@@ -117,7 +117,7 @@ extern void xsane_back_gtk_value_new(GtkWidget *parent, const char *name, gfloat
  	   gfloat quant, int automatic,
  	   DialogElement *elem, GtkTooltips *tooltips, const char *desc, SANE_Int settable);
  extern void xsane_back_gtk_option_menu_new(GtkWidget *parent, const char *name, char *str_list[],
@@ -80,11 +86,11 @@ Index: trunk/src/xsane-back-gtk.h
  extern void xsane_back_gtk_text_entry_new(GtkWidget *parent, const char *name, const char *val,
                  DialogElement *elem, GtkTooltips *tooltips, const char *desc, SANE_Int settable);
  extern void xsane_back_gtk_push_button_callback(GtkWidget *widget, gpointer data);
-Index: trunk/src/xsane-front-gtk.c
-===================================================================
---- trunk.orig/src/xsane-front-gtk.c
-+++ trunk/src/xsane-front-gtk.c
-@@ -64,10 +64,10 @@ GtkWidget *xsane_toggle_button_new_with_
+diff --git a/src/xsane-front-gtk.c b/src/xsane-front-gtk.c
+index 4c973fb..6cfcb28 100644
+--- a/src/xsane-front-gtk.c
++++ b/src/xsane-front-gtk.c
+@@ -64,10 +64,10 @@ GtkWidget *xsane_toggle_button_new_with_pixmap(GdkWindow *window, GtkWidget *par
                                           int *state, void *xsane_toggle_button_callback);
  GtkWidget *xsane_button_new_with_pixmap(GdkWindow *window, GtkWidget *parent, const char *xpm_d[], const char *desc,
                                          void *xsane_button_callback, gpointer data);
@@ -97,7 +103,7 @@ Index: trunk/src/xsane-front-gtk.c
                                         GtkWidget **data, int option,
                                         void *option_menu_callback, SANE_Int settable, const gchar *widget_name);
  void xsane_range_new(GtkBox *parent, char *labeltext, const char *desc,
-@@ -1011,12 +1011,14 @@ static void xsane_option_menu_callback(G
+@@ -1011,12 +1011,14 @@ static void xsane_option_menu_callback(GtkWidget *widget, gpointer data)
  
  /* ---------------------------------------------------------------------------------------------------------------------- */
  
@@ -113,7 +119,7 @@ Index: trunk/src/xsane-front-gtk.c
   int i, num_items;
  
    DBG(DBG_proc, "xsane_option_menu_new\n");
-@@ -1035,9 +1037,16 @@ void xsane_option_menu_new(GtkWidget *pa
+@@ -1035,9 +1037,16 @@ void xsane_option_menu_new(GtkWidget *parent, char *str_list[], const char *val,
      gtk_widget_set_name(menu, widget_name);
    }
  
@@ -131,7 +137,7 @@ Index: trunk/src/xsane-front-gtk.c
      gtk_container_add(GTK_CONTAINER(menu), item);
  
      if (option_menu_callback)
-@@ -1051,7 +1060,7 @@ void xsane_option_menu_new(GtkWidget *pa
+@@ -1051,7 +1060,7 @@ void xsane_option_menu_new(GtkWidget *parent, char *str_list[], const char *val,
  
      gtk_widget_show(item);
  
@@ -140,7 +146,7 @@ Index: trunk/src/xsane-front-gtk.c
      menu_items[i].elem  = elem;
      menu_items[i].index = i;
    }
-@@ -1079,7 +1088,7 @@ void xsane_option_menu_new(GtkWidget *pa
+@@ -1079,7 +1088,7 @@ void xsane_option_menu_new(GtkWidget *parent, char *str_list[], const char *val,
  /* ---------------------------------------------------------------------------------------------------------------------- */
  
  void xsane_option_menu_new_with_pixmap(GdkWindow *window, GtkBox *parent, const char *xpm_d[], const char *desc,
@@ -149,7 +155,7 @@ Index: trunk/src/xsane-front-gtk.c
                                         GtkWidget **data, int option,
                                         void *option_menu_callback, SANE_Int settable, const gchar *widget_name)
  {
-@@ -1098,7 +1107,7 @@ void xsane_option_menu_new_with_pixmap(G
+@@ -1098,7 +1107,7 @@ void xsane_option_menu_new_with_pixmap(GdkWindow *window, GtkBox *parent, const
    gtk_box_pack_start(GTK_BOX(hbox), pixmapwidget, FALSE, FALSE, 2);
    gtk_widget_show(pixmapwidget);
  
@@ -158,11 +164,11 @@ Index: trunk/src/xsane-front-gtk.c
    gtk_widget_show(hbox);
  }
  
-Index: trunk/src/xsane-front-gtk.h
-===================================================================
---- trunk.orig/src/xsane-front-gtk.h
-+++ trunk/src/xsane-front-gtk.h
-@@ -54,10 +54,10 @@ extern GtkWidget *xsane_toggle_button_ne
+diff --git a/src/xsane-front-gtk.h b/src/xsane-front-gtk.h
+index 0a181bf..43132ac 100644
+--- a/src/xsane-front-gtk.h
++++ b/src/xsane-front-gtk.h
+@@ -54,10 +54,10 @@ extern GtkWidget *xsane_toggle_button_new_with_pixmap(GdkWindow *window, GtkWidg
  extern GtkWidget *xsane_button_new_with_pixmap(GdkWindow *window, GtkWidget *parent, const char *xpm_d[], const char *desc, 
                                                 void *xsane_button_callback, gpointer data);
  extern void xsane_pixmap_new(GtkWidget *parent, char *title, int width, int height, XsanePixmap *hist);
@@ -175,11 +181,11 @@ Index: trunk/src/xsane-front-gtk.h
                                                GtkWidget **data, int option,
                                                void *option_menu_callback, SANE_Int settable, const gchar *widget_name);
  extern void xsane_range_new(GtkBox *parent, char *labeltext, const char *desc,
-Index: trunk/src/xsane.c
-===================================================================
---- trunk.orig/src/xsane.c
-+++ trunk/src/xsane.c
-@@ -876,7 +876,7 @@ static int xsane_resolution_widget_new(G
+diff --git a/src/xsane.c b/src/xsane.c
+index 1e29e80..d45a0d1 100644
+--- a/src/xsane.c
++++ b/src/xsane.c
+@@ -876,7 +876,7 @@ static int xsane_resolution_widget_new(GtkWidget *parent, int well_known_option,
              str_list[j] = 0;
              sprintf(str, "%d", (int) val);
  
@@ -188,7 +194,7 @@ Index: trunk/src/xsane.c
                                                xsane_resolution_list_callback, SANE_OPTION_IS_SETTABLE(opt->cap), widget_name);
  
              free(str_list);
-@@ -931,7 +931,7 @@ static int xsane_resolution_widget_new(G
+@@ -931,7 +931,7 @@ static int xsane_resolution_widget_new(GtkWidget *parent, int well_known_option,
  
  
            xsane_option_menu_new_with_pixmap(xsane.xsane_window->window, GTK_BOX(parent), image_xpm, desc,
@@ -197,7 +203,7 @@ Index: trunk/src/xsane.c
                                              xsane_resolution_list_callback, SANE_OPTION_IS_SETTABLE(opt->cap), widget_name);
            free(str_list);
          }
-@@ -1496,7 +1496,7 @@ GtkWidget *xsane_update_xsane_callback()
+@@ -1496,7 +1496,7 @@ GtkWidget *xsane_update_xsane_callback() /* creates the XSane option window */
            set = malloc(opt->size);
            status = xsane_control_option(xsane.dev, xsane.well_known.scansource, SANE_ACTION_GET_VALUE, set, 0);
  
@@ -206,7 +212,7 @@ Index: trunk/src/xsane.c
                                  _BGT(opt->desc), 0, SANE_OPTION_IS_SETTABLE(opt->cap), 0);
           }
           break;
-@@ -1536,7 +1536,7 @@ GtkWidget *xsane_update_xsane_callback()
+@@ -1536,7 +1536,7 @@ GtkWidget *xsane_update_xsane_callback() /* creates the XSane option window */
            set = malloc(opt->size);
            status = xsane_control_option(xsane.dev, xsane.well_known.scanmode, SANE_ACTION_GET_VALUE, set, 0);
  
